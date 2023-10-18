@@ -1,24 +1,20 @@
-import Link from "next/link"
+import Link from "next/link";
+import AdminUsersCard from "@/Components/AdminUsersCard";
+import AdminAttractionsCard from "@/Components/AdminAttractionsCard";
+import AdminLocationsCard from "@/Components/AdminLocationsCard";
+import './admin.css'
 
-export default function AdminDashboard(){
-  return (
-    <div>
-      <h1>Admin Page</h1>
-      <Link href="/AdminDashboard/UsersAdmin">
-        <div>
-          <h1>Users Administration</h1>
-        </div>
-      </Link>
-      <Link href="/AdminDashboard/LocationsAdmin">
-        <div>
-          <h1>Locations Administration</h1>
-        </div>
-      </Link>
-      <Link href="/AdminDashboard/AtractionsAdmin">
-        <div>
-          <h1>Atractions Administration</h1>
-        </div>
-      </Link>
-    </div>
-  );
+export default function AdminDashboard (){
+return (<main>
+    <Link href="/AdminDashboard/AdminUsers">
+    <AdminUsersCard/>
+    </Link>
+    <Link href="/AdminDashboard/AdminAtractions">
+    <AdminAttractionsCard/>
+    </Link>
+    <Link href="/AdminDashboard/AdminLocations">
+    <AdminLocationsCard/>
+    </Link>
+</main>
+)
 }

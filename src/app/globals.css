@@ -25,3 +25,21 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+button{
+  border-color: rgb(2, 2, 2);
+  border-style: solid;
+  color: rgb(0, 116, 15);
+  background-color: beige;
+  width: 150px;
+  height: 40px;
+  font-family: monospace;
+  font-size: large;
+}
+div{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+h1{
+  font-size: xx-large;
+}
