@@ -1,9 +1,8 @@
-import image from "../../Assets/AdminAttractions.jpg"
 
 export default function AdminLAttractionsCard(){
     
     return(
-        <div>
+        <div className=" text-2xl text-red-700">
             <h1>Manage</h1>
             <h1>Attractions</h1>
         </div>
