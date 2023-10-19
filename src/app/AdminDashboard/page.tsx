@@ -9,18 +9,18 @@ export default function AdminDashboard (){
 
 return (
   <div className="w-full h-full flex flex-row justify-around items-center bg-adminDashBoard bg-no-repeat bg-cover bg-center">
-    <div className="text-red-800 hover:scale-125 bg-usersCard bg-cover h-96 w-60 justify-center text-center">
-      <button onClick={() => router.push("/AdminDashboard/AdminUsers")} className="h-full w-full" >
-        <AdminUsersCard />
+    <div className="text-red-800 hover:scale-125 bg-usersCard bg-cover h-96 w-60 justify-center text-center align-text-top">
+      <button onClick={() => router.push("/AdminDashboard/AdminUsers")} className="h-full w-full relative" >
+        <AdminUsersCard/>
       </button>
     </div>
     <div className="text-red-800 hover:scale-125 bg-attractionsCard bg-cover h-96 w-60 justify-center text-center" >
-      <button onClick={() => router.push("/AdminDashboard/AdminAttractions")} className="h-full w-full">
+      <button onClick={() => router.push("/AdminDashboard/AdminAttractions")} className="h-full w-full relative">
         <AdminAttractionsCard />
       </button>
     </div>
-    <div className="text-red-800 hover:scale-125 bg-locationsCard bg-cover h-96 w-60 justify-center" >
-      <button onClick={() => router.push("/AdminDashboard/AdminLocations")} className="h-full w-full">
+    <div className="text-red-800 hover:scale-125 bg-locationsCard bg-cover h-96 w-60 justify-center text-center" >
+      <button onClick={() => router.push("/AdminDashboard/AdminLocations")} className="h-full w-full relative">
         <AdminLocationsCard />
       </button>
     </div>
