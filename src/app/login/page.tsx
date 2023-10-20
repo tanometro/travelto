@@ -1,7 +1,9 @@
+import { LoginForm } from "@/Components/login/LoginForm";
+
 export default function dashboardLogin() {
     return (
-        <>
-            <h1>iniciar seccion</h1>
-        </>
+        <section className="h-screen">
+            <LoginForm />
+        </section>
     )
 }
