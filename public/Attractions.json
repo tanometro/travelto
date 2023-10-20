@@ -1,4 +1,6 @@
-[
+
+  {
+    "attractions":[
     {
         "id": 1,
         "name": "freelance dee jay Bar",
@@ -22,15 +24,15 @@
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=243965"
     },
     {
-        "id": 3,
-        "name": "Rondje Gezond",
-        "isActive": true,
-        "hours": "",
-        "location": "Amsterdam",
-        "coordinates":{"latitude": "52.340806","longitude": "4.955996"},
-        "price": "",
-        "duration": "",
-        "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=243964"
+      "id": 3,
+      "name": "Rondje Gezond",
+      "isActive": true,
+      "hours": "",
+      "location": "Amsterdam",
+      "coordinates": { "latitude": "52.340806", "longitude": "4.955996" },
+      "price": "",
+      "duration": "",
+      "description": "http://tour-pedia.org/api/getPlaceDetails?id=243964"
     },
     {
         "id": 4,
@@ -345,4 +347,4 @@
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=83423"
     }
-]
+]}
