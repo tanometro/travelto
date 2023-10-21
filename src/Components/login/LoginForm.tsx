@@ -2,13 +2,12 @@
 "use client"
 import { useState, useEffect } from "react"
 import { Ripple, Input, initTE } from "tw-elements";
-import Image from 'next/image'
 
 
 export const LoginForm = () => {
-    const [errors, setErrors] = useState<string[]>([]);
-    const [email, setEmail] = useState<string>();
-    const [password, setPassword] = useState<string>();
+    //const [errors, setErrors] = useState<string[]>([]);
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
     useEffect(() => {
         initTE({ Ripple, Input });
@@ -16,7 +15,7 @@ export const LoginForm = () => {
 
     const handlerSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        setErrors([]);
+        //setErrors([]);
         // aca llamo a la api
     }
 
