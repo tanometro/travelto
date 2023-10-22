@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
-import { useSession } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 import Image from 'next/image'
 
 export const UserDate = () => {
@@ -13,17 +14,18 @@ export const UserDate = () => {
     }
 
     return (
-        <article>
-            <div>
-                {session.user?.image && <Image src={session.user?.image} width={200} height={200} alt="My photo" />}
+        <article className="h-500 flex flex-col items-center justify-around">
+            <div >
+                <img src={session.user?.image as string} width={200} height={200} alt="My photo" />
             </div>
 
+            <div className="flex">
+                <h2>{session.user?.name}</h2>
+            </div>
             <div className="flex items-center">
                 <h2>{session.user?.email}</h2>
             </div>
-            <div className="flex" data-te-input-wrapper-init>
-                <h2>{session.user?.name}</h2>
-            </div>
+            <button onClick={async () => { await signOut({ callbackUrl: "/" }) }} className="h-10 px-6 font-semibold rounded-md border border-slate-200 text-black">Close</button>
         </article>
 
     )

@@ -5,6 +5,7 @@ import { signIn, signOut, useSession } from "next-auth/react"
 export const LoginForm = () => {
     const { data: session, status } = useSession();
     //const [errors, setErrors] = useState<string[]>([]);
+    const [name, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
@@ -13,39 +14,40 @@ export const LoginForm = () => {
         //setErrors([]);
         // aca llamo a la api
     }
-
-    /*  if (session) {
-         return (
-             <>
-                 Welcome {session.user?.email}
-                 <button onClick={async () => { await signOut({ callbackUrl: "/" }) }} className="h-10 px-6 font-semibold rounded-md border border-slate-200 text-white">Close</button>
-             </>
-         )
-     } */
-
     return (
         <form onSubmit={handlerSubmit}>
             <div className="flex items-center">
-                {session ? <h1>{session.user?.email}</h1> : <label htmlFor="email" className="" >
+                <label htmlFor="name" className="block w-full text-sm font-medium leading-6 text-gray-900" >
+                    NAME
+                    <input type="text"
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        value={name}
+                        placeholder="Name..."
+                        onChange={(event) => setEmail(event.target.value)} />
+                </label>
+            </div>
+            <div className="flex items-center">
+                <label htmlFor="email" className="block w-full text-sm font-medium leading-6 text-gray-900" >
                     EMAIL
                     <input type="email"
-                        className="p-0 bg-transparent text-sm leading-6 pl-1"
+                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         value={email}
                         placeholder="Email..."
                         onChange={(event) => setEmail(event.target.value)} />
-                </label>}
+                </label>
             </div>
             <div className="relative mb-6" data-te-input-wrapper-init>
 
-                <input className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-1" type="password" name="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-                <label className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
+                <label className="block w-full text-sm font-medium leading-6 text-gray-900">
                     PASSWORD
+                    <input placeholder="Password..." className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" type="password" name="password" value={password} onChange={(event) => setPassword(event.target.value)} />
                 </label>
             </div>
+            <div className="relative mb-6 flex flex-col gap-y-4">
+                <button className="flex w-full justify-center p-30 rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" type="submit">SING IN</button>
 
-            <button type="submit">SING IN</button>
-
-            <button onClick={() => signIn()}>Sign In with Google</button>
+                <button className="flex w-full justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={() => signIn()}>Sign In with Google</button>
+            </div>
 
         </form>
 

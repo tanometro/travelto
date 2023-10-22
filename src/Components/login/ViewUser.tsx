@@ -1,15 +1,16 @@
 "use client"
-import { useState } from "react"
-import { signIn, signOut, useSession } from "next-auth/react"
-import { log } from "console";
+import { useEffect } from "react"
+import { useSession } from "next-auth/react"
+
 import { UserDate } from "./UserDate";
 import { LoginForm } from "./LoginForm";
 
 export const ViewUser = () => {
-    const { data: session, status } = useSession();
-    console.log(session);
-    console.log(status);
-    if (!session) {
+    const { status } = useSession();
+    useEffect(() => {
+
+    }, [status])
+    if (status === "loading") {
         return (
             <article>
                 <h2>Loading...</h2>

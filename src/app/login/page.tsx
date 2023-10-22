@@ -1,4 +1,4 @@
-import { LoginForm } from "@/Components/login/LoginForm";
+import { ViewUser } from "@/Components/login/ViewUser";
 import Image from 'next/image'
 
 export default function dashboardLogin() {
@@ -15,8 +15,7 @@ export default function dashboardLogin() {
                             alt="Phone image" />
                     </div>
                     <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
-
-                        <LoginForm />
+                        <ViewUser />
                     </div>
                 </div>
             </div>
