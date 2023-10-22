@@ -14,7 +14,9 @@ export default function AdminAttractionsTable() {
       <div className=" text-center h-1/4">
         <button
           className=" col-span-2 row-span-1 text-center w-56 h-10 text-lg  border-red-600 border-solid border-2 bg-green-400 m-6 rounded-lg "
-          onClick={() => router.push("/AdminDashboard/AdminAttractions/CreateAttraction")}
+          onClick={() =>
+            router.push("/AdminDashboard/AdminAttractions/CreateAttraction")
+          }
         >
           Create a New Attraction
         </button>
@@ -65,7 +67,7 @@ export default function AdminAttractionsTable() {
                     className=" border-red-600 border-solid border-2 bg-green-200 w-32 h-8 rounded"
                     onClick={() =>
                       router.push(
-                        "/AdminDashboard/AdminAttractions/EditAttraction"
+                        `/AdminDashboard/Adminattractions/CreateAttraction`
                       )
                     }
                   >
