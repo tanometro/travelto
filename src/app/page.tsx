@@ -3,6 +3,7 @@ import styles from './page.module.css';
 import 'remixicon/fonts/remixicon.css';
 
 // Impotrtando imagenes
+import london from '../../public/images/london.jpeg'
 import img_home from '../../public/images/home-bg.jpg'
 import trees from '../../public/images/home-trees.jpg'
 import lake from '../../public/images/home-lake.jpg'
@@ -87,26 +88,29 @@ export default function Home() {
                 <div className={`${styles.home__cards} ${styles.grid}`}>
                 <article className={styles.home__card}>
                     <Image
-                    src={trees}
+                    src={london}
                     alt="home image"
                     className={styles.home__card_img}
                     />
-                    <h3 className={styles.home__card_title}>Croatia</h3>
+                    <h3 className={styles.home__card_title}>London</h3>
                     <div className={styles.home__card_shadow} />
                 </article>
                 <article className={styles.home__card}>
                     <Image
-                    src={lake}
+                    src={trees}
                     alt="home image"
+                    width={260}
+                    height={172}
                     className={styles.home__card_img}
                     />
-                    <h3 className={styles.home__card_title}>Iceland</h3>
+                    <h3 className={styles.home__card_title}>Berlin</h3>
                     <div className={styles.home__card_shadow} />
                 </article>
                 <article className={styles.home__card}>
                     <Image
                     src={mountain}
                     alt="home image"
+                    
                     className={styles.home__card_img}
                     />
                     <h3 className={styles.home__card_title}>Italy</h3>
