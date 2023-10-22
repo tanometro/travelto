@@ -11,7 +11,7 @@
       "id": 2,
       "name": ["Ervin", "Howell"],
       "DNI": 14456908,
-      "isActive": "Shanna@melissa.tv",
+      "isActive": true,
       "roleId": 3
     },
     {

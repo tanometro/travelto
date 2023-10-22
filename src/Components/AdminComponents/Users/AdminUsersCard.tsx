@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 export default function AdminUsersCard(){
     
     const router = useRouter();
+    
 
     return(
         <div className="text-red-800 hover:scale-125 bg-usersCard bg-cover h-96 w-60 justify-center text-center align-text-top rounded-xl">
