@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/jsx-no-comment-textnodes */
 import Image from 'next/image';
 import styles from './page.module.css';
 import 'remixicon/fonts/remixicon.css';
@@ -96,11 +98,11 @@ export default function Home() {
                     <div className={styles.home__card_shadow} />
                 </article>
                 <article className={styles.home__card}>
-                    <Image
-                    src={trees}
+    
+                    <img
+                    src={'https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}
                     alt="home image"
-                    width={260}
-                    height={172}
+                    
                     className={styles.home__card_img}
                     />
                     <h3 className={styles.home__card_title}>Berlin</h3>
