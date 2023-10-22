@@ -52,7 +52,7 @@ export default function AdminAttractionForm() {
             Is Active:
           </label>
           <input
-            className="mr-2 leading-tight"
+            className="mr-2 leading-tight w-9 h-9"
             type="checkbox"
             name="isActive"
             checked={formData.isActive}
