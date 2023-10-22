@@ -10,8 +10,8 @@ export default function dashboardLogin() {
                         <Image
                             src="/image/traveltoLogin.jpg"
                             className="h-[500px]"
-                            width={300}
-                            height={500}
+                            width={400}
+                            height={400}
                             alt="Phone image" />
                     </div>
                     <div className="md:w-8/12 lg:ml-6 lg:w-5/12">

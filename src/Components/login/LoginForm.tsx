@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import { signIn, signOut, useSession } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
 
 export const LoginForm = () => {
     const { data: session, status } = useSession();
@@ -13,6 +13,12 @@ export const LoginForm = () => {
         event.preventDefault();
         //setErrors([]);
         // aca llamo a la api
+        const responseNextAuth = signIn("credentials", {
+            name,
+            email,
+            password,
+            redirect: false,
+        })
     }
     return (
         <form onSubmit={handlerSubmit}>
@@ -46,7 +52,9 @@ export const LoginForm = () => {
             <div className="relative mb-6 flex flex-col gap-y-4">
                 <button className="flex w-full justify-center p-30 rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" type="submit">SING IN</button>
 
-                <button className="flex w-full justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={() => signIn()}>Sign In with Google</button>
+                <button className="flex w-full justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={() => signIn("google", {
+                    redirect: false,
+                })}>Sign In with Google</button>
             </div>
 
         </form>
