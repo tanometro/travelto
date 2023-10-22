@@ -1,25 +1,39 @@
-import { ViewUser } from "@/Components/login/ViewUser";
-import Image from 'next/image'
+"use client";
+import { ViewUser } from "@/components/login/ViewUser";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import FondoLogin from "@/public/images/fondo-login.jpg";
+import Logo from "@/public/images/logo.png";
+import SignOrLog from "@/components/SignOrLog/SignOrLog";
 
-export default function dashboardLogin() {
-    return (
-        <section className="h-screen">
-            <div className="container h-full px-6 py-24">
-                <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
-                    <div className="flex justify-center items-start mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
-                        <Image
-                            src="/image/traveltoLogin.jpg"
-                            className="h-[500px]"
-                            width={400}
-                            height={400}
-                            alt="Phone image" />
-                    </div>
-                    <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
-                        <ViewUser />
-                    </div>
-                </div>
-            </div>
-
-        </section>
-    )
+export default function DashboardLogin() {
+  const { data: session } = useSession();
+  return (
+    <section className="h-screen">
+      <div className="container h-full p-2 pt-24 md:px-6 md:py-24">
+        <Image
+          className="fixed top-10 left-10"
+          src={Logo}
+          alt="Logo"
+          width={200}
+          height={150}
+        />
+        <div className="fixed z-[-2] top-0 left-0 w-screen h-screen">
+          <Image
+            src={FondoLogin}
+            alt="Fondo"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            className="absolute overflow-hidden "
+          />
+        </div>
+        <div className="absolute top-0 left-0 w-full h-full z-[-1] bg-gradient-radial from-transparent to-black" />
+        <div className="flex flex-col-reverse w-50 md:flex-row md:min-w-[50rem] justify-center p-5">
+          {!session && <SignOrLog />}
+          <ViewUser />
+        </div>
+      </div>
+    </section>
+  );
 }
