@@ -1,7 +1,7 @@
 "use client"
-import AdminUsersCard from "@/Components/AdminComponents/Users/AdminUsersCard";
-import AdminAttractionsCard from "@/Components/AdminComponents/Attractions/AdminAttractionsCard";
-import AdminLocationsCard from "@/Components/AdminComponents/Locations/AdminLocationsCard";
+import AdminUsersCard from "@/src/Components/AdminComponents/Users/AdminUsersCard";
+import AdminAttractionsCard from "@/src/Components/AdminComponents/Attractions/AdminAttractionsCard";
+import AdminLocationsCard from "@/src/Components/AdminComponents/Locations/AdminLocationsCard";
 
 export default function AdminDashboard (){
 
