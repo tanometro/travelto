@@ -1,7 +1,7 @@
-import data from "../../../public/Locations.json";
+import data from "../../../../public/Locations.json";
 import { useRouter } from "next/navigation";
 
-export default function() {
+export default function AdminLocationsTable() {
 
     const locations = data.locations
     const router = useRouter()

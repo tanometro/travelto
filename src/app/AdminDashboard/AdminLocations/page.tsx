@@ -1,5 +1,5 @@
 "use client";
-import AdminLocationsTable from "@/Components/AdminComponents/AdminLocationsTable";
+import AdminLocationsTable from "@/Components/AdminComponents/Locations/AdminLocationsTable";
 import { useRouter } from "next/navigation";
 
 
