@@ -1,12 +1,12 @@
 "use client"
-import AdminUsersCard from "@/Components/AdminComponents/AdminUsersCard";
-import AdminAttractionsCard from "@/Components/AdminComponents/AdminAttractionsCard";
-import AdminLocationsCard from "@/Components/AdminComponents/AdminLocationsCard";
+import AdminUsersCard from "@/src/Components/AdminComponents/Users/AdminUsersCard";
+import AdminAttractionsCard from "@/src/Components/AdminComponents/Attractions/AdminAttractionsCard";
+import AdminLocationsCard from "@/src/Components/AdminComponents/Locations/AdminLocationsCard";
 
 export default function AdminDashboard (){
 
 return (
-  <div className="w-full h-full flex flex-row justify-around items-center bg-adminDashBoard bg-no-repeat bg-cover bg-center">
+  <div className="w-full h-full flex flex-row justify-around items-center bg-opacity-90 bg-black">
     <AdminUsersCard />
     <AdminAttractionsCard />
     <AdminLocationsCard />
