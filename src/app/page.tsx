@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import Link from "next/link"
-
-export default function Home() {
-  return (
-    <div>
-      <h1>Pagina Principal</h1>
-      <Link href="/AdminDashboard">
-      <button>Admin DashBoard</button>
-      </Link>
-      </div>
-      )
-=======
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Image from 'next/image';
@@ -425,5 +412,4 @@ export default function Home() {
     </>
 
   )
->>>>>>> 8b42dbe01ad633a80f4305479150d9b1b457aaf9
 }
