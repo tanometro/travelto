@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 
+
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,9 +10,10 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'adminDashBoard': 'url("https://s0.smartresize.com/wallpaper/140/409/HD-wallpaper-the-colosseum-the-amphitheater-people-colosseum-rome-italy.jpg")',
+        'usersCard': 'url("https://thumbs.dreamstime.com/z/imagen-vertical-del-viajero-femenino-joven-que-se-sienta-al-borde-de-rocas-altas-monta%C3%B1as-en-fondo-el-hacer-excursionismo-la-155501453.jpg?w=576")',
+        'attractionsCard': 'url("https://i.pinimg.com/originals/d7/8e/ef/d78eef9e26ff5d3b4f69a649ab66ffa3.jpg")',
+        'locationsCard': 'url("https://w0.peakpx.com/wallpaper/964/80/HD-wallpaper-paisaje-amanecer-sol.jpg")',
       },
     },
   },
