@@ -1,7 +1,8 @@
+
 import Image from 'next/image';
 import styles from './explore.module.css';
 import explore_beach from '../../public/images/explore-beach.jpg'
-import Data from '@/public/Attactions.json'
+import Data from '@/public/Attractions.json'
 import Cards from '@/components/Cards/Cards'
 
 export default function Explore () {

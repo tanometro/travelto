@@ -18,13 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-<<<<<<< HEAD
-      <body className={inter.className}>{children} </body>
-=======
       <body className={inter.className}>
         <SessionAuthProvider>{children}</SessionAuthProvider>
       </body>
->>>>>>> e777bff13042260087251fe51e11175fdef2eebb
     </html>
   );
 }

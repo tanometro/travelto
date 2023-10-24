@@ -19,12 +19,8 @@
         "isActive": true,
         "hours": "",
         "location": "Amsterdam",
-<<<<<<< HEAD:public/Attactions.json
-        "coordinates":{"latitude": "52.352296","longitude": "5.003828"},
-=======
         "latitude": "52.352296",
         "longitude": "5.003828",
->>>>>>> e777bff13042260087251fe51e11175fdef2eebb:public/Attractions.json
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=243965"
@@ -179,12 +175,8 @@
         "isActive": true,
         "hours": "",
         "location": "Barcelona",
-<<<<<<< HEAD:public/Attactions.json
-        "coordinates":{"latitude": "41.388421","longitude": "2.163971"},
-=======
         "latitude": "41.388421",
         "longitude": "2.163971",
->>>>>>> e777bff13042260087251fe51e11175fdef2eebb:public/Attractions.json
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=129545"
@@ -217,12 +209,8 @@
         "name": "The O2 Arena",
         "isActive": true,
         "location": "London",
-<<<<<<< HEAD:public/Attactions.json
-        "coordinates":{"latitude": "51.5208524812","longitude": "-0.016405034172"},
-=======
         "latitude": "51.5208524812",
         "longitude": "-0.01405034172",
->>>>>>> e777bff13042260087251fe51e11175fdef2eebb:public/Attractions.json
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=217081"
@@ -233,12 +221,8 @@
         "isActive": true,
         "hours": "",
         "location": "London",
-<<<<<<< HEAD:public/Attactions.json
-        "coordinates": {"latitude": "51.511485","longitude": "-0.316286"},
-=======
         "latitude": "51.511485",
         "longitude": "-0.31628",
->>>>>>> e777bff13042260087251fe51e11175fdef2eebb:public/Attractions.json
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=245715"
