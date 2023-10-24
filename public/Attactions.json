@@ -16,7 +16,7 @@
         "isActive": true,
         "hours": "",
         "location": "Amsterdam",
-        "cordinates":{"latitude": "52.352296","longitude": "5.003828"},
+        "coordinates":{"latitude": "52.352296","longitude": "5.003828"},
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=243965"
@@ -158,7 +158,7 @@
         "name": "Arena Madre",
         "isActive": true,       "hours": "",
         "location": "Barcelona",
-        "coodinates":{"latitude": "41.388421","longitude": "2.163971"},
+        "coordinates":{"latitude": "41.388421","longitude": "2.163971"},
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=129545"
@@ -189,7 +189,7 @@
         "name": "The O2 Arena",
         "isActive": true,
         "location": "London",
-        "coodinates":{"latitude": "51.5208524812","longitude": "-0.016405034172"},
+        "coordinates":{"latitude": "51.5208524812","longitude": "-0.016405034172"},
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=217081"
@@ -200,7 +200,7 @@
         "isActive": true,
         "hours": "",
         "location": "London",
-        "coodrinates": {"latitude": "51.511485","longitude": "-0.316286"},
+        "coordinates": {"latitude": "51.511485","longitude": "-0.316286"},
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=245715"
