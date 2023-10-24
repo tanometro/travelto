@@ -7,7 +7,8 @@
         "isActive": true,
         "hours": "",
         "location": "Amsterdam",
-        "coordinates":{"latitude": "52.351137","longitude": "5.005955"},
+        "latitude": "52.351137",
+        "longitude": "5.005955",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=243966"
@@ -18,7 +19,8 @@
         "isActive": true,
         "hours": "",
         "location": "Amsterdam",
-        "coordinates":{"latitude": "52.352296","longitude": "5.003828"},
+        "latitude": "52.352296",
+        "longitude": "5.003828",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=243965"
@@ -29,7 +31,8 @@
       "isActive": true,
       "hours": "",
       "location": "Amsterdam",
-      "coordinates": { "latitude": "52.340806", "longitude": "4.955996" },
+      "latitude": "52.340806",
+      "longitude": "4.95596",
       "price": "",
       "duration": "",
       "description": "http://tour-pedia.org/api/getPlaceDetails?id=243964"
@@ -40,7 +43,8 @@
         "isActive": true,
         "hours": "",
         "location": "Amsterdam",
-        "coordinates":{"latitude": "52.349179","longitude": "4.917096"},
+        "latitude": "52.349179",
+        "longitude": "4.917096",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=243948"
@@ -51,7 +55,8 @@
         "isActive": true,
         "hours": "",
         "location": "Amsterdam",
-        "coordinates":{"latitude": "52.356171","longitude": "4.928921"},
+        "latitude": "52.356171",
+        "longitude": "4.928921",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=243937"
@@ -62,7 +67,8 @@
         "name": "Taverna Del Campo",
         "hours":"",
         "location": "Rome",
-        "coordinates":{"latitude": "41.8745652","longitude": "12.5781169"},
+        "latitude": "41.8745652"
+        ,"longitude": "12.578119",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=119"
@@ -73,7 +79,8 @@
         "isActive": true,       
         "hours": "",
         "location": "Rome",
-        "coordinates":{"latitude": "41.779131863946","longitude": "12.433862914306"},
+        "latitude": "41.779131863946",
+        "longitude": "12.33862914306",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=143"
@@ -84,7 +91,8 @@
         "isActive": true,
         "hours": "",
         "location": "Rome",
-        "coordinates":{"latitude": "41.85746516383","longitude": "12.459187428717"},
+        "latitude": "41.85746516383",
+        "longitude": "12.49187428717",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=158"
@@ -95,7 +103,8 @@
         "isActive": true,
         "hours": "",
         "location": "Rome",
-        "coordinates":{"latitude": "41.90277628036","longitude": "12.476577510837"},
+        "latitude": "41.90277628036",
+        "longitude": "12.46577510837",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=182"
@@ -106,7 +115,8 @@
         "isActive": true,   
         "hours": "",
         "location": "Rome",
-        "coordinates":{"latitude": "41.892534","longitude": "12.541465"},
+        "latitude": "41.892534",
+        "longitude": "12.541465",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=185"
@@ -117,7 +127,8 @@
         "isActive": true,
         "hours": "",
         "location": "Barcelona",
-        "coordinates":{"latitude": "41.395081","longitude": "2.144182"},
+        "latitude": "41.395081",
+        "longitude": "2.144182",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=217950"
@@ -128,7 +139,8 @@
         "isActive": true,
         "hours": "",
         "location": "Barcelona",
-        "coordinates":{"latitude": "41.37904","longitude": "2.151681"},
+        "latitude": "41.37904",
+        "longitude": "2.151681",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=217959"
@@ -139,7 +151,8 @@
         "isActive": true,
         "hours": "",
         "location": "Barcelona",
-        "coordinates":{"latitude": "41.390273","longitude": "2.170548"},
+        "latitude": "41.390273",
+        "longitude": "2.170548",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=217973"
@@ -150,7 +163,8 @@
         "isActive": true,
         "hours": "",
         "location": "Barcelona",
-        "coordinates":{"latitude": "41.37916","longitude": "2.175923"},
+        "latitude": "41.37916",
+        "longitude": "2.175923",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=217977"
@@ -158,9 +172,11 @@
     {
         "id": 15,
         "name": "Arena Madre",
-        "isActive": true,       "hours": "",
+        "isActive": true,
+        "hours": "",
         "location": "Barcelona",
-        "coordinates":{"latitude": "41.388421","longitude": "2.163971"},
+        "latitude": "41.388421",
+        "longitude": "2.163971",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=129545"
@@ -171,7 +187,8 @@
         "isActive": true,
         "hours": "",
         "location": "Barcelona",
-        "coordinates":{"latitude": "41.378885","longitude": "2.17424"},
+        "latitude": "41.378885",
+        "longitude": "2.17424",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=129563"
@@ -181,7 +198,8 @@
         "name": "Hennessy Pub",
         "isActive": true,
         "location": "London",
-        "coordinates":{"latitude": "51.572640909349","longitude": "-0.41270504408679"},
+        "latitude": "51.572640909349",
+        "longitude": "-0.1270504408679",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=216987"
@@ -191,7 +209,8 @@
         "name": "The O2 Arena",
         "isActive": true,
         "location": "London",
-        "coordinates":{"latitude": "51.5208524812","longitude": "-0.016405034172"},
+        "latitude": "51.5208524812",
+        "longitude": "-0.01405034172",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=217081"
@@ -202,7 +221,8 @@
         "isActive": true,
         "hours": "",
         "location": "London",
-        "coordinates": {"latitude": "51.511485","longitude": "-0.316286"},
+        "latitude": "51.511485",
+        "longitude": "-0.31628",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=245715"
@@ -213,7 +233,8 @@
         "isActive": true,
         "hours": "",
         "location": "London",
-        "coordinates":{"latitude": "51.512153","longitude": "-0.302852"},
+        "latitude": "51.512153",
+        "longitude": "-0.302852",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=245714"
@@ -224,7 +245,8 @@
         "isActive": true,
         "hours": "",
         "location": "London",
-        "coordinates":{"latitude": "51.511019","longitude": "-0.307122"},
+        "latitude": "51.511019",
+        "longitude": "-0.307122",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=245710"
@@ -234,7 +256,8 @@
         "name": "Deutsches Historisches Museum",
         "isActive": true,    "hours": "",
         "location": "Berlin",
-        "coordinates":{"latitude": "52.518682","longitude": "13.396322"},
+        "latitude": "52.518682",
+        "longitude": "13.396322",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=92395"
@@ -244,7 +267,8 @@
         "name": "Cassiopeia",
         "isActive": true,        "hours": "",
         "location": "Berlin",
-       "coordinates":{"latitude": "52.507158","longitude": "13.454701"},
+       "latitude": "52.507158",
+       "longitude": "13.454701",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=92127"
@@ -255,7 +279,8 @@
         "isActive": true,
         "hours": "",
         "location": "Berlin",
-        "coordinates":{"latitude": "52.496354","longitude": "13.438159"},
+        "latitude": "52.496354",
+        "longitude": "13.438159",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=92318"
@@ -266,7 +291,8 @@
         "isActive": true,        
         "hours": "",
         "location": "Berlin",
-        "coordinates":{"latitude": "52.500402","longitude": "13.422159"},
+        "latitude": "52.500402",
+        "longitude": "13.422159",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=92040"
@@ -277,7 +303,8 @@
         "isActive": true,
         "hours": "",
         "location": "Berlin",
-       "coordinates":{"latitude": "52.500848","longitude": "13.444852"},
+       "latitude": "52.500848",
+       "longitude": "13.444852",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=92080"
@@ -288,7 +315,8 @@
         "isActive": true,
         "hours": "",
         "location": "Paris",
-       "coordinates":{"latitude": "48.85768","longitude": "2.362752"},
+       "latitude": "48.85768",
+       "longitude": "2.362752",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=83598"
@@ -298,7 +326,8 @@
         "name": "Petit Palais",
         "isActive": true,
         "location": "Paris",
-        "coordinates": {"latitude": "48.866084","longitude": "2.31467"},
+        "latitude": "48.866084",
+        "longitude": "2.31467",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=83534"
@@ -309,7 +338,8 @@
         "isActive": true,
         "hours": "",
         "location": "Paris",
-        "coordinates":{"latitude": "48.893849","longitude": "2.39026"},
+        "latitude": "48.893849",
+        "longitude": "2.39026",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=83500"
@@ -320,7 +350,8 @@
         "isActive": true,
         "hours": "",
         "location": "Paris",
-       "coordinates":{ "latitude": "48.861596","longitude": "2.289282"},
+        "latitude": "48.861596"
+        ,"longitude": "2.289282",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=83458"
@@ -331,7 +362,8 @@
         "isActive": true,
         "hours": "",
         "location": "Paris",
-        "coordinates":{"latitude": "48.864316","longitude": "2.314042"},
+        "latitude": "48.864316",
+        "longitude": "2.314042",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=83455"
@@ -342,7 +374,8 @@
         "isActive": true,
         "hours": "",
         "location": "Paris",
-        "coordinates":{"latitude": "48.847077","longitude": "2.300165"},
+        "latitude": "48.847077",
+        "longitude": "2.300165",
         "price": "",
         "duration": "",
         "description": "http:\/\/tour-pedia.org\/api\/getPlaceDetails?id=83423"

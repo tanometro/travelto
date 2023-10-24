@@ -2,7 +2,6 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Image from 'next/image';
 import styles from './page.module.css';
-import 'remixicon/fonts/remixicon.css';
 
 // Impotrtando imagenes
 import london from '../../public/images/london.jpeg'

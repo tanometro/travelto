@@ -43,8 +43,8 @@ export default function AdminAttractionsTable() {
                   {attraction.location}
                 </td>
                 <td className="border-b p-2 border-r-2">
-                  {attraction.coordinates.latitude.split(".")[0] + "°"} -{" "}
-                  {attraction.coordinates.longitude.split(".")[0] + "°"}
+                  {attraction.latitude.split(".")[0] + "°"} -{" "}
+                  {attraction.longitude.split(".")[0] + "°"}
                 </td>
                 <td className="border-b p-2 border-r-2">{attraction.price}</td>
                 <td className="border-b p-2 border-r-2">
@@ -67,7 +67,7 @@ export default function AdminAttractionsTable() {
                     className=" border-red-600 border-solid border-2 bg-green-200 w-32 h-8 rounded"
                     onClick={() =>
                       router.push(
-                        `/AdminDashboard/Adminattractions/CreateAttraction`
+                        `/AdminDashboard/AdminAttractions/EditAttraction/`
                       )
                     }
                   >

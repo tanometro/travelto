@@ -2,21 +2,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const initialFormData = {
-  name: "",
-  description: "",
-  latitude: "",
-  longitude: "",
-  price: "",
-  hours: "",
-  duration: "",
-  image: "",
-  isActive: true,
-  location: [],
-};
-
-export default function AdminAttractionForm() {
+export default function AdminAttractionForm({initialFormData}) {
   const [formData, setFormData] = useState(initialFormData);
+  
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -31,7 +19,7 @@ export default function AdminAttractionForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const attraction = {
+      const attraction = {
       name: formData.name,
       description: formData.description,
       latitude: formData.latitude,
@@ -65,10 +53,10 @@ export default function AdminAttractionForm() {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen bg-white">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-4 pt-3 pb-3 mb-4 mt-1 flex flex-col md:w-1/2 border-t-2"
+        className=" bg-neutral-600 shadow-md rounded px-4 pt-3 pb-3 mb-4 mt-1 flex flex-col md:w-1/2 border-t-2"
       >
         <div className="flex flex-wrap -mx-3 mb-1">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
