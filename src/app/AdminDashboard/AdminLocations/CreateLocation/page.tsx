@@ -1,5 +1,5 @@
 "use client";
-import AdminLocationsForm from "@/Components/AdminComponents/Locations/AdminLocationsForm";
+import AdminLocationsForm from "@/src/Components/AdminComponents/Locations/AdminLocationsForm";
 
 export default function CreateLocation() {
   return <AdminLocationsForm />;

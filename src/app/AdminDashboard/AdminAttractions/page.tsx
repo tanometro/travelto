@@ -1,5 +1,5 @@
 "use client";
-import AdminAttractionsTable from "@/Components/AdminComponents/Attractions/AdminAttractionsTable";
+import AdminAttractionsTable from "@/src/Components/AdminComponents/Attractions/AdminAttractionsTable";
 import { useRouter } from "next/navigation";
 
 
