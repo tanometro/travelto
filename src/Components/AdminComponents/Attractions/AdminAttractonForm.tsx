@@ -41,7 +41,7 @@ export default function AdminAttractionForm() {
       price: formData.price,
       hours: formData.hours,
       duration: formData.duration,
-      image: formData.image,
+      imageUrl: formData.image,
       isActive: formData.isActive,
       location: [],
     };
@@ -58,7 +58,7 @@ export default function AdminAttractionForm() {
           price: "",
           hours: "",
           duration: "",
-          image: "",
+          imageUrl: "",
           isActive: false,
           location: [],
         });
