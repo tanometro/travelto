@@ -1,8 +1,24 @@
-import data from "../../../../public/Attractions.json";
+//import data from "../../../../public/Attractions.json";
+import {baseURL} from "../../../../constant"
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function AdminAttractionsTable() {
-  const attractions = data.attractions;
+
+  const [attractions, setAttractions] = useState([])
+    
+  useEffect(() => {
+    async function fetchData () {
+     try {
+      const response = await axios.get(`${baseURL}/attractions`);
+      setAttractions(response.data);
+     } catch (error) {
+      console.error ("Error en Fetch Data")
+     } 
+    }
+    fetchData()}, [])
+
   const router = useRouter();
 
   return (
@@ -67,7 +83,7 @@ export default function AdminAttractionsTable() {
                     className=" border-red-600 border-solid border-2 bg-green-200 w-32 h-8 rounded"
                     onClick={() =>
                       router.push(
-                        `/AdminDashboard/AdminAttractions/EditAttraction/`
+                        `/AdminDashboard/AdminAttractions/EditAttraction/${attraction.id}`
                       )
                     }
                   >

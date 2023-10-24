@@ -1,13 +1,27 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
+import { baseURL } from "@/constant";
 
-export default function AdminAttractionForm({initialFormData}) {
-  const [formData, setFormData] = useState(initialFormData);
+export default function AdminAttractionForm() {
+
+  const [formData, setFormData] = useState(
+    {
+      name:"",
+      description: "",
+      latitude: "",
+      longitude: "",
+      price: "",
+      hours: "",
+      duration: "",
+      image: "",
+      isActive: "",
+      location: [],
+    }
+  );
   
-
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  const handleInputChange = (e : React.FormEvent) => {
+    const { name, value, type, checked } = e.target as HTMLInputElement;
     if (type === "checkbox") {
       setFormData(formData => ({
         ...formData, [name]: checked
@@ -17,7 +31,7 @@ export default function AdminAttractionForm({initialFormData}) {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e : React.FormEvent) => {
     e.preventDefault();
       const attraction = {
       name: formData.name,
@@ -32,8 +46,9 @@ export default function AdminAttractionForm({initialFormData}) {
       location: [],
     };
     console.log(attraction)
-    axios.post(`http://localhost:3001/attractions`, attraction)
+    axios.post(`${baseURL}/attractions/create`, attraction)
       .then(response => {
+        console.log(attraction)
         window.alert('Attraction Create success')
         setFormData({
           name: "",
