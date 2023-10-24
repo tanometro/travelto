@@ -3,7 +3,9 @@ import { ViewUser } from "@/components/login/ViewUser";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import FondoLogin from "@/public/images/fondo-login.jpg";
-import Logo from "@/public/images/logo.png";
+import FondoLogin2 from "@/public/images/fondo2.jpg";
+import FondoLogin3 from "@/public/images/fondo3.jpg";
+import Logo from "@/public/images/logo4.png";
 import SignOrLog from "@/components/SignOrLog/SignOrLog";
 
 export default function DashboardLogin() {
@@ -20,7 +22,7 @@ export default function DashboardLogin() {
         />
         <div className="fixed z-[-2] top-0 left-0 w-screen h-screen">
           <Image
-            src={FondoLogin}
+            src={FondoLogin2}
             alt="Fondo"
             layout="fill"
             objectFit="cover"

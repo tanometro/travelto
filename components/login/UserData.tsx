@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { signOut, useSession } from "next-auth/react";
-import Image from "next/image";
 
 export const UserData = () => {
   const { data: session } = useSession();
@@ -31,7 +30,7 @@ export const UserData = () => {
       </div>
       <button
         onClick={async () => {
-          await signOut({ callbackUrl: "/" });
+          await signOut({ callbackUrl: "/login" });
         }}
         className="h-10 px-6 font-semibold rounded-md border border-slate-200 text-black"
       >
