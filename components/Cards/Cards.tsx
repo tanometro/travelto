@@ -3,13 +3,27 @@ import Card from '../card/Card';
 import style from './Cards.module.css';
 import { useState } from 'react';
 import Paginacion from '../paginacion/Paginacion';
+import React, { FC } from 'react';
 
-export default function Cards(props) {
+interface Props {
+      id: number;
+      name: string;
+      isActive: boolean;
+      hours: string;
+      location: string;
+      latitude: string;
+      longitude: string;
+      price: string;
+      duration: string;
+      description: string
+  }
+
+export default function Cards (props: Props) {
    //Paginado
-   
+   console.log(props.data.attractions)
    const [page, setPage ] = useState(1) //page es la pagina actual
    const [pageSize, setPageSize] = useState(4)
-   const pageAmount = Math.ceil(props.data.length / pageSize) // cantidad de pag s/cant de cards
+   const pageAmount = Math.ceil(props.data.attractions.length / pageSize) // cantidad de pag s/cant de cards
 
    return !props.data ? <h1 className={style.h1}>Cargando los videogames...</h1>
    :  (
@@ -19,7 +33,7 @@ export default function Cards(props) {
             <Paginacion page= {page} setPage= {setPage} pageAmount= {pageAmount}/>
          </div>
          <div className={style.container}>
-            {props?.data.slice((page-1) * pageSize,((page-1) * pageSize) + pageSize)
+            {props?.data.attractions.slice((page-1) * pageSize,((page-1) * pageSize) + pageSize)
             .map(({ id, name, location}, index)=> {
                
                return <Card 

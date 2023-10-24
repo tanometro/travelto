@@ -5,8 +5,9 @@ import explore_beach from '../../public/images/explore-beach.jpg'
 import Data from '@/public/Attractions.json'
 import Cards from '@/components/Cards/Cards'
 
+
 export default function Explore () {
-    
+    console.log
     return (
         <div className={styles.explore__container}>
                 <div className={`${styles.explore__content} ${styles.contaimer} ${styles.grid}`}>

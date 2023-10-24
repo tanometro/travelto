@@ -31,7 +31,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "components/Explore/Explore.jsx"  ],
+, "components/Explore/Explore.tsx"  ],
   "exclude": [
     "node_modules"
   ]
