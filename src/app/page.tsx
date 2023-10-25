@@ -10,6 +10,7 @@ import Link from 'next/link'
 import Explore from '@/components/Explore/Explore'
 
 // Impotrtando imagenes
+import Logo from "@/public/images/logo.png";
 import london from '../../public/images/london.jpeg'
 import img_home from '../../public/images/home-bg.jpg'
 import trees from '../../public/images/home-trees.jpg'
@@ -30,9 +31,18 @@ export default function Home() {
     <>
       <header className={styles.header} id="header">
             <nav className={`${styles.nav} ${styles.container}`}>
-            <a href="#" className={styles.nav__logo}>
+            {/* <a href="#" className={styles.nav__logo}>
                 TravelTo
-            </a>
+            </a> */}
+            <div className={styles.nav__logo}>
+                <Image
+                    className="fixed top-3 left-10"
+                    src={Logo}
+                    alt="Logo"
+                    width={200}
+                    height={150}
+                />
+            </div>
             <div className={styles.nav__menu} id="nav-menu">
                 <ul className={styles.nav__list}>
                 <li className={styles.nav__item}>
@@ -42,17 +52,17 @@ export default function Home() {
                 </li>
                 <li className={styles.nav__item}>
                     <a href="#about" className={styles.nav__link}>
-                    About
+                    Acerca de
                     </a>
                 </li>
                 <li className={styles.nav__item}>
                     <a href="#popular" className={styles.nav__link}>
-                    Popular
+                    Populares
                     </a>
                 </li>
                 <li className={styles.nav__item}>
                     <Link href="#explore" className={styles.nav__link}>
-                    Explore
+                    Explorar
                     </Link>
                 </li>
                 <li className={styles.nav__item}>
@@ -85,17 +95,16 @@ export default function Home() {
             <div className={styles.home__shadow} />
             <div className={`${styles.home__container} ${styles.container} ${styles.grid}`}>
                 <div className={styles.home__data}>
-                <h3 className={styles.home__subtitle}>Welcome To TravelTo</h3>
+                <h3 className={styles.home__subtitle}>Bienvenido a TravelTo</h3>
                 <h1 className={styles.home__title}>
-                    Explore <br />
-                    The World
+                    Explore el mundo
                 </h1>
                 <p className={styles.home__description}>
-                    Live the trips exploring the world, discover paradises, islands,
-                    mountains and much more, get your trip now.
+                Vive los viajes explorando el mundo, 
+                descubre y disfrute de las mejores atracciones y mucho más, consiga su viaje ahora.
                 </p>
                 <a href="#" className={styles.button}>
-                    Start Your Journey <i className="ri-arrow-right-line" />
+                    Comience su viaje <i className="ri-arrow-right-line" />
                 </a>
                 </div>
                 <div className={`${styles.home__cards} ${styles.grid}`}>
@@ -146,17 +155,16 @@ export default function Home() {
             <div className={`${styles.about__container} ${styles.container} ${styles.grid}`}>
                 <div className={styles.about__data}>
                 <h2 className={styles.section__title}>
-                    Learn More <br />
-                    About Travel
+                    Aprenda más <br />
+                    Sobre TravelTo
                 </h2>
                 <p className={styles.about__description}>
-                    All the trips around the world are a great pleasure and happiness
-                    for anyone, enjoy the sights when you travel the world. Travel
-                    safely and without worries, get your trip and explore the paradises
-                    of the world.
+                Todos los viajes alrededor del mundo son un gran placer y felicidad para cualquiera,
+                 disfrute a pleno viajando por el mundo. 
+                 Viaja seguro y sin preocupaciones, consigue tu viaje y explora las mejores atracciones.
                 </p>
                 <a href="#" className={styles.button}>
-                    Explore Travel <i className="ri-arrow-right-line" />
+                    Explorar TravelTo <i className="ri-arrow-right-line" />
                 </a>
                 </div>
                 <div className={styles.about__image}>
@@ -172,8 +180,7 @@ export default function Home() {
             {/*==================== POPULAR ====================*/}
             <section className={`${styles.popular} ${styles.section}`} id="popular">
             <h2 className={styles.section__title}>
-                Enjoy The Beauty <br />
-                Of The World
+                Disfrute de las atracciones más populares
             </h2>
             <div className={`${styles.popular__container} ${styles.container} ${styles.grid}`}>
                 <article className={styles.popular__card}>
@@ -232,20 +239,21 @@ export default function Home() {
             <div className={`${styles.join__container} ${styles.container} ${styles.grid}`}>
                 <div className={styles.join__data}>
                 <h2 className={styles.section__title}>
-                    Your Journey <br />
-                    Starts Here
+                    Su vieje <br />
+                    Comienza aquí
                 </h2>
                 <p className={styles.join__description}>
-                    Get up to date with the latest travel and information from us.
+                Manténgase al día con nuestra última información y atracciones
+.
                 </p>
                 <form action="" className={styles.join__form}>
                     <input
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder="Ingrese su email"
                     className={styles.join__input}
                     />
                     <button className={styles.join__button}>
-                    Subscribe Our Newsletter <i className="ri-arrow-right-line" />
+                    Suscríbete <i className="ri-arrow-right-line" />
                     </button>
                 </form>
                 </div>
@@ -266,24 +274,24 @@ export default function Home() {
             <div className={`${styles.footer__content} ${styles.grid}`}>
                 <div>
                 <a href="#" className={styles.footer__logo}>
-                    Travel
+                    TravelTo
                 </a>
                 <p className={styles.footer__description}>
-                    Travel with us and explore <br />
-                    the world without limits.
+                    Viaja con nosotros y explora <br />
+                    el mundo sin límites.
                 </p>
                 </div>
                 <div className={`${styles.footer__data} ${styles.grid}`}>
                 <div>
-                    <h3 className={styles.footer__title}>About</h3>
+                    <h3 className={styles.footer__title}>Acerca de</h3>
                     <ul className={styles.footer__links}>
                     <a href="#" className={styles.footer__link}>
-                        About Us
+                        Sobre nosotros
                     </a>
                     </ul>
                     <ul className={styles.footer__links}>
                     <a href="#" className={styles.footer__link}>
-                        Features
+                        Características
                     </a>
                     </ul>
                     <ul className={styles.footer__links}>
@@ -293,7 +301,7 @@ export default function Home() {
                     </ul>
                 </div>
                 <div>
-                    <h3 className={styles.footer__title}>Company</h3>
+                    <h3 className={styles.footer__title}>Compania</h3>
                     <ul className={styles.footer__links}>
                     <a href="#" className={styles.footer__link}>
                         FAQs
@@ -301,17 +309,17 @@ export default function Home() {
                     </ul>
                     <ul className={styles.footer__links}>
                     <a href="#" className={styles.footer__link}>
-                        History
+                        Historial
                     </a>
                     </ul>
                     <ul className={styles.footer__links}>
                     <a href="#" className={styles.footer__link}>
-                        Testimonials
+                        Testimoniales
                     </a>
                     </ul>
                 </div>
                 <div>
-                    <h3 className={styles.footer__title}>Contact</h3>
+                    <h3 className={styles.footer__title}>Contáctos</h3>
                     <ul className={styles.footer__links}>
                     <a href="#" className={styles.footer__link}>
                         Call Center
@@ -319,30 +327,30 @@ export default function Home() {
                     </ul>
                     <ul className={styles.footer__links}>
                     <a href="#" className={styles.footer__link}>
-                        Support Center
+                        Centro de soporte
                     </a>
                     </ul>
                     <ul className={styles.footer__links}>
                     <a href="#" className={styles.footer__link}>
-                        Contact Us
+                        Contactenos
                     </a>
                     </ul>
                 </div>
                 <div>
-                    <h3 className={styles.footer__title}>Support</h3>
+                    <h3 className={styles.footer__title}>Soporte</h3>
                     <ul className={styles.footer__links}>
                     <a href="#" className={styles.footer__link}>
-                        Privacy Policy
+                        Politica de privacidad
                     </a>
                     </ul>
                     <ul className={styles.footer__links}>
                     <a href="#" className={styles.footer__link}>
-                        Terms &amp; Services
+                        Terminos &amp; Servicios
                     </a>
                     </ul>
                     <ul className={styles.footer__links}>
                     <a href="#" className={styles.footer__link}>
-                        Payments
+                        Medios de pago
                     </a>
                     </ul>
                 </div>
@@ -380,7 +388,7 @@ export default function Home() {
                 </a>
                 </div>
                 <span className={styles.footer__copy}>
-                © Copyright GenioTotal. All rights reserved
+                © Copyright GenioTotal. Todos los derechos reservados
                 </span>
             </div>
             </div>
