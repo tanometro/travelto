@@ -15,8 +15,18 @@ const config: Config = {
         'attractionsCard': 'url("https://i.pinimg.com/originals/d7/8e/ef/d78eef9e26ff5d3b4f69a649ab66ffa3.jpg")',
         'locationsCard': 'url("https://w0.peakpx.com/wallpaper/964/80/HD-wallpaper-paisaje-amanecer-sol.jpg")',
       },
+      colors: {
+        'title-color': 'var(--title-color), hsl(0, 0%, 95%)',
+      },
+      fontFamily: {
+        'second-font': 'var(--second-font) "Montserrat", sans-serif"',
+      },
+      fontWeight: {
+        'semi-bold': 'var(--font-semi-bold) 600',
+      },
     },
   },
   plugins: [],
+  
 };
 export default config;
