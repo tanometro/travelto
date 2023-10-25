@@ -1,29 +1,41 @@
 "use client";
 import AdminAttractionForm from "@/src/Components/AdminComponents/Attractions/AdminAttractonForm";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { baseURL } from "@/constant";
+import { useParams } from "next/navigation";
 
 
-export default function EditAttraction({params}) {
+export default function EditAttraction() {
+  const params = useParams();
+  const [attraction, setAttraction] = useState({
+    name: "",
+    description:"",
+    latitude: "",
+    longitude: "",
+    price: "",
+    hours: "",
+    duration: "",
+    image: "",
+    isActive: "",
+  })
+  /*const attractionId = Array.isArray(params.id)
+  ? parseInt(params.id[0], 10)
+  :parseInt(params.id, 10)*/
+  const attractionId = params.id
 
-  const {id} = params
+  useEffect(()=> {
+    async function fetchData () {
+      try {
+       const response = await axios.get(`${baseURL}/attractions/${attractionId}`);
+       console.log(attractionId)
+       setAttraction(response.data);
+      } catch (error) {
+       console.error ("Error en Fetch Data")
+      } 
+     }
+     fetchData()}, [])
 
-  useEffect((id)=> {
-    const data = axios.get(`http://localhost:3001/attractions/${id}`)
-    .then(() => {
-      const attraction = {
-        name: data.name,
-        description: data.description,
-        latitude: data.latitude,
-        longitude: data.longitude,
-        price: data.price,
-        hours: data.hours,
-        duration: data.duration,
-        image: data.image,
-        isActive: data.isActive,
-      }}
-    )
-  }
   
-    return <AdminAttractionForm initialFormData={FormData} />;
+    return <AdminAttractionForm initialFormData={attraction}/>;
 }
