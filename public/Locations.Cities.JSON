@@ -1,0 +1,25 @@
+{
+    "Locations": [
+        {"id": 1, "city": "Paris", "country": "France"},
+        {"id": 2, "city": "Rome", "country": "Italy"},
+        {"id": 3, "city": "Athens", "country": "Greece"},
+        {"id": 4, "city": "Prague", "country": "Czech Republic"},
+        {"id": 5, "city": "Barcelona", "country": "Spain"},
+        {"id": 6, "city": "Madrid", "country": "Spain"},
+        {"id": 7, "city": "Rhodes", "country": "Greece"},
+        {"id": 8, "city": "London", "country": "United Kingdom"},
+        {"id": 9, "city": "Amsterdam", "country": "Netherlands"},
+        {"id": 10, "city": "Edinburgh", "country": "United Kingdom"},
+        {"id": 11, "city": "Provence", "country": "France"},
+        {"id": 12, "city": "Venice", "country": "Italy"},
+        {"id": 13, "city": "Bavaria", "country": "Germany"},
+        {"id": 14, "city": "Normandy", "country": "France"},
+        {"id": 15, "city": "Loir-et-Cher", "country": "France"},
+        {"id": 16, "city": "Seville", "country": "Spain"},
+        {"id": 17, "city": "Budapest", "country": "Hungary"},
+        {"id": 18, "city": "St. Petersburg", "country": "Russia"},
+        {"id": 19, "city": "Florence", "country": "Italy"},
+        {"id": 20, "city": "Vienna", "country": "Austria"},
+        {"id": 21, "city": "Moscow", "country": "Russia"}
+    ]
+}
