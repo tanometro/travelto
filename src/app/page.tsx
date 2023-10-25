@@ -1,7 +1,13 @@
+"use client "
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Image from 'next/image';
 import styles from './page.module.css';
+import 'remixicon/fonts/remixicon.css';
+import Link from 'next/link'
+
+//Importando componentes
+import Explore from '@/components/Explore/Explore'
 
 // Impotrtando imagenes
 import london from '../../public/images/london.jpeg'
@@ -14,12 +20,13 @@ import popular_mountain from '../../public/images/popular-mountain.jpg'
 import popular_lake from '../../public/images/popular-lake.jpg'
 import popular_forest from '../../public/images/popular-forest.jpg'
 import about_beach from '../../public/images/about-beach.jpg'
-import explore_beach from '../../public/images/explore-beach.jpg'
-import explore_perfil from '../../public/images/explore-perfil.png'
+
 import join_island from '../../public/images/join-island.jpg'
 
 export default function Home() {
-  return (
+   
+
+    return (
     <>
       <header className={styles.header} id="header">
             <nav className={`${styles.nav} ${styles.container}`}>
@@ -44,9 +51,14 @@ export default function Home() {
                     </a>
                 </li>
                 <li className={styles.nav__item}>
-                    <a href="#explore" className={styles.nav__link}>
+                    <Link href="#explore" className={styles.nav__link}>
                     Explore
-                    </a>
+                    </Link>
+                </li>
+                <li className={styles.nav__item}>
+                    <Link href="/login" className={styles.nav__link}>
+                    Login
+                    </Link>
                 </li>
                 </ul>
                 {/*Close button*/}
@@ -213,38 +225,7 @@ export default function Home() {
             </section>
             {/*==================== EXPLORE ====================*/}
             <section className={`${styles.explore} ${styles.section}`} id="explore">
-            <div className={styles.explore__container}>
-                <div className={styles.explore__image}>
-                <Image
-                    src={explore_beach}
-                    alt="explore image"
-                    className={styles.explore__img}
-                />
-                <div className={styles.explore__shadow} />
-                </div>
-                <div className={`${styles.explore__content} ${styles.contaimer} ${styles.grid}`}>
-                <div className={styles.explore__data}>
-                    <h2 className={styles.section__title}>
-                    Explore The <br />
-                    Best Paradises
-                    </h2>
-                    <p className={styles.explore__description}>
-                    Exploring paradises such as islands and valleys when traveling the
-                    world is one of the greatest experiences when you travel, it
-                    offers you harmony and peace and you can enjoy it with great
-                    comfort.
-                    </p>
-                </div>
-                <div className={styles.explore__user}>
-                    <Image
-                    src={explore_perfil}
-                    alt="explore perfil"
-                    className={styles.explore__perfil}
-                    />
-                    <span className={styles.explore__name}>Paul Jeams</span>
-                </div>
-                </div>
-            </div>
+            <Explore /> 
             </section>
             {/*==================== JOIN ====================*/}
             <section className={`${styles.join} ${styles.section}`}>
@@ -409,6 +390,6 @@ export default function Home() {
             <i className="ri-arrow-up-line" />
         </a>
     </>
-
+    
   )
 }
