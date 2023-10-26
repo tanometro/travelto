@@ -2,7 +2,7 @@
 import { ViewUser } from "@/components/login/ViewUser";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import FondoLogin from "@/public/images/fondo-login.jpg";
+import FondoLogin from "../../../public/images/fondo-login.jpg";
 import Logo from "@/public/images/logo.png";
 import SignOrLog from "@/components/SignOrLog/SignOrLog";
 
