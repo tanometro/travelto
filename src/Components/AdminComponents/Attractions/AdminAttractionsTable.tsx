@@ -1,8 +1,15 @@
-import data from "../../../../public/Attractions.json";
+//import data from "../../../../public/Attractions.json";
+import axios from "axios"
 import { useRouter } from "next/navigation";
 
 export default function AdminAttractionsTable() {
-  const attractions = data.attractions;
+  axios.get('http://localhost:3001/Attractions')
+      .then(response => {
+      const attractions = response.data;
+      })
+      .catch(error => {
+        throw new Error (error)
+      });
   const router = useRouter();
 
   return (
