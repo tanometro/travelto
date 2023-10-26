@@ -1,15 +1,24 @@
 //import data from "../../../../public/Attractions.json";
-import axios from "axios"
+import {baseURL} from "../../../../constant"
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function AdminAttractionsTable() {
-  axios.get('http://localhost:3001/Attractions')
-      .then(response => {
-      const attractions = response.data;
-      })
-      .catch(error => {
-        throw new Error (error)
-      });
+
+  const [attractions, setAttractions] = useState([])
+    
+  useEffect(() => {
+    async function fetchData () {
+     try {
+      const response = await axios.get(`${baseURL}/attractions`);
+      setAttractions(response.data);
+     } catch (error) {
+      console.error ("Error en Fetch Data")
+     } 
+    }
+    fetchData()}, [])
+
   const router = useRouter();
 
   return (
@@ -33,7 +42,7 @@ export default function AdminAttractionsTable() {
           <thead>
             <tr className="bg-gray-100">
               <th className="border-b p-2 border-r-2">Name</th>
-              <th className="border-b p-2 border-r-2">Location</th>
+              <th className="border-b p-2 border-r-2">City</th>
               <th className="border-b p-2 border-r-2">Coordinates</th>
               <th className="border-b p-2 border-r-2">Price</th>
               <th className="border-b p-2 border-r-2">Duration</th>
@@ -47,7 +56,7 @@ export default function AdminAttractionsTable() {
               <tr key={attraction.id}>
                 <td className="border-b p-2 border-r-2">{attraction.name}</td>
                 <td className="border-b p-2 border-r-2">
-                  {attraction.location}
+                  {attraction.City}
                 </td>
                 <td className="border-b p-2 border-r-2">
                   {attraction.latitude.split(".")[0] + "°"} -{" "}
@@ -74,7 +83,7 @@ export default function AdminAttractionsTable() {
                     className=" border-red-600 border-solid border-2 bg-green-200 w-32 h-8 rounded"
                     onClick={() =>
                       router.push(
-                        `/AdminDashboard/AdminAttractions/EditAttraction/`
+                        `/AdminDashboard/AdminAttractions/EditAttraction/${attraction.id}`
                       )
                     }
                   >

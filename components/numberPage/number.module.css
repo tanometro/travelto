@@ -1,0 +1,23 @@
+.button {
+    width: 25px;
+    height: 44px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color:rgb(10, 10, 10);
+    border: 1px solid black;
+    border-radius: 8%;
+    background-color: aliceblue;
+}
+.button:hover {
+    transform: scale(1.05);
+}
+.isactive {
+    width: 25px;
+    height: 44px;
+    background-color: green;
+    color:white;
+    font-weight: bold;
+    font-size: 1.2em;
+    border: 1px solid black;
+    border-radius: 8%;
+}

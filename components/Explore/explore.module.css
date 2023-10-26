@@ -1,0 +1,77 @@
+/*=============== EXPLORE ===============*/
+.explore {
+    position: relative;
+  }
+  /* .explore__data {
+    display: flex
+  } */
+  .section__title {
+    text-align: center;
+    font-size: var(--h2-font-size);
+    margin-bottom: 1.5rem;
+  }
+  .explore__image {
+    position: absolute;
+    overflow: hidden;
+    z-index: -1;
+    margin-top: -40rem
+  }
+  .explore__img {
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+    object-position: center;
+  }
+  .explore__shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(180deg,
+                hsl(0, 0%, 0%) 5%,            
+                hsla(0, 0%, 0%, 0) 40%,
+                hsla(0, 0%, 0%, 0) 60%,
+                hsl(0, 0%, 0%) 92%)
+  }
+  .explore__content {
+    position: relative;
+    padding-top: 1rem;
+    text-align: center;
+    row-gap: 2.5rem;
+  }
+  .explore__user {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: .5rem;
+  }
+  .explore__perfil {
+    width: 30px;
+    border-radius: 50%;
+  }
+  .explore__name {
+    font-size: var(--small-font-size);
+    color: var(--title-color);
+  }
+  /*=============== BUTTON ===============*/
+.button {
+  background-color: hsla(0, 0%, 100%, .2);
+  padding: 1.25rem 1.5rem;
+  color: var(--title-color);
+  display: inline-flex;
+  align-items: center;
+  column-gap: .5rem;
+  font-family: var(--second-font);
+  font-weight: var(--font-semi-bold);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px); /*for Safari*/
+}
+.button i {
+  font-size: 1.25rem;
+  transition: transform .4s;
+  font-weight: initial;
+}
+.button:hover i {
+  transform: translateX(.25rem);
+}
