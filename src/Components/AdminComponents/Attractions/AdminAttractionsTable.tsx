@@ -42,7 +42,7 @@ export default function AdminAttractionsTable() {
           <thead>
             <tr className="bg-gray-100">
               <th className="border-b p-2 border-r-2">Name</th>
-              <th className="border-b p-2 border-r-2">Location</th>
+              <th className="border-b p-2 border-r-2">City</th>
               <th className="border-b p-2 border-r-2">Coordinates</th>
               <th className="border-b p-2 border-r-2">Price</th>
               <th className="border-b p-2 border-r-2">Duration</th>
@@ -56,7 +56,7 @@ export default function AdminAttractionsTable() {
               <tr key={attraction.id}>
                 <td className="border-b p-2 border-r-2">{attraction.name}</td>
                 <td className="border-b p-2 border-r-2">
-                  {attraction.location}
+                  {attraction.City}
                 </td>
                 <td className="border-b p-2 border-r-2">
                   {attraction.latitude.split(".")[0] + "°"} -{" "}

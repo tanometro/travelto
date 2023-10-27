@@ -17,7 +17,7 @@ export default function Explore () {
             let res = await axios.get(`http://localhost:3001/attractions`)
         let datos= res.data
         console.log(datos);    
-        if (!datos.name) {
+        if (!datos.length) {
                 window.alert("No se encuentran datos")
             } else {
                 setAttraction(datos)

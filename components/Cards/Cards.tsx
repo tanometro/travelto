@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Paginacion from '../paginacion/Paginacion';
 import React, { FC } from 'react';
 
-interface Props {
+interface attractions {
       id: number;
       name: string;
       isActive: boolean;
@@ -16,6 +16,9 @@ interface Props {
       price: string;
       duration: string;
       description: string
+  }
+  interface Props {
+   data:attractions[];
   }
 
 export default function Cards (props: Props) {
@@ -34,13 +37,14 @@ export default function Cards (props: Props) {
          </div>
          <div className={style.container}>
             {props?.data.slice((page-1) * pageSize,((page-1) * pageSize) + pageSize)
-            .map(({ id, name, location}, index)=> {
+            .map(({ id, name, location, price}, index)=> {
                
                return <Card 
                   key = {index}
                   id={id}
                   name={name}
                   location= {location}
+                  price= {price}
                   
                />
             })}

@@ -44,11 +44,7 @@
   justify-content: space-between;
   align-items: center;
 }
-.nav__logo {
-  color: var(--title-color);
-  font-family: var(--second-font);
-  font-weight: var(--font-semi-bold);
-}
+
 .nav__toggle,
 .nav__close {
   display: flex;
@@ -108,18 +104,7 @@
 }
 
 /* Add blur to header */
-.blur-header::after {
-  content: '';
-  position: absolute;
-  width: 1000%;
-  height: 100%;
-  background-color: hsla(0, 0%, 100%, .3);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px); /*for Safari*/
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
+
 
 /* Active link */
 .active_link::after {
@@ -508,35 +493,6 @@
 }
 /* For large devices */
 @media screen and (min-width: 1023px) {
-  .nav__close,
-  .nav__toggle {
-    display: none;
-  }
-  .nav__list {
-    display: flex;
-    flex-direction: row;
-    column-gap: 4rem;
-  }
- /*agregado por mi porque no erebcorrectamente*/
- .nav__link {
-  position: relative;
-  color: var(--title-color);
-  font-size: var(--second-font);
-  font-weight: var(--font-medium);
-}
-.nav__link::after {
-  content: '';
-  width: 0%;
-  height: 2px;
-  background-color: var(--title-color);
-  position: absolute;
-  left: 0;
-  bottom: -.5rem;
-  transition: width .3s;
-}
-.nav__link:hover::after {
-  width: 70%;
-} 
 /* Active link */
 .active_link::after {
   width: 70%;
@@ -555,11 +511,6 @@
   }
   .section {
     padding-block: 6rem 2rem;
-  }
-  .nav {
-    height: calc(var(--header-height) + 1.5rem);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px); /*for Safari*/
   }
   .home__container {
     grid-template-columns: initial;
