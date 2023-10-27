@@ -52,7 +52,7 @@ export default function Home() {
                 </li>
                 <li className={styles.nav__item}>
 
-                    <a href="#explore" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70">
+                    <a href="#explore" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70"/>
 
                     <Link href="#explore" className={styles.nav__link}>
 
