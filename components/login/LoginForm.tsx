@@ -19,7 +19,6 @@ export const LoginForm = () => {
       // aca llamo a la api
 
       const responseNextAuth = signIn("credentials", {
-        name,
         email,
         password,
         redirect: false,
@@ -30,12 +29,6 @@ export const LoginForm = () => {
     <>
       <h1 className="text-2xl mb-5">Log In</h1>
       <form onSubmit={handlerSubmit}>
-        <FormInput
-          type="text"
-          name="Name"
-          value={name}
-          handler={(event) => setName(event.target.value)}
-        />
         <FormInput
           type="mail"
           name="Email"
