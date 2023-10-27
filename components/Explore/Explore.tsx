@@ -6,8 +6,11 @@ const data = require("@/public/Attractions.json");
 import Cards from "@/components/Cards/Cards";
 import locations from "../../public/Locations.json";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { baseURL } from "@/constant";
 
 export default function Explore() {
+
   const [filteredData, setFilteredData] = useState(data.attractions);
 
   const cities = locations.locations.map((location) => {
@@ -35,21 +38,21 @@ export default function Explore() {
   }
   useEffect(() => {
     addOptions("cities", cities);
-  },);
+  });
 
   useEffect(() => {
     addOptions("countries", countries);
-  },);
+  });
 
   const orderForPrice = (a, b) => {
-      if (a.price < b.price) {
-        return -1;
-      }
-      if (a.price > b.price) {
-        return 1;
-      }
-      return 0;
-    };
+    if (a.price < b.price) {
+      return -1;
+    }
+    if (a.price > b.price) {
+      return 1;
+    }
+    return 0;
+  };
 
   return (
     <div className={styles.explore__container}>
@@ -87,10 +90,9 @@ export default function Explore() {
                   className={styles.button}
                   onChange={(event) => {
                     const selectedValue = String(event.target.value);
-                    const resultado = filteredData.filter(
-                      (e) => e.city == selectedValue
-                    );
-                    setFilteredData(resultado);
+                    axios
+                      .get(`${baseURL}/attractions/city/${selectedValue}`)
+                      .then((response) => setFilteredData(response.data));
                   }}
                 >
                   <option className=" text-black bg-black bg-opacity-60">
@@ -99,11 +101,14 @@ export default function Explore() {
                 </select>
               </div>
             </div>
-            <button className={styles.button} onClick={()=>{
-                var aux = filteredData
-                aux.sort(orderForPrice)
-                setFilteredData(aux)
-              }}>
+            <button
+              className={styles.button}
+              onClick={() => {
+                var aux = filteredData;
+                aux.sort(orderForPrice);
+                setFilteredData(aux);
+              }}
+            >
               Menor Precio <i className="ri-arrow-right-line" />
             </button>
             <a href="#" className={styles.button}>
