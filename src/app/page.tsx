@@ -8,7 +8,6 @@ import Link from 'next/link'
 
 //Importando componentes
 import Explore from '@/components/Explore/Explore'
-import NavBar from '../Components/Home/NavBar';
 
 // Impotrtando imagenes
 import london from '../../public/images/london.jpeg'
@@ -21,17 +20,57 @@ import popular_mountain from '../../public/images/popular-mountain.jpg'
 import popular_lake from '../../public/images/popular-lake.jpg'
 import popular_forest from '../../public/images/popular-forest.jpg'
 import about_beach from '../../public/images/about-beach.jpg'
+
 import join_island from '../../public/images/join-island.jpg'
-
-
 
 export default function Home() {
    
 
     return (
     <>
-      <header className="fixed top-0 left-0 w-full bg-transparent z-50 backdrop-blur-xl" id="header">
-            <NavBar/>
+      <header className={styles.header} id="header">
+            <nav className={`${styles.nav} ${styles.container}`}>
+            <a href="#" className={styles.nav__logo}>
+                TravelTo
+            </a>
+            <div className={styles.nav__menu} id="nav-menu">
+                <ul className={styles.nav__list}>
+                <li className={styles.nav__item}>
+                    <a href="#home" className={`${styles.nav__link} ${styles.active_link}`}>
+                    Home
+                    </a>
+                </li>
+                <li className={styles.nav__item}>
+                    <a href="#about" className={styles.nav__link}>
+                    About
+                    </a>
+                </li>
+                <li className={styles.nav__item}>
+                    <a href="#popular" className={styles.nav__link}>
+                    Popular
+                    </a>
+                </li>
+                <li className={styles.nav__item}>
+                    <Link href="#explore" className={styles.nav__link}>
+                    Explore
+                    </Link>
+                </li>
+                <li className={styles.nav__item}>
+                    <Link href="/login" className={styles.nav__link}>
+                    Login
+                    </Link>
+                </li>
+                </ul>
+                {/*Close button*/}
+                <div className={styles.nav__close} id="nav-close">
+                <i className="ri-close-line" />
+                </div>
+            </div>
+            {/*Toggle button*/}
+            <div className={styles.nav__toggle} id="nav-toggle">
+                <i className="ri-menu-fill" />
+            </div>
+            </nav>
         </header>
         {/*==================== MAIN ====================*/}
         <main className="main">
