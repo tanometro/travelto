@@ -1,34 +1,31 @@
 "use client"
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 import { setAttractions, setRenderAttractions } from "../redux/sliceAttractions";
 //import { setLocations } from "../redux/sliceLocations";
-import { baseURL } from "@/constant";
+import getAllAttractions from "../requests/getAllAttractions";
 
 export default function FetchDataToStates () {
-  
   const dispatch = useDispatch();
 
-  useEffect(() => {
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await getAllAttractions();
+            dispatch(setAttractions(response));
+            dispatch(setRenderAttractions(response));
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
+        fetchData
+    }, [])
+   
+}
       // Carga de Attracciones al estado de redux como copia fiel de todas las atracciones, no se modificará
-      axios.get(`${baseURL}/attractions`)
-          .then(response => {
-              dispatch(setAttractions(response.data));
-          })
-          .catch(error => {
-              throw new Error(error);
-          });
 
       // Carga de Attracciones al estado de redux como copia modificable y para mostrar
-      axios.get(`${baseURL}/attractions`)
-          .then(response => {
-              dispatch(setRenderAttractions(response.data));
-          })
-          .catch(error => {
-              throw new Error(error);
-          });
-        }, [dispatch]);
+      
 /*
     useEffect(() => {
         axios.get(`${baseURL}/locations`)
@@ -40,4 +37,3 @@ export default function FetchDataToStates () {
         });
     }, [dispatch]);
     */
-}

@@ -3,6 +3,7 @@ import {baseURL} from "../../../../constant"
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import getAllAttractions from "@/src/requests/getAllAttractions";
 
 export default function AdminAttractionsTable() {
 
@@ -11,7 +12,7 @@ export default function AdminAttractionsTable() {
   useEffect(() => {
     async function fetchData () {
      try {
-      const response = await axios.get(`${baseURL}/attractions`);
+      const response = await getAllAttractions();
       setAttractions(response.data);
      } catch (error) {
       console.error ("Error en Fetch Data")
