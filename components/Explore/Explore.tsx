@@ -10,7 +10,6 @@ import axios from "axios";
 import { baseURL } from "@/constant";
 
 export default function Explore() {
-
   const [filteredData, setFilteredData] = useState(data.attractions);
 
   const cities = locations.locations.map((location) => {
@@ -104,9 +103,9 @@ export default function Explore() {
             <button
               className={styles.button}
               onClick={() => {
-                var aux = filteredData;
-                aux.sort(orderForPrice);
-                setFilteredData(aux);
+                const sortedData = [...filteredData]; // crea una copia del arreglo
+                sortedData.sort(orderForPrice); // ordena la copia del arreglo
+                setFilteredData(sortedData); // actualiza el estado con el ar
               }}
             >
               Menor Precio <i className="ri-arrow-right-line" />
