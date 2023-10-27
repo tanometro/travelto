@@ -3,6 +3,7 @@ import { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import FormInput from "./FormInput/FormInput";
 import validate from "./validate";
+import { error } from "console";
 
 export const LoginForm = () => {
   const { data: session, status } = useSession();
@@ -11,18 +12,25 @@ export const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handlerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handlerSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const stateErrors: string[] = validate(name, email, password);
     setErrors([...stateErrors]);
     if (stateErrors.length === 0) {
       // aca llamo a la api
 
-      const responseNextAuth = signIn("credentials", {
+      const responseNextAuth = await signIn("credentials", {
         email,
         password,
         redirect: false,
       });
+
+      if (responseNextAuth?.error) {
+        // aca responde la app
+        setErrors(responseNextAuth.error.split(","));
+        return;
+      }
+
     }
   };
   return (

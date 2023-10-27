@@ -10,19 +10,25 @@ const handler = NextAuth({
 
             credentials: {
                 email: { label: "email", type: "email", placeholder: "abc123@example.com" },
-                name: { label: "name", type: "text", placeholder: "pepe" },
                 password: { label: "Password", type: "password" }
             },
-            authorize(credentials, req) {
+            async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
+                const res = await fetch(
+                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
+                    {
+                        method: "POST",
+                        body: JSON.stringify({
+                            email: credentials?.email,
+                            password: credentials?.password,
+                        }),
+                        headers: { "Content-Type": "aplication/json" },
+                    }
+                );
+                const user = await res.json();
+                if (user.error) throw user;
 
-                let user = { id: "1", name: credentials?.name, email: credentials?.email };
-
-                if (user) {
-                    return user
-                } else {
-                    return null
-                }
+                return user;
             }
         }),
         GoogleProvider({
@@ -36,20 +42,20 @@ const handler = NextAuth({
             }
         })
     ],
-    /* callbacks: {
-        async jwt({ token, account }) {
+    callbacks: {
+        async jwt({ token, user }) {
             // Persist the OAuth access_token to the token right after signin
-            if (account) {
-                token.accessToken = account.access_token
-            }
-            return token
+            return { ...token, ...user }
         },
-        async session({ session, token, user }) {
+        async session({ session, token }) {
             // Send properties to the client, like an access_token from a provider.
-            session.accessToken = token.accessToken
-            return session
+            session.user = token;
+            return session;
         }
-    } */
+    },
+    pages: {
+        signIn: "/login",
+    }
 });
 
 export { handler as GET, handler as POST };
