@@ -1,6 +1,8 @@
+"use client"
 import FormInput from "@/components/login/FormInput/FormInput";
 import { signIn } from "next-auth/react";
 import React, { useState } from "react";
+import Button from "./Button/Button";
 
 export default function RegisterForm() {
     const [errors, setErrors] = useState<string[]>([]);
@@ -74,6 +76,7 @@ export default function RegisterForm() {
                 value={password}
                 handler={(event) => setPassword(event.target.value)}
             />
+            <Button text="Registrarme" size="" />
 
             {errors.length > 0 && (
                 <div className="text-red-800">
