@@ -13,7 +13,7 @@ export default function RegisterForm() {
         event.preventDefault();
         setErrors([]);
         const res = await fetch(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`,
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/create`,
             {
 
                 method: "POST",
@@ -60,17 +60,19 @@ export default function RegisterForm() {
                 value={email}
                 handler={(event) => setEmail(event.target.value)}
             />
-            <FormInput
-                type="password"
-                name="Password"
-                value={password}
-                handler={(event) => setPassword(event.target.value)}
-            />
+
             <FormInput
                 type="text"
                 name="Dni"
                 value={dni}
                 handler={(event) => setDni(event.target.value)}
+            />
+
+            <FormInput
+                type="password"
+                name="Password"
+                value={password}
+                handler={(event) => setPassword(event.target.value)}
             />
 
             {errors.length > 0 && (
