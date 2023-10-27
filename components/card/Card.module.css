@@ -1,19 +1,20 @@
 .container {
     /* z-index: -2; */
-    border: ridge #0075d9 5px;
-    border-radius: 2em;
+    /* border: ridge #0075d9 5px;
+    border-radius: 2em; */
     display: flex;
     flex-direction: column;
     align-items: center;
     /* background-color: yellow; */
-    background: rgba(0,0,10,.8);
+    background: rgba(24, 24, 24, 0.6);
+    /* background-color: hsla(0, 0%, 100%, .2); */
     font-family: 'Courier New', Courier, monospace;
     width: 16em;
     /* height: fit-content;  */
     height: 25em;
     font-size: 1em;
     /* height: 100%; */
-    margin: 3rem 1em 0em 1em;
+    margin: 1rem 1em 0em 1em;
     padding: 0.5em;
     color: rgb(216, 213, 216);
     /* box-shadow: 0 0 10px rgba(86, 82, 82, 0.8); */
@@ -74,10 +75,13 @@
         /* font-family: rick_and_morty_title; */
         text-align: center;
         padding: 1em;
-        color: #6eb4f0;
+        /* color: #6eb4f0; */
+        color : white
 }
 .titleName:hover {
-    color:#00ff40 ;
+    /* color:#00ff40 ; */
+    color:rgb(250, 255, 255);
+    transform:scale(1.1)
 }
 .img {
     object-fit: cover;

@@ -32,9 +32,7 @@ export default function Cards (props: Props) {
    :  (
       <div>
          
-         <div className={style.page}>
-            <Paginacion page= {page} setPage= {setPage} pageAmount= {pageAmount}/>
-         </div>
+          
          <div className={style.container}>
             {props?.data.slice((page-1) * pageSize,((page-1) * pageSize) + pageSize)
             .map(({ id, name, location, price}, index)=> {
