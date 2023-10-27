@@ -8,6 +8,7 @@ import Link from 'next/link'
 
 //Importando componentes
 import Explore from '@/components/Explore/Explore'
+import NavBar from '../Components/Home/NavBar';
 
 // Impotrtando imagenes
 import london from '../../public/images/london.jpeg'
@@ -20,8 +21,9 @@ import popular_mountain from '../../public/images/popular-mountain.jpg'
 import popular_lake from '../../public/images/popular-lake.jpg'
 import popular_forest from '../../public/images/popular-forest.jpg'
 import about_beach from '../../public/images/about-beach.jpg'
-
 import join_island from '../../public/images/join-island.jpg'
+
+
 
 export default function Home() {
    
@@ -29,52 +31,7 @@ export default function Home() {
     return (
     <>
       <header className="fixed top-0 left-0 w-full bg-transparent z-50 backdrop-blur-xl" id="header">
-            <nav className=" h-14 flex justify-between items-center max-w-[1120px] mx-3">
-            <a href="#" className=" ml-6 text-white font-bold">
-                TravelTo
-            </a>
-            <div className="h-[var(--header-height)] flex justify-between items-center" id="nav-menu">
-                <ul className="text-center flex flex-row gap-10">
-                <li className={styles.nav__item}>
-                    <a href="#home" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70">
-                    Home
-                    </a>
-                </li>
-                <li >
-                    <a href="#about" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70">
-                    About
-                    </a>
-                </li>
-                <li className={styles.nav__item}>
-                    <a href="#popular" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70">
-                    Popular
-                    </a>
-                </li>
-                <li className={styles.nav__item}>
-
-                    <a href="#explore" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70">
-
-                    <Link href="#explore" className={styles.nav__link}>
-
-                    Explore
-                    </Link>
-                </li>
-                <li className={styles.nav__item}>
-                    <Link href="/login" className={styles.nav__link}>
-                    Login
-                    </Link>
-                </li>
-                </ul>
-                {/*Close button*/}
-                <div className="flex text-title-color text-1.25rem cursor-pointer" id="nav-close">
-                <i className="ri-close-line" />
-                </div>
-            </div>
-            {/*Toggle button*/}
-            <div className="flex text-title-color text-1.25rem cursor-pointer" id="nav-toggle">
-                <i className="ri-menu-fill" />
-            </div>
-            </nav>
+            <NavBar/>
         </header>
         {/*==================== MAIN ====================*/}
         <main className="main">
