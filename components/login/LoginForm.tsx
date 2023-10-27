@@ -3,7 +3,6 @@ import { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import FormInput from "./FormInput/FormInput";
 import validate from "./validate";
-import { error } from "console";
 
 export const LoginForm = () => {
   const { data: session, status } = useSession();
