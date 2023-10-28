@@ -28,7 +28,7 @@ import axios from "axios";
 
 export default async function Home() {
     
-         let resultado: [];
+         let resultado: []= [];
          await axios
           .get(`${baseURL}/attractions`)
           .then((response) => resultado = response.data);
