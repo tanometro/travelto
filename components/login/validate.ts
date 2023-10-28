@@ -1,4 +1,4 @@
-export default function validate(name: string, email: string, password: string) {
+export default function validate(email: string, password: string) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const errores: string[] = [];
     if (!re.test(email)) {
@@ -10,3 +10,5 @@ export default function validate(name: string, email: string, password: string) 
 
     return ([...errores]);
 }
+
+
