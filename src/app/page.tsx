@@ -1,15 +1,15 @@
-"use client"
+"use client";
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-no-comment-textnodes */
-import Image from 'next/image';
-import styles from './page.module.css';
-import 'remixicon/fonts/remixicon.css';
-import Link from 'next/link'
+import Image from "next/image";
+import styles from "./page.module.css";
+import "remixicon/fonts/remixicon.css";
+import Link from "next/link";
 
 //Importando componentes
-import Explore from '@/components/Explore/Explore'
-import { baseURL } from '@/constant';
-import { useEffect } from 'react';
+import Explore from "@/components/Explore/Explore";
+import { baseURL } from "@/constant";
+import { useEffect } from "react";
 // Impotrtando imagenes
 import Logo from "@/public/images/logo.png";
 import london from '../../public/images/london.jpeg'
@@ -23,8 +23,8 @@ import popular_lake from '../../public/images/popular-lake.jpg'
 import popular_forest from '../../public/images/popular-forest.jpg'
 import about_beach from '../../public/images/about-beach.jpg'
 
-import join_island from '../../public/images/join-island.jpg'
-import axios from 'axios';
+import join_island from "../../public/images/join-island.jpg";
+import axios from "axios";
 
 export default async function Home() {
     
@@ -407,6 +407,5 @@ return (
             <i className="ri-arrow-up-line" />
         </a>
     </>
-    
-  )
+  );
 }
