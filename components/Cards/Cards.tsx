@@ -10,12 +10,14 @@ interface attractions {
       name: string;
       isActive: boolean;
       hours: string;
-      location: string;
+      city: string;
+      country:string;
       latitude: string;
+      ranking:number;
       longitude: string;
-      price: string;
+      price: number;
       duration: string;
-      description: string
+      image: string
   }
   interface Props {
    data:attractions[];
@@ -23,7 +25,6 @@ interface attractions {
 
 export default function Cards (props: Props) {
    //Paginado
-   console.log(props.data)
    const [page, setPage ] = useState(1) //page es la pagina actual
    const [pageSize, setPageSize] = useState(4)
    const pageAmount = Math.ceil(props.data.length / pageSize) // cantidad de pag s/cant de cards
@@ -35,14 +36,17 @@ export default function Cards (props: Props) {
           
          <div className={style.container}>
             {props?.data.slice((page-1) * pageSize,((page-1) * pageSize) + pageSize)
-            .map(({ id, name, location, price}, index)=> {
+            .map(({ id, name, city,country,ranking, price,image}, index)=> {
                
                return <Card 
                   key = {index}
                   id={id}
                   name={name}
-                  location= {location}
+                  city= {city}
+                  country= {country}
+                  ranking= {ranking}
                   price= {price}
+                  image= {image}
                   
                />
             })}

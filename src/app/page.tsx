@@ -1,4 +1,4 @@
-"use client "
+"use client"
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Image from 'next/image';
@@ -8,7 +8,8 @@ import Link from 'next/link'
 
 //Importando componentes
 import Explore from '@/components/Explore/Explore'
-
+import { baseURL } from '@/constant';
+import { useEffect } from 'react';
 // Impotrtando imagenes
 import Logo from "@/public/images/logo.png";
 import london from '../../public/images/london.jpeg'
@@ -23,31 +24,40 @@ import popular_forest from '../../public/images/popular-forest.jpg'
 import about_beach from '../../public/images/about-beach.jpg'
 
 import join_island from '../../public/images/join-island.jpg'
+import axios from 'axios';
 
-export default function Home() {
-   
-
-    return (
+export default async function Home() {
+    
+         let resultado: [];
+         await axios
+          .get(`${baseURL}/attractions`)
+          .then((response) => resultado = response.data);
+        
+        if (!resultado.length) {
+            await axios
+          .get(`${baseURL}/attractions/data`)
+          .then((response) => console.log(response));
+        }
+     
+        
+          
+return (
     <>
-      <header className="fixed top-0 left-0 w-full bg-transparent z-50 backdrop-blur-xl" id="header">
-            <nav className=" h-14 flex justify-between items-center max-w-[1120px] mx-3">
-            <a href="#" className=" ml-6 text-white font-bold">
+      <header className={styles.header} id="header">
+            <nav className={`${styles.nav} ${styles.container}`}>
+            <a href="#" className={styles.nav__logo}>
                 TravelTo
             </a>
-            <div className="h-[var(--header-height)] flex justify-between items-center" id="nav-menu">
-                <ul className="text-center flex flex-row gap-10">
+            <div className={styles.nav__menu} id="nav-menu">
+                <ul className={styles.nav__list}>
                 <li className={styles.nav__item}>
-                    <a href="#home" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70">
+                    <a href="#home" className={`${styles.nav__link} ${styles.active_link}`}>
                     Home
                     </a>
                 </li>
-                <li >
-                    <a href="#about" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70">
-                    About
-                    </a>
-                </li>
+                
                 <li className={styles.nav__item}>
-                    <a href="#popular" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70">
+                    <a href="#popular" className={styles.nav__link}>
                     Popular
                     </a>
                 </li>
@@ -60,18 +70,23 @@ export default function Home() {
                     </Link>
                 </li>
                 <li className={styles.nav__item}>
+                    <a href="#footer" className={styles.nav__link}>
+                    About
+                    </a>
+                </li>
+                <li className={styles.nav__item}>
                     <Link href="/login" className={styles.nav__link}>
                     Login
                     </Link>
                 </li>
                 </ul>
                 {/*Close button*/}
-                <div className="flex text-title-color text-1.25rem cursor-pointer" id="nav-close">
+                <div className={styles.nav__close} id="nav-close">
                 <i className="ri-close-line" />
                 </div>
             </div>
             {/*Toggle button*/}
-            <div className="flex text-title-color text-1.25rem cursor-pointer" id="nav-toggle">
+            <div className={styles.nav__toggle} id="nav-toggle">
                 <i className="ri-menu-fill" />
             </div>
             </nav>
@@ -97,11 +112,11 @@ export default function Home() {
                 Vive los viajes explorando el mundo, 
                 descubre y disfrute de las mejores atracciones y mucho más, consiga su viaje ahora.
                 </p>
-                <a href="#" className={styles.button}>
+                <a href="#explore" className={styles.button}>
                     Comience su viaje <i className="ri-arrow-right-line" />
                 </a>
                 </div>
-                <div className={`${styles.home__cards} ${styles.grid}`}>
+                {/* <div className={`${styles.home__cards} ${styles.grid}`}>
                 <article className={styles.home__card}>
                     <Image
                     src={london}
@@ -141,11 +156,11 @@ export default function Home() {
                     <h3 className={styles.home__card_title}>Spain</h3>
                     <div className={styles.home__card_shadow} />
                 </article>
-                </div>
+                </div>*/}
             </div>
             </section>
             {/*==================== ABOUT ====================*/}
-            <section className={`${styles.about} ${styles.section}`} id="about">
+            {/* <section className={`${styles.about} ${styles.section}`} id="about">
             <div className={`${styles.about__container} ${styles.container} ${styles.grid}`}>
                 <div className={styles.about__data}>
                 <h2 className={styles.section__title}>
@@ -170,7 +185,7 @@ export default function Home() {
                 <div className={styles.home__shadow} />
                 </div>
             </div>
-            </section>
+            </section>*/}
             {/*==================== POPULAR ====================*/}
             <section className={`${styles.popular} ${styles.section}`} id="popular">
             <h2 className={styles.section__title}>
@@ -263,7 +278,7 @@ export default function Home() {
             </section>
         </main>
         {/*==================== FOOTER ====================*/}
-        <footer className={styles.footer}>
+        <footer className={styles.footer} id= "footer">
             <div className={`${styles.footer__container} ${styles.container} ${styles.grid}`}>
             <div className={`${styles.footer__content} ${styles.grid}`}>
                 <div>

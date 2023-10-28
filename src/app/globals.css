@@ -21,7 +21,7 @@
   /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Poppins", sans-serif;
   --second-font: "Montserrat", sans-serif;
-  --biggest-font-size: 2.75rem;
+  --biggest-font-size: 3rem;
   --h1-font-size: 1.5rem;
   --h2-font-size: 1.25rem;
   --h3-font-size: 1rem;
@@ -42,7 +42,7 @@
 /*========== Responsive typography ==========*/
 @media screen and (min-width: 1152px) {
   :root {
-    --biggest-font-size: 5.5rem;
+    --biggest-font-size: 4rem;
     --h1-font-size: 2.5rem;
     --h2-font-size: 1.5rem;
     --h3-font-size: 1.25rem;
