@@ -28,9 +28,9 @@
 
 /*=============== HEADER & NAV ===============*/
 .header {
+  position: fixed;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px); /*for Safari*/
-  position: fixed;
   width: 100%;
   background-color: transparent;
   top: 0;
@@ -57,17 +57,27 @@
   cursor: pointer;
 }
 
+.nav__toggle {
+  position: fixed;
+  z-index: 101;
+  top: 17px;
+  right: 35px;
+  justify-content: flex-end;
+}
+
 /* Navigation for mobile devices */
 @media screen and (max-width: 1023px) {
   .nav__menu {
-    position: fixed;
+    position: absolute;
+    z-index: 102;
     background-color: hlsa(0, 0%, 0%, 0.3);
-    top: -100%;
+    top: -30rem;
     left: 0;
     width: 100%;
     padding-block: 4rem;
     transition: top 0.4s;
   }
+
   .nav__list {
     text-align: center;
     display: flex;
@@ -75,9 +85,6 @@
     row-gap: 2.5rem;
   }
 
-  .nav__list.hide {
-    display: none;
-  }
   .nav__link {
     position: relative;
     color: var(--title-color);
@@ -105,8 +112,14 @@
 }
 
 /* Show menu */
-.show-menu {
+.show_menu {
   top: 0;
+  height: calc(var(--header-height) + 18rem);
+}
+
+.header.expanded {
+  height: 25rem;
+  z-index: 100;
 }
 
 /* Add blur to header */
@@ -453,7 +466,7 @@
 }
 
 /* Show Scroll Up */
-.show-scroll {
+.show_scroll {
   bottom: 3rem;
 }
 
@@ -516,6 +529,7 @@
     order: -1;
   }
 }
+
 /* For large devices */
 @media screen and (min-width: 1023px) {
   .nav__close,

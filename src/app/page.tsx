@@ -24,9 +24,78 @@ import about_beach from "../../public/images/about-beach.jpg";
 
 import join_island from "../../public/images/join-island.jpg";
 import axios from "axios";
-
 export default function Home() {
   useEffect(() => {
+    /*=============== SHOW MENU ===============*/
+
+    const navMenu = document.getElementById("nav-menu"),
+      navContainer = document.getElementById("header"),
+      navToggle = document.getElementById("nav-toggle"),
+      navClose = document.getElementById("nav-close");
+    /*===== MENU SHOW =====*/
+    /* Validate if constant exists */
+    if (navToggle) {
+      navToggle.addEventListener("click", () => {
+        navMenu?.classList.add(styles.show_menu);
+        navContainer?.classList.add(styles.expanded);
+        if (navToggle) navToggle.style.display = "none";
+      });
+    }
+
+    /*===== MENU HIDDEN =====*/
+    /* Validate if constant exists */
+    if (navClose) {
+      navClose.addEventListener("click", () => {
+        navMenu?.classList.remove(styles.show_menu);
+        navContainer?.classList.remove(styles.expanded);
+        if (navToggle) navToggle.style.display = "flex";
+      });
+    }
+
+    /*=============== REMOVE MENU MOBILE ===============*/
+    const navLink = document.querySelectorAll(`.${styles.nav__link}`);
+    const linkAction = () => {
+      const navMenu = document.getElementById("nav-menu");
+      // When we click on each nav__link, we remove the show-menu class
+      navMenu?.classList.remove(styles.show_menu);
+      navContainer?.classList.remove(styles.expanded);
+      if (navToggle) navToggle.style.display = "flex";
+    };
+    navLink.forEach((n) => n.addEventListener("click", linkAction));
+
+    /*=============== SHOW SCROLL UP ===============*/
+    const scrollUp = () => {
+      const scrollUp = document.getElementById("scroll-up");
+      if (!scrollUp) return;
+      // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
+      window.scrollY >= 350
+        ? scrollUp.classList.add(styles.show_scroll)
+        : scrollUp.classList.remove(styles.show_scroll);
+    };
+    window.addEventListener("scroll", scrollUp);
+
+    /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+    const sections = document.querySelectorAll("section[id]");
+
+    const scrollActive = () => {
+      const scrollY = window.pageYOffset;
+      sections.forEach((current: HTMLElement) => {
+        const sectionHeight = current.offsetHeight,
+          sectionTop = current.offsetTop,
+          sectionId = current.getAttribute("id"),
+          sectionsClass = document.querySelector(
+            "#menu-list a[href='#" + sectionId + "']"
+          );
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+          sectionsClass?.classList.add(styles.active_link);
+        } else {
+          sectionsClass?.classList.remove(styles.active_link);
+        }
+      });
+    };
+    window.addEventListener("scroll", scrollActive);
+
+    /*=============== SCROLL REVEAL ANIMATION ===============*/
     axios
       .get(`${baseURL}/attractions/data`)
       .then((response) => console.log(response));
@@ -39,12 +108,9 @@ export default function Home() {
             TravelTo
           </a>
           <div className={styles.nav__menu} id="nav-menu">
-            <ul className={styles.nav__list + " " + styles.hide}>
+            <ul id="menu-list" className={styles.nav__list}>
               <li className={styles.nav__item}>
-                <a
-                  href="#home"
-                  className={`${styles.nav__link} ${styles.active_link}`}
-                >
+                <a href="#home" className={styles.nav__link}>
                   Home
                 </a>
               </li>
@@ -73,10 +139,14 @@ export default function Home() {
             <div className={styles.nav__close} id="nav-close">
               <i className="ri-close-line" />
             </div>
-          </div>
-          {/*Toggle button*/}
-          <div className={styles.nav__toggle} id="nav-toggle">
-            <i className="ri-menu-fill" />
+            {/*Toggle button*/}
+            <div
+              className={styles.nav__toggle}
+              id="nav-toggle"
+              //   onClick={toogleMenu}
+            >
+              <i className="ri-menu-fill" />
+            </div>
           </div>
         </nav>
       </header>
