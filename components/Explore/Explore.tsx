@@ -5,9 +5,7 @@ import explore_beach from "../../public/images/explore-beach.jpg";
 const data = require("@/public/Attractions.json");
 import Cards from "@/components/Cards/Cards";
 import locations from "../../public/Locations.json";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { baseURL } from "@/constant";
+import { useState } from "react";
 
 export default function Explore() {
   const [filteredData, setFilteredData] = useState(data.attractions);
@@ -20,27 +18,6 @@ export default function Explore() {
   });
   const countries = countr.filter((item, index) => {
     return countr.indexOf(item) === index;
-  });
-
-  console.log(cities);
-  console.log(countries);
-
-  function addOptions(domElement, array) {
-    var select = document.getElementsByName(domElement)[0];
-
-    array.sort().map((e) => {
-      var option = document.createElement("option");
-      option.value = e;
-      option.text = e;
-      select.appendChild(option);
-    });
-  }
-  useEffect(() => {
-    addOptions("cities", cities);
-  });
-
-  useEffect(() => {
-    addOptions("countries", countries);
   });
 
   const orderForPrice = (a, b) => {
@@ -78,34 +55,67 @@ export default function Explore() {
                     setFilteredData(resultado);
                   }}
                 >
-                  <option className=" bg-black bg-opacity-60">
-                    Filtrar por Pais
+                  <option
+                    value=""
+                    className=" bg-black bg-opacity-60 flex flex-col"
+                  >
+                    Selecciona un país
                   </option>
+                  {countries !== undefined && countries.length > 0 ? (
+                    countries.sort().map((country, index) => (
+                      <option
+                        className=" bg-black bg-opacity-60 flex flex-col"
+                        key={index}
+                        value={country}
+                      >
+                        {country}
+                      </option>
+                    ))
+                  ) : (
+                    <option value="">No hay países disponibles</option>
+                  )}
                 </select>
               </div>
               <div>
-                <select
+              <select
                   name="cities"
                   className={styles.button}
                   onChange={(event) => {
                     const selectedValue = String(event.target.value);
-                    axios
-                      .get(`${baseURL}/attractions/city/${selectedValue}`)
-                      .then((response) => setFilteredData(response.data));
+                    const resultado = filteredData.filter(
+                      (e) => e.city == selectedValue
+                    );
+                    setFilteredData(resultado);
                   }}
                 >
-                  <option className=" text-black bg-black bg-opacity-60">
-                    Filtrar por Ciudad
+                  <option
+                    value=""
+                    className=" bg-black bg-opacity-60 flex flex-col"
+                  >
+                    Selecciona una Ciudad
                   </option>
+                  {cities !== undefined && cities.length > 0 ? (
+                    cities.sort().map((city, index) => (
+                      <option
+                        className=" bg-black bg-opacity-60 flex flex-col"
+                        key={index}
+                        value={city}
+                      >
+                        {city}
+                      </option>
+                    ))
+                  ) : (
+                    <option value="">No hay Ciudades disponibles</option>
+                  )}
                 </select>
               </div>
             </div>
             <button
               className={styles.button}
               onClick={() => {
-                const sortedData = [...filteredData]; // crea una copia del arreglo
-                sortedData.sort(orderForPrice); // ordena la copia del arreglo
-                setFilteredData(sortedData); // actualiza el estado con el ar
+                var aux = filteredData;
+                aux.sort(orderForPrice);
+                setFilteredData(aux);
               }}
             >
               Menor Precio <i className="ri-arrow-right-line" />
