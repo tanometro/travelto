@@ -127,10 +127,7 @@ export default function Home() {
           <div className={styles.nav__menu} id="nav-menu">
             <ul className={styles.nav__list + " " + styles.hide}>
               <li className={styles.nav__item}>
-                <a
-                  href="#home"
-                  className={`${styles.nav__link} ${styles.active_link}`}
-                >
+                <a href="#home" className={`${styles.nav__link}`}>
                   Home
                 </a>
               </li>
