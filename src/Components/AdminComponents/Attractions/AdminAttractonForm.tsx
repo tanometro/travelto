@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import axios from "axios";
-import { baseURL } from "@/constant";
+import {AdminAttractionFormInterface} from '@/src/interfaces';
+import createAttraction from "@/src/requests/postAttraction";
 
-export default function AdminAttractionForm() {
-
-  const [formData, setFormData] = useState(
+export default function AdminAttractionForm(props) {
+const {initialFormData} = props;
+  const [formData, setFormData] = useState<AdminAttractionFormInterface>(
     {
       name:"",
       description: "",
@@ -14,7 +14,7 @@ export default function AdminAttractionForm() {
       price: "",
       hours: "",
       duration: "",
-      image: "",
+      imageUrl: "",
       isActive: "",
       location: [],
     }
@@ -31,7 +31,7 @@ export default function AdminAttractionForm() {
     }
   }
 
-  const handleSubmit = (e : React.FormEvent) => {
+  const handleSubmit = async (e : React.FormEvent) => {
     e.preventDefault();
       const attraction = {
       name: formData.name,
@@ -41,12 +41,11 @@ export default function AdminAttractionForm() {
       price: formData.price,
       hours: formData.hours,
       duration: formData.duration,
-      imageUrl: formData.image,
+      imageUrl: formData.imageUrl,
       isActive: formData.isActive,
       location: [],
     };
-    console.log(attraction)
-    axios.post(`${baseURL}/attractions/create`, attraction)
+    const response = await createAttraction(attraction)
       .then(response => {
         console.log(attraction)
         window.alert('Attraction Create success')
@@ -184,7 +183,7 @@ export default function AdminAttractionForm() {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             name="imageUrl"
-            value={formData.image}
+            value={formData.imageUrl}
             onChange={handleInputChange}
           />
         </div>

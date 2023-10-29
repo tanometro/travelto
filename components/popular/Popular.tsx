@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import styles from "./popular.module.css";
 import "remixicon/fonts/remixicon.css";
@@ -75,18 +76,3 @@ export default function Popular() {
         </>
     )
 }
-/* {props?.data.slice((page-1) * pageSize,((page-1) * pageSize) + pageSize)
-    .map(({ id, name, city,country,ranking, price,image}, index)=> {
-       
-       return <Card 
-          key = {index}
-          id={id}
-          name={name}
-          city= {city}
-          country= {country}
-          ranking= {ranking}
-          price= {price}
-          image= {image}
-          
-       />
-    })} */
