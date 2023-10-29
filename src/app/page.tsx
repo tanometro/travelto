@@ -33,9 +33,7 @@ export default function Home() {
       .then((response) => response.data)
       .then((data) => {
         if (!data.length) {
-          axios
-            .get(`${baseURL}/attractions/data`)
-            .then((response) => console.log(response));
+          axios.get(`${baseURL}/attractions/data`);
         }
       });
 
@@ -108,7 +106,6 @@ export default function Home() {
             "#nav-menu a[href='#" + sectionId + "']"
           );
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          console.log(sectionsClass);
           sectionsClass?.classList.add(styles.active_link);
         } else {
           sectionsClass?.classList.remove(styles.active_link);
