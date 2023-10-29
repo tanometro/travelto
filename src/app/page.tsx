@@ -26,18 +26,22 @@ import about_beach from '../../public/images/about-beach.jpg'
 import join_island from "../../public/images/join-island.jpg";
 import axios from "axios";
 
-export default async function Home() {
+export default  function Home() {
     
-         let resultado: []= [];
-         await axios
+         
+          axios
           .get(`${baseURL}/attractions`)
-          .then((response) => resultado = response.data);
+          .then((response) =>  response.data).then((data)=> {
+            if (!data.length) {
+                axios
+            .get(`${baseURL}/attractions/data`)
+            .then((response) => console.log(response));
+            } 
+          })
         
-        if (!resultado.length) {
-            await axios
-          .get(`${baseURL}/attractions/data`)
-          .then((response) => console.log(response));
-        }
+        
+             
+        
      
         
           
