@@ -5,11 +5,11 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import "remixicon/fonts/remixicon.css";
 import Link from "next/link";
-
-//Importando componentes
-import Explore from "@/components/Explore/Explore";
 import { baseURL } from "@/constant";
 import { useEffect } from "react";
+//Importando componentes
+import Explore from "@/components/Explore/Explore";
+import Popular from "@/components/popular/Popular";
 // Impotrtando imagenes
 import Logo from "@/public/images/logo.png";
 import london from '../../public/images/london.jpeg'
@@ -18,9 +18,6 @@ import trees from '../../public/images/home-trees.jpg'
 import lake from '../../public/images/home-lake.jpg'
 import mountain from '../../public/images/home-mountain.jpg'
 import beach from '../../public/images/home-beach.jpg'
-import popular_mountain from '../../public/images/popular-mountain.jpg'
-import popular_lake from '../../public/images/popular-lake.jpg'
-import popular_forest from '../../public/images/popular-forest.jpg'
 import about_beach from '../../public/images/about-beach.jpg'
 
 import join_island from "../../public/images/join-island.jpg";
@@ -39,10 +36,6 @@ export default  function Home() {
             } 
           })
         
-        
-             
-        
-     
         
           
 return (
@@ -83,6 +76,11 @@ return (
                     Login
                     </Link>
                 </li>
+                <li className={styles.nav__item}>
+                    <a href="#" className={styles.nav__link}>
+                    <i className="ri-shopping-cart-line"></i>
+                    </a>
+                </li>
                 </ul>
                 {/*Close button*/}
                 <div className={styles.nav__close} id="nav-close">
@@ -120,132 +118,17 @@ return (
                     Comience su viaje <i className="ri-arrow-right-line" />
                 </a>
                 </div>
-                {/* <div className={`${styles.home__cards} ${styles.grid}`}>
-                <article className={styles.home__card}>
-                    <Image
-                    src={london}
-                    alt="home image"
-                    className={styles.home__card_img}
-                    />
-                    <h3 className={styles.home__card_title}>London</h3>
-                    <div className={styles.home__card_shadow} />
-                </article>
-                <article className={styles.home__card}>
-    
-                    <img
-                    src={'https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}
-                    alt="home image"
-                    
-                    className={styles.home__card_img}
-                    />
-                    <h3 className={styles.home__card_title}>Berlin</h3>
-                    <div className={styles.home__card_shadow} />
-                </article>
-                <article className={styles.home__card}>
-                    <Image
-                    src={mountain}
-                    alt="home image"
-                    
-                    className={styles.home__card_img}
-                    />
-                    <h3 className={styles.home__card_title}>Italy</h3>
-                    <div className={styles.home__card_shadow} />
-                </article>
-                <article className={styles.home__card}>
-                    <Image
-                    src={beach}
-                    alt="home image"
-                    className={styles.home__card_img}
-                    />
-                    <h3 className={styles.home__card_title}>Spain</h3>
-                    <div className={styles.home__card_shadow} />
-                </article>
-                </div>*/}
+               
             </div>
             </section>
-            {/*==================== ABOUT ====================*/}
-            {/* <section className={`${styles.about} ${styles.section}`} id="about">
-            <div className={`${styles.about__container} ${styles.container} ${styles.grid}`}>
-                <div className={styles.about__data}>
-                <h2 className={styles.section__title}>
-                    Aprenda más <br />
-                    Sobre TravelTo
-                </h2>
-                <p className={styles.about__description}>
-                Todos los viajes alrededor del mundo son un gran placer y felicidad para cualquiera,
-                 disfrute a pleno viajando por el mundo. 
-                 Viaja seguro y sin preocupaciones, consigue tu viaje y explora las mejores atracciones.
-                </p>
-                <a href="#" className={styles.button}>
-                    Explorar TravelTo <i className="ri-arrow-right-line" />
-                </a>
-                </div>
-                <div className={styles.about__image}>
-                <Image
-                    src={about_beach}
-                    alt="about beach"
-                    className={styles.about__img}
-                />
-                <div className={styles.home__shadow} />
-                </div>
-            </div>
-            </section>*/}
+            
             {/*==================== POPULAR ====================*/}
             <section className={`${styles.popular} ${styles.section}`} id="popular">
-            <h2 className={styles.section__title}>
-                Disfrute de las atracciones más populares
-            </h2>
-            <div className={`${styles.popular__container} ${styles.container} ${styles.grid}`}>
-                <article className={styles.popular__card}>
-                <div className={styles.popular__image}>
-                    <Image
-                    src={popular_mountain}
-                    alt="popular image"
-                    className={styles.popular__img}
-                    />
-                    <div className={styles.popular__shadow} />
-                </div>
-                <h2 className={styles.popular__title}>Logan Mountain</h2>
-                <div className={styles.popular__location}>
-                    <i className="ri-map-pin-line" />
-                    <span>Canadá</span>
-                </div>
-                </article>
-                <article className={styles.popular__card}>
-                <div className={styles.popular__image}>
-                    <Image
-                    src={popular_forest}
-                    alt="popilar image"
-                    className={styles.popular__img}
-                    />
-                    <div className={styles.popular__shadow} />
-                </div>
-                <h2 className={styles.popular__title}>Spike Forest</h2>
-                <div className={styles.popular__location}>
-                    <i className="ri-map-pin-line" />
-                    <span>Irland</span>
-                </div>
-                </article>
-                <article className={styles.popular__card}>
-                <div className={styles.popular__image}>
-                    <Image
-                    src={popular_lake}
-                    alt="popilar image"
-                    className={styles.popular__img}
-                    />
-                    <div className={styles.popular__shadow} />
-                </div>
-                <h2 className={styles.popular__title}>Garda Lake</h2>
-                <div className={styles.popular__location}>
-                    <i className="ri-map-pin-line" />
-                    <span>Italy</span>
-                </div>
-                </article>
-            </div>
+                <Popular />
             </section>
             {/*==================== EXPLORE ====================*/}
             <section className={`${styles.explore} ${styles.section}`} id="explore">
-            <Explore /> 
+                <Explore /> 
             </section>
             {/*==================== JOIN ====================*/}
             <section className={`${styles.join} ${styles.section}`}>

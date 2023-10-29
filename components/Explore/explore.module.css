@@ -8,13 +8,13 @@
   .section__title {
     text-align: center;
     font-size: var(--h2-font-size);
-    margin-bottom: 1.5rem;
+    
   }
   .explore__image {
     position: absolute;
     overflow: hidden;
     z-index: -1;
-    margin-top: -40rem
+    margin-top: -6rem
   }
   .explore__img {
     width: 100%;
@@ -55,9 +55,9 @@
     color: var(--title-color);
   }
   /*=============== BUTTON ===============*/
-/* .button {
+ .btn {
   background-color: hsla(0, 0%, 100%, .2);
-  padding: .5rem .5rem;
+  padding: .2rem .2rem;
   color: var(--title-color);
   display: inline-flex;
   align-items: center;
@@ -65,10 +65,10 @@
   font-family: var(--second-font);
   font-weight: var(--font-semi-bold);
   backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px); /*for Safari
-  margin: 3px
+  -webkit-backdrop-filter: blur(24px); /*for Safari*/
+  
 }
-.cleanbutton {
+/*.cleanbutton {
   background-color: hsla(0, 81%, 46%, 0.404);
   padding: 1.25rem 1.5rem;
   color: var(--title-color);

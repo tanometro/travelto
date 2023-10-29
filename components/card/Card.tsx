@@ -6,7 +6,7 @@ const Card = ({id, name,city,country,ranking, price, image}) => {
     return (
       <>
           <div className={style.container}>
-                {/* <h3 className={style.rating}>Rating: {rating}</h3> */}
+                
                 <div className="flex justify-between w-48">
                   <i className="ri-map-pin-line" />
                   <h2 className={style.titleName}>{name}</h2>
@@ -32,3 +32,5 @@ const Card = ({id, name,city,country,ranking, price, image}) => {
   }
   
   export default Card
+
+  

@@ -1,7 +1,7 @@
 "use client"
 import Card from '../card/Card';
 import style from './Cards.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Paginacion from '../paginacion/Paginacion';
 import React, { FC } from 'react';
 
@@ -21,6 +21,8 @@ interface attractions {
   }
   interface Props {
    data:attractions[];
+   flag:boolean;
+   setFlag: (newState: boolean) => void
   }
 
 export default function Cards (props: Props) {
@@ -28,7 +30,13 @@ export default function Cards (props: Props) {
    const [page, setPage ] = useState(1) //page es la pagina actual
    const [pageSize, setPageSize] = useState(4)
    const pageAmount = Math.ceil(props.data.length / pageSize) // cantidad de pag s/cant de cards
-
+   useEffect(()=>{
+      if(props.flag) {
+         setPage(1)
+         props.setFlag(false)
+      }
+   }, [props.flag])
+   
    return !props.data ? <h1 className={style.h1}>Cargando las atracciones...</h1>
    :  (
       <div>
