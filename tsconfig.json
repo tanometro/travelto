@@ -23,15 +23,19 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": [
+        "./*"
+      ]
+    },
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "components/Explore/Explore.tsx"  ],
+    ".next/types/**/*.ts",
+    "components/Explore/Explore.tsx"
+  ],
   "exclude": [
     "node_modules"
   ]
