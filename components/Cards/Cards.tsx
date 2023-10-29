@@ -5,17 +5,22 @@ import { useState } from 'react';
 import Paginacion from '../paginacion/Paginacion';
 import React, { FC } from 'react';
 
-interface Props {
+interface attractions {
       id: number;
       name: string;
       isActive: boolean;
       hours: string;
-      location: string;
+      city: string;
+      country:string;
       latitude: string;
+      ranking:number;
       longitude: string;
-      price: string;
+      price: number;
       duration: string;
-      description: string
+      image: string
+  }
+  interface Props {
+   data:attractions[];
   }
 
 export default function Cards (props: Props) {
@@ -24,22 +29,24 @@ export default function Cards (props: Props) {
    const [pageSize, setPageSize] = useState(4)
    const pageAmount = Math.ceil(props.data.length / pageSize) // cantidad de pag s/cant de cards
 
-   return !props.data ? <h1 className={style.h1}>Cargando los videogames...</h1>
+   return !props.data ? <h1 className={style.h1}>Cargando las atracciones...</h1>
    :  (
       <div>
          
-         <div className={style.page}>
-            <Paginacion page= {page} setPage= {setPage} pageAmount= {pageAmount}/>
-         </div>
+          
          <div className={style.container}>
             {props?.data.slice((page-1) * pageSize,((page-1) * pageSize) + pageSize)
-            .map(({ id, name, location}, index)=> {
+            .map(({ id, name, city,country,ranking, price,image}, index)=> {
                
                return <Card 
                   key = {index}
                   id={id}
                   name={name}
-                  location= {location}
+                  city= {city}
+                  country= {country}
+                  ranking= {ranking}
+                  price= {price}
+                  image= {image}
                   
                />
             })}

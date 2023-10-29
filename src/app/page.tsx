@@ -11,6 +11,7 @@ import Explore from "@/components/Explore/Explore";
 import { baseURL } from "@/constant";
 import { useEffect } from "react";
 // Impotrtando imagenes
+import Logo from "@/public/images/logo.png";
 import london from "../../public/images/london.jpeg";
 import img_home from "../../public/images/home-bg.jpg";
 import trees from "../../public/images/home-trees.jpg";
@@ -26,6 +27,18 @@ import join_island from "../../public/images/join-island.jpg";
 import axios from "axios";
 export default function Home() {
   useEffect(() => {
+    let resultado: [] = [];
+    axios
+      .get(`${baseURL}/attractions`)
+      .then((response) => response.data)
+      .then((data) => {
+        if (!data.length) {
+          axios
+            .get(`${baseURL}/attractions/data`)
+            .then((response) => console.log(response));
+        }
+      });
+
     /*=============== SHOW MENU ===============*/
 
     const navMenu = document.getElementById("nav-menu"),
@@ -38,7 +51,8 @@ export default function Home() {
       navToggle.addEventListener("click", () => {
         navMenu?.classList.add(styles.show_menu);
         navContainer?.classList.add(styles.expanded);
-        if (navToggle) navToggle.style.display = "none";
+        if (navToggle && window.innerWidth < 1023)
+          navToggle.style.display = "none";
       });
     }
 
@@ -48,7 +62,8 @@ export default function Home() {
       navClose.addEventListener("click", () => {
         navMenu?.classList.remove(styles.show_menu);
         navContainer?.classList.remove(styles.expanded);
-        if (navToggle) navToggle.style.display = "flex";
+        if (navToggle && window.innerWidth < 1023)
+          navToggle.style.display = "flex";
       });
     }
 
@@ -59,7 +74,8 @@ export default function Home() {
       // When we click on each nav__link, we remove the show-menu class
       navMenu?.classList.remove(styles.show_menu);
       navContainer?.classList.remove(styles.expanded);
-      if (navToggle) navToggle.style.display = "flex";
+      if (navToggle && window.innerWidth < 1023)
+        navToggle.style.display = "flex";
     };
     navLink.forEach((n) => n.addEventListener("click", linkAction));
 
@@ -73,6 +89,11 @@ export default function Home() {
         : scrollUp.classList.remove(styles.show_scroll);
     };
     window.addEventListener("scroll", scrollUp);
+    window.addEventListener("resize", () => {
+      window.innerWidth > 1023
+        ? navToggle && (navToggle.style.display = "none")
+        : navToggle && (navToggle.style.display = "flex");
+    });
 
     /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
     const sections = document.querySelectorAll("section[id]");
@@ -94,12 +115,8 @@ export default function Home() {
       });
     };
     window.addEventListener("scroll", scrollActive);
+  }, []);
 
-    /*=============== SCROLL REVEAL ANIMATION ===============*/
-    axios
-      .get(`${baseURL}/attractions/data`)
-      .then((response) => console.log(response));
-  });
   return (
     <>
       <header className={styles.header} id="header">
@@ -108,9 +125,12 @@ export default function Home() {
             TravelTo
           </a>
           <div className={styles.nav__menu} id="nav-menu">
-            <ul id="menu-list" className={styles.nav__list}>
+            <ul className={styles.nav__list + " " + styles.hide}>
               <li className={styles.nav__item}>
-                <a href="#home" className={styles.nav__link}>
+                <a
+                  href="#home"
+                  className={`${styles.nav__link} ${styles.active_link}`}
+                >
                   Home
                 </a>
               </li>
@@ -139,14 +159,10 @@ export default function Home() {
             <div className={styles.nav__close} id="nav-close">
               <i className="ri-close-line" />
             </div>
-            {/*Toggle button*/}
-            <div
-              className={styles.nav__toggle}
-              id="nav-toggle"
-              //   onClick={toogleMenu}
-            >
-              <i className="ri-menu-fill" />
-            </div>
+          </div>
+          {/*Toggle button*/}
+          <div className={styles.nav__toggle} id="nav-toggle">
+            <i className="ri-menu-fill" />
           </div>
         </nav>
       </header>

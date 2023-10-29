@@ -1,7 +1,7 @@
 .container {
     border: none;
     /* background-color: #ff6f3c; */
-    margin: 5rem auto;
+    margin: 1rem auto;
     display: flex;
     justify-content: center;
     align-items: center;

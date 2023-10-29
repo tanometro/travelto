@@ -13,7 +13,7 @@
 }
 
 .section {
-  padding-block: 5rem 1rem;
+  padding-block: 3rem 1rem;
 }
 
 .section__title {
@@ -59,9 +59,9 @@
 
 .nav__toggle {
   position: fixed;
-  z-index: 101;
   top: 17px;
   right: 35px;
+  z-index: 101;
   justify-content: flex-end;
 }
 
@@ -147,6 +147,7 @@
 }
 .home__bg {
   position: absolute;
+  z-index: -1;
   top: 0;
   left: 0;
   width: 100%;
@@ -156,6 +157,7 @@
 }
 .home__shadow {
   position: absolute;
+  z-index: -1;
   top: 0;
   left: 0;
   width: 100%;
@@ -602,7 +604,7 @@
     font-size: var(--h2-font-size);
   }
   .home__description {
-    margin-top: 2.5rem;
+    margin-top: 1rem;
   }
   .home__cards {
     grid-template-columns: repeat(4, 260px);
