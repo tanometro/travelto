@@ -1,14 +1,14 @@
 "use client";
 import AdminAttractionForm from "@/src/Components/AdminComponents/Attractions/AdminAttractonForm";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { baseURL } from "@/constant";
 import { useParams } from "next/navigation";
+import getAttractionByid from "@/src/requests/getAttractionById";
+import { AdminAttractionFormInterface } from "@/src/interfaces";
 
 
 export default function EditAttraction() {
   const params = useParams();
-  const [attraction, setAttraction] = useState({
+  const [attraction, setAttraction] = useState<AdminAttractionFormInterface>({
     name: "",
     description:"",
     latitude: "",
@@ -19,16 +19,19 @@ export default function EditAttraction() {
     image: "",
     isActive: "",
   })
-  /*const attractionId = Array.isArray(params.id)
+  // Location no puedo editar?
+
+
+  
+  const attractionId = Array.isArray(params.id)
   ? parseInt(params.id[0], 10)
-  :parseInt(params.id, 10)*/
-  const attractionId = params.id
+  :parseInt(params.id, 10)
+  // const attractionId = params.id
 
   useEffect(()=> {
     async function fetchData () {
       try {
-       const response = await axios.get(`${baseURL}/attractions/${attractionId}`);
-       console.log(attractionId)
+       const response = await getAttractionByid(attractionId);
        setAttraction(response.data);
       } catch (error) {
        console.error ("Error en Fetch Data")
