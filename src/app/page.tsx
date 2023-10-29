@@ -25,6 +25,7 @@ import about_beach from "../../public/images/about-beach.jpg";
 
 import join_island from "../../public/images/join-island.jpg";
 import axios from "axios";
+import Popular from "@/components/Popular/Popular";
 
 export default function Home() {
   useEffect(() => {
@@ -101,7 +102,7 @@ export default function Home() {
       const scrollY = window.pageYOffset;
       sections.forEach((current: HTMLElement) => {
         const sectionHeight = current.offsetHeight,
-          sectionTop = current.offsetTop,
+          sectionTop = current.offsetTop - 58,
           sectionId = current.getAttribute("id"),
           sectionsClass = document.querySelector(
             "#nav-menu a[href='#" + sectionId + "']"
@@ -131,19 +132,19 @@ export default function Home() {
                 </a>
               </li>
               <li className={styles.nav__item}>
-                <a href="#about" className={styles.nav__link}>
-                  About
-                </a>
-              </li>
-              <li className={styles.nav__item}>
                 <a href="#popular" className={styles.nav__link}>
                   Popular
                 </a>
               </li>
               <li className={styles.nav__item}>
-                <Link href="#explore" className={styles.nav__link}>
+                <a href="#explore" className={styles.nav__link}>
                   Explore
-                </Link>
+                </a>
+              </li>
+              <li className={styles.nav__item}>
+                <a href="#footer" className={styles.nav__link}>
+                  About
+                </a>
               </li>
               <li className={styles.nav__item}>
                 <Link href="/login" className={styles.nav__link}>
@@ -155,10 +156,6 @@ export default function Home() {
             <div className={styles.nav__close} id="nav-close">
               <i className="ri-close-line" />
             </div>
-          </div>
-          {/*Toggle button*/}
-          <div className={styles.nav__toggle} id="nav-toggle">
-            <i className="ri-menu-fill" />
           </div>
           {/*Toggle button*/}
           <div className={styles.nav__toggle} id="nav-toggle">
@@ -258,58 +255,7 @@ export default function Home() {
             </section>*/}
         {/*==================== POPULAR ====================*/}
         <section className={`${styles.popular} ${styles.section}`} id="popular">
-          <h2 className={styles.section__title}>
-            Disfrute de las atracciones más populares
-          </h2>
-          <div
-            className={`${styles.popular__container} ${styles.container} ${styles.grid}`}
-          >
-            <article className={styles.popular__card}>
-              <div className={styles.popular__image}>
-                <Image
-                  src={popular_mountain}
-                  alt="popular image"
-                  className={styles.popular__img}
-                />
-                <div className={styles.popular__shadow} />
-              </div>
-              <h2 className={styles.popular__title}>Logan Mountain</h2>
-              <div className={styles.popular__location}>
-                <i className="ri-map-pin-line" />
-                <span>Canadá</span>
-              </div>
-            </article>
-            <article className={styles.popular__card}>
-              <div className={styles.popular__image}>
-                <Image
-                  src={popular_forest}
-                  alt="popilar image"
-                  className={styles.popular__img}
-                />
-                <div className={styles.popular__shadow} />
-              </div>
-              <h2 className={styles.popular__title}>Spike Forest</h2>
-              <div className={styles.popular__location}>
-                <i className="ri-map-pin-line" />
-                <span>Irland</span>
-              </div>
-            </article>
-            <article className={styles.popular__card}>
-              <div className={styles.popular__image}>
-                <Image
-                  src={popular_lake}
-                  alt="popilar image"
-                  className={styles.popular__img}
-                />
-                <div className={styles.popular__shadow} />
-              </div>
-              <h2 className={styles.popular__title}>Garda Lake</h2>
-              <div className={styles.popular__location}>
-                <i className="ri-map-pin-line" />
-                <span>Italy</span>
-              </div>
-            </article>
-          </div>
+          <Popular />
         </section>
         {/*==================== EXPLORE ====================*/}
         <section className={`${styles.explore} ${styles.section}`} id="explore">
@@ -322,7 +268,7 @@ export default function Home() {
           >
             <div className={styles.join__data}>
               <h2 className={styles.section__title}>
-                Su vieje <br />
+                Su viaje <br />
                 Comienza aquí
               </h2>
               <p className={styles.join__description}>
@@ -349,138 +295,138 @@ export default function Home() {
             </div>
           </div>
         </section>
+        {/*==================== FOOTER ====================*/}
+        <section className={styles.footer} id="footer">
+          <div
+            className={`${styles.footer__container} ${styles.container} ${styles.grid}`}
+          >
+            <div className={`${styles.footer__content} ${styles.grid}`}>
+              <div>
+                <a href="#" className={styles.footer__logo}>
+                  TravelTo
+                </a>
+                <p className={styles.footer__description}>
+                  Viaja con nosotros y explora <br />
+                  el mundo sin límites.
+                </p>
+              </div>
+              <div className={`${styles.footer__data} ${styles.grid}`}>
+                <div>
+                  <h3 className={styles.footer__title}>Acerca de</h3>
+                  <ul className={styles.footer__links}>
+                    <a href="#" className={styles.footer__link}>
+                      Sobre nosotros
+                    </a>
+                  </ul>
+                  <ul className={styles.footer__links}>
+                    <a href="#" className={styles.footer__link}>
+                      Características
+                    </a>
+                  </ul>
+                  <ul className={styles.footer__links}>
+                    <a href="#" className={styles.footer__link}>
+                      News &amp; Blog
+                    </a>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className={styles.footer__title}>Compania</h3>
+                  <ul className={styles.footer__links}>
+                    <a href="#" className={styles.footer__link}>
+                      FAQs
+                    </a>
+                  </ul>
+                  <ul className={styles.footer__links}>
+                    <a href="#" className={styles.footer__link}>
+                      Historial
+                    </a>
+                  </ul>
+                  <ul className={styles.footer__links}>
+                    <a href="#" className={styles.footer__link}>
+                      Testimoniales
+                    </a>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className={styles.footer__title}>Contáctos</h3>
+                  <ul className={styles.footer__links}>
+                    <a href="#" className={styles.footer__link}>
+                      Call Center
+                    </a>
+                  </ul>
+                  <ul className={styles.footer__links}>
+                    <a href="#" className={styles.footer__link}>
+                      Centro de soporte
+                    </a>
+                  </ul>
+                  <ul className={styles.footer__links}>
+                    <a href="#" className={styles.footer__link}>
+                      Contactenos
+                    </a>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className={styles.footer__title}>Soporte</h3>
+                  <ul className={styles.footer__links}>
+                    <a href="#" className={styles.footer__link}>
+                      Politica de privacidad
+                    </a>
+                  </ul>
+                  <ul className={styles.footer__links}>
+                    <a href="#" className={styles.footer__link}>
+                      Terminos &amp; Servicios
+                    </a>
+                  </ul>
+                  <ul className={styles.footer__links}>
+                    <a href="#" className={styles.footer__link}>
+                      Medios de pago
+                    </a>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className={styles.footer__group}>
+              <div className={styles.footer__social}>
+                <a
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  className={styles.footer__social_link}
+                >
+                  <i className="ri-facebook-line" />
+                </a>
+                <a
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  className={styles.footer__social_link}
+                >
+                  <i className="ri-instagram-line" />
+                </a>
+                <a
+                  href="ttps://twitter.com/"
+                  target="_blank"
+                  className={styles.footer__social_link}
+                >
+                  <i className="ri-twitter-line" />
+                </a>
+                <a
+                  href="https://www.youtube.com/"
+                  target="_blank"
+                  className={styles.footer__social_link}
+                >
+                  <i className="ri-youtube-line" />
+                </a>
+              </div>
+              <span className={styles.footer__copy}>
+                © Copyright GenioTotal. Todos los derechos reservados
+              </span>
+            </div>
+          </div>
+          <a href="#" className={styles.scrollup} id="scroll-up">
+            <i className="ri-arrow-up-line" />
+          </a>
+        </section>
+        {/*========== SCROLL UP ==========*/}
       </main>
-      {/*==================== FOOTER ====================*/}
-      <footer className={styles.footer} id="footer">
-        <div
-          className={`${styles.footer__container} ${styles.container} ${styles.grid}`}
-        >
-          <div className={`${styles.footer__content} ${styles.grid}`}>
-            <div>
-              <a href="#" className={styles.footer__logo}>
-                TravelTo
-              </a>
-              <p className={styles.footer__description}>
-                Viaja con nosotros y explora <br />
-                el mundo sin límites.
-              </p>
-            </div>
-            <div className={`${styles.footer__data} ${styles.grid}`}>
-              <div>
-                <h3 className={styles.footer__title}>Acerca de</h3>
-                <ul className={styles.footer__links}>
-                  <a href="#" className={styles.footer__link}>
-                    Sobre nosotros
-                  </a>
-                </ul>
-                <ul className={styles.footer__links}>
-                  <a href="#" className={styles.footer__link}>
-                    Características
-                  </a>
-                </ul>
-                <ul className={styles.footer__links}>
-                  <a href="#" className={styles.footer__link}>
-                    News &amp; Blog
-                  </a>
-                </ul>
-              </div>
-              <div>
-                <h3 className={styles.footer__title}>Compania</h3>
-                <ul className={styles.footer__links}>
-                  <a href="#" className={styles.footer__link}>
-                    FAQs
-                  </a>
-                </ul>
-                <ul className={styles.footer__links}>
-                  <a href="#" className={styles.footer__link}>
-                    Historial
-                  </a>
-                </ul>
-                <ul className={styles.footer__links}>
-                  <a href="#" className={styles.footer__link}>
-                    Testimoniales
-                  </a>
-                </ul>
-              </div>
-              <div>
-                <h3 className={styles.footer__title}>Contáctos</h3>
-                <ul className={styles.footer__links}>
-                  <a href="#" className={styles.footer__link}>
-                    Call Center
-                  </a>
-                </ul>
-                <ul className={styles.footer__links}>
-                  <a href="#" className={styles.footer__link}>
-                    Centro de soporte
-                  </a>
-                </ul>
-                <ul className={styles.footer__links}>
-                  <a href="#" className={styles.footer__link}>
-                    Contactenos
-                  </a>
-                </ul>
-              </div>
-              <div>
-                <h3 className={styles.footer__title}>Soporte</h3>
-                <ul className={styles.footer__links}>
-                  <a href="#" className={styles.footer__link}>
-                    Politica de privacidad
-                  </a>
-                </ul>
-                <ul className={styles.footer__links}>
-                  <a href="#" className={styles.footer__link}>
-                    Terminos &amp; Servicios
-                  </a>
-                </ul>
-                <ul className={styles.footer__links}>
-                  <a href="#" className={styles.footer__link}>
-                    Medios de pago
-                  </a>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className={styles.footer__group}>
-            <div className={styles.footer__social}>
-              <a
-                href="https://www.facebook.com/"
-                target="_blank"
-                className={styles.footer__social_link}
-              >
-                <i className="ri-facebook-line" />
-              </a>
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                className={styles.footer__social_link}
-              >
-                <i className="ri-instagram-line" />
-              </a>
-              <a
-                href="ttps://twitter.com/"
-                target="_blank"
-                className={styles.footer__social_link}
-              >
-                <i className="ri-twitter-line" />
-              </a>
-              <a
-                href="https://www.youtube.com/"
-                target="_blank"
-                className={styles.footer__social_link}
-              >
-                <i className="ri-youtube-line" />
-              </a>
-            </div>
-            <span className={styles.footer__copy}>
-              © Copyright GenioTotal. Todos los derechos reservados
-            </span>
-          </div>
-        </div>
-      </footer>
-      {/*========== SCROLL UP ==========*/}
-      <a href="#" className={styles.scrollup} id="scroll-up">
-        <i className="ri-arrow-up-line" />
-      </a>
     </>
   );
 }
