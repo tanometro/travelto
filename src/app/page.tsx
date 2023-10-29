@@ -25,6 +25,7 @@ import about_beach from "../../public/images/about-beach.jpg";
 
 import join_island from "../../public/images/join-island.jpg";
 import axios from "axios";
+
 export default function Home() {
   useEffect(() => {
     let resultado: [] = [];
@@ -124,6 +125,7 @@ export default function Home() {
           </a>
           <div className={styles.nav__menu} id="nav-menu">
             <ul className={styles.nav__list + " " + styles.hide}>
+            <ul className={styles.nav__list + " " + styles.hide}>
               <li className={styles.nav__item}>
                 <a href="#home" className={`${styles.nav__link}`}>
                   Home
@@ -153,6 +155,11 @@ export default function Home() {
             {/*Close button*/}
             <div className={styles.nav__close} id="nav-close">
               <i className="ri-close-line" />
+            </div>
+          </div>
+          {/*Toggle button*/}
+          <div className={styles.nav__toggle} id="nav-toggle">
+            <i className="ri-menu-fill" />
             </div>
           </div>
           {/*Toggle button*/}
