@@ -22,7 +22,7 @@ export default function Register() {
                     />
                 </div>
                 <div className="fixed top-0 left-0 w-full h-full z-[-1] bg-gradient-radial from-transparent to-black" />
-                <div className="flex flex-col-reverse w-50 md:flex-row md:min-w-[50rem] justify-center p-5">
+                <div className="flex flex-col-reverse w-scren md:flex-row md:min-w-[50rem] justify-center p-5">
 
                     <RegisterForm />
                 </div>

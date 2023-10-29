@@ -71,7 +71,7 @@ export const LoginForm = () => {
         </div>
         {errors.length > 0 && (
           <div className="form-group relative mb-10 w-[80%] justify-self-center justify-center">
-            {errors.map((error, index) => (
+            {errors?.map((error, index) => (
               <p className="text-white bg-red-700" key={index}>* {error}</p>
             ))}
           </div>

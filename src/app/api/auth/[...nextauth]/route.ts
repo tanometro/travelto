@@ -9,12 +9,13 @@ const handler = NextAuth({
             name: "Credentials",
 
             credentials: {
+                name: { label: "name", type: "name", placeholder: "name.." },
                 email: { label: "email", type: "email", placeholder: "abc123@example.com" },
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
-                const res = await fetch(
+                /* const res = await fetch(
                     `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
                     {
                         method: "POST",
@@ -25,8 +26,15 @@ const handler = NextAuth({
                         headers: { "Content-Type": "aplication/json" },
                     }
                 );
+                
                 const user = await res.json();
                 if (user.error) throw user;
+                 */
+                const user = {
+                    name: credentials?.name,
+                    email: credentials?.email,
+                    password: credentials?.password,
+                }
 
                 return user;
             }
