@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import popular_mountain from '../../public/images/popular-mountain.jpg'
 import popular_lake from '../../public/images/popular-lake.jpg'
 import popular_forest from '../../public/images/popular-forest.jpg'
+import { emit } from "process";
 
 
 interface attractions {
@@ -48,21 +49,27 @@ export default function Popular() {
                 Disfrute de las atracciones más populares
             </h2>
             <div className={`${styles.popular__container} ${styles.container} ${styles.grid}`}>
-                <article className={styles.popular__card}>
-                <div className={styles.popular__image}>
-                    <Image
-                    src={popular_mountain}
-                    alt="popular image"
-                    className={styles.popular__img}
-                    />
-                    <div className={styles.popular__shadow} />
-                </div>
-                <h2 className={styles.popular__title}>Logan Mountain</h2>
-                <div className={styles.popular__location}>
-                    <i className="ri-map-pin-line" />
-                    <span>Canadá</span>
-                </div>
-                </article>
+                {attraction.slice(0, 3).map((e)=>{
+                    return (
+                        <article className={styles.popular__card}>
+                        <div className={styles.popular__image}>
+                        <Image
+                            src={e.image}
+                            width={600}
+                            height={800}
+                            alt="popular image"
+                            className={styles.popular__img}
+                        />
+                        <div className={styles.popular__shadow} />
+                        </div>
+                        <h2 className={styles.popular__title}>{e.name}</h2>
+                        <div className={styles.popular__location}>
+                            <i className="ri-map-pin-line" />
+                            <span>{e.country} - {e.city}</span>
+                        </div>
+                        </article>
+                        )
+                })}
                 
             </div>
         </>
