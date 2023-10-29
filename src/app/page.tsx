@@ -105,9 +105,10 @@ export default function Home() {
           sectionTop = current.offsetTop,
           sectionId = current.getAttribute("id"),
           sectionsClass = document.querySelector(
-            "#menu-list a[href='#" + sectionId + "']"
+            "#nav-menu a[href='#" + sectionId + "']"
           );
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+          console.log(sectionsClass);
           sectionsClass?.classList.add(styles.active_link);
         } else {
           sectionsClass?.classList.remove(styles.active_link);
