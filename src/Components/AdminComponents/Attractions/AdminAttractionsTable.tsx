@@ -24,11 +24,12 @@ export default function AdminAttractionsTable() {
 
   return (
     <main className="h-full w-full m-4">
-      <div className="mb-4">
-        <input placeholder=" Search" />
-        <button>Search</button>
-      </div>
-      <div className=" text-center h-1/4">
+      <div className="mb-2">
+        <input 
+        className=" text-lg p-1 rounded-xl"
+        placeholder="Nombre o Ciudad"
+        />
+        <button className=" ml-2 hover:border-lime-400 font-second-font font-semibold text-lg rounded-xl text-zinc-50 bg-slate-700 p-1 border-solid" >Buscar</button>
       </div>
       <div className="flex justify-center col-span-2 row-span-1">
         <table className="border min-w-full rounded-lg w-full h-full bg-slate-700">
