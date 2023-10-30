@@ -42,8 +42,8 @@ export default function AdminUsersTable() {
   };
 
   return (
-    <main className="grid grid-cols-2 grid-rows-1/4 3/4">
-      <div className="col-span-1 row-span-1 text-center h-1/4">
+    <main className="w-full h-full m-4 justify-center flex flex-row">
+      <div className="pb-4">
         <input
           value={searchUser}
           placeholder=" Search by Name or DNI"
@@ -51,24 +51,15 @@ export default function AdminUsersTable() {
         />
         <button>Search</button>
       </div>
-      <div className=" text-center h-1/4">
-        <button
-          className=" col-span-2 row-span-1 text-center w-56 h-10 text-lg  border-red-600 border-solid border-2 bg-green-400 m-6 rounded-lg "
-          onClick={() => router.push("/AdminDashboard/AdminUsers/CreateUser")}
-        >
-          Create a New User
-        </button>
-      </div>
-
       <div className="flex justify-center col-span-2 row-span-1">
-        <table className="rounded-3xl w-3/4 bg-white border-red-600 border-solid">
+        <table className="border min-w-full rounded-lg w-full h-full bg-slate-700">
           <thead>
-            <tr className="bg-gray-100">
-              <th className="border-b p-2 border-r-2">Name</th>
-              <th className="border-b p-2 border-r-2">DNI</th>
-              <th className="border-b p-2 border-r-2">Rol</th>
-              <th className="border-b p-2 border-r-2">Active</th>
-              <th className="border-b p-2">Edit</th>
+            <tr>
+              <th className="border-b p-2 border-r-2 border">Name</th>
+              <th className="border-b p-2 border-r-2 border">DNI</th>
+              <th className="border-b p-2 border-r-2 border">Rol</th>
+              <th className="border-b p-2 border-r-2 border">Active</th>
+              <th className="border-b p-2 border-r-2 border">Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -90,7 +81,7 @@ export default function AdminUsersTable() {
                 </td>
                 <td className="border-b p-2 text-center">
                   <button
-                    className=" border-red-600 border-solid border-2 bg-green-200 w-32 h-8 rounded"
+                    className="hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 w-32 h-8"
                     onClick={() =>
                       router.push("/AdminDashboard/AdminUsers/EditUser")
                     }

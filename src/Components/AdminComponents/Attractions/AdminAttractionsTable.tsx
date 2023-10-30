@@ -23,23 +23,15 @@ export default function AdminAttractionsTable() {
   const router = useRouter();
 
   return (
-    <main className="grid grid-cols-2 grid-rows-1/4 3/4">
-      <div className="col-span-1 row-span-1 text-center h-1/4">
+    <main className="h-full w-full m-4">
+      <div className="mb-4">
         <input placeholder=" Search" />
         <button>Search</button>
       </div>
       <div className=" text-center h-1/4">
-        <button
-          className=" col-span-2 row-span-1 text-center w-56 h-10 text-lg  border-red-600 border-solid border-2 bg-green-400 m-6 rounded-lg "
-          onClick={() =>
-            router.push("/AdminDashboard/AdminAttractions/CreateAttraction")
-          }
-        >
-          Create a New Attraction
-        </button>
       </div>
       <div className="flex justify-center col-span-2 row-span-1">
-        <table className="rounded-3xl w-3/4 bg-white border-red-600 border-solid">
+        <table className="border min-w-full rounded-lg w-full h-full bg-slate-700">
           <thead>
             <tr className="bg-gray-100">
               <th className="border-b p-2 border-r-2">Name</th>
@@ -60,8 +52,8 @@ export default function AdminAttractionsTable() {
                   {attraction.City}
                 </td>
                 <td className="border-b p-2 border-r-2">
-                  {attraction.latitude.split(".")[0] + "°"} -{" "}
-                  {attraction.longitude.split(".")[0] + "°"}
+                  {attraction.latitud.split(".")[0] + "°"} -{" "}
+                  {attraction.longitud.split(".")[0] + "°"}
                 </td>
                 <td className="border-b p-2 border-r-2">{attraction.price}</td>
                 <td className="border-b p-2 border-r-2">
