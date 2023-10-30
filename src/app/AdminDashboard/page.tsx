@@ -1,24 +1,26 @@
 "use client"
-import AdminUsersCard from "@/src/Components/AdminComponents/Users/AdminUsersCard";
-import AdminAttractionsCard from "@/src/Components/AdminComponents/Attractions/AdminAttractionsCard";
-import AdminLocationsCard from "@/src/Components/AdminComponents/Locations/AdminLocationsCard";
-import Image from "next/image";
-import adminBg from '../../../public/images/AdminDashboardBg.jpg'
-export default function AdminDashboard (){
+import style from "./page.module.css"
 
-return (
-  <div className="w-full h-full flex flex-row justify-around items-center bg-opacity-90 bg-black">
-    <Image
-    src={adminBg}
-        alt="Imagen de Fondo no encontrada"
-        layout="fill" // Deprecated legacy prop, remove this line
-        objectFit="cover" // Use objectFit prop instead of layout="fill"
-        priority
-        className=" opacity-50"
-        />
-    <AdminUsersCard />
-    <AdminAttractionsCard />
-    <AdminLocationsCard />
-  </div>
-);
+
+export default function AdminDashboard() {
+
+  return (
+    <main className= {style.grid}>
+      <div className=" justify-center w-full h-full bg-black border bg-title-color border-solid p-4 col-start-1 col-end-1 row-start-1 row-end-3 flex flex-row flex-wrap">
+      <button className=" m-2 w-4/5 h-1/5 border-solid">Usuarios</button>
+      <button className=" m-2 w-4/5 h-1/5 border-solid">Atracciones</button>
+      <button className=" m-2 w-4/5 h-1/5 border-solid">Ciudades</button>
+      <button className=" m-2 w-4/5 h-1/5 border-solid">Visitantes</button>
+      </div>
+      <div className=" w-full h-full  bg-black border bg-title-color border-solid col-start-2 col-end-2 col-span-1 mb-2 ml-2 justify-between items-center flex">
+        <button className="m-2 h-4/5 w-1/5 border-solid">Nuevo Usuario</button>
+        <button className="m-2 h-4/5 w-1/5 border-solid">Nueva Atraccion</button>
+        <button className="m-2 h-4/5 w-1/5 border-solid">Nueva Ciudad</button>
+        <button className="m-2 h-4/5 w-1/5 border-solid">Log Out</button>
+      </div>
+      <div className="w-full h-ful  bg-black border bg-title-color border-solid p-4 col-start-2 col-end-2 ml-2 mt-2">
+        Lugar de renderizado
+      </div>
+    </main>
+  );
 }
