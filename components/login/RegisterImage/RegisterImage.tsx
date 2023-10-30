@@ -32,7 +32,7 @@ export default function RegisterImage({ imageUser, handler }: Props): React.Reac
     }
     return (
         <div className="flex relative h-80 w-80 aligne-center justify-center">
-            <Image src={inputValue != "" ? imageUser : inputValue} alt="Foto usuario"
+            <Image src={inputValue === "" ? imageUser : inputValue} alt="Foto usuario"
                 fill
                 className="absolute overflow-hidden object-cover rounded-full" />
             <form onSubmit={handlerSubmit} className="flex flex-col relative justify-end">

@@ -13,11 +13,11 @@ const handler = NextAuth({
                 email: { label: "email", type: "email", placeholder: "abc123@example.com" },
                 password: { label: "Password", type: "password" }
             },
-            authorize(credentials, req) {
-                //async authorize(credentials, req) {
+            //authorize(credentials, req) {
+            async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
-                /* const res = await fetch(
-                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
+                const res = await fetch(
+                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/log`,
                     {
                         method: "POST",
                         body: JSON.stringify({
@@ -27,16 +27,17 @@ const handler = NextAuth({
                         headers: { "Content-Type": "aplication/json" },
                     }
                 );
-                
+
                 const user = await res.json();
                 if (user.error) throw user;
-                 */
-                const user = {
+
+                /* const user = {
                     id: "1",
                     name: credentials?.name,
                     email: credentials?.email,
                     password: credentials?.password,
-                }
+                    image: credentials?.image,
+                } */
 
                 return user;
             }
