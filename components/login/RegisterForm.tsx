@@ -5,14 +5,19 @@ import React, { useState } from "react";
 import registerValidate from "./registerValidate";
 import Image from "next/image";
 import axios from "axios";
+import RegisterImage from "./RegisterImage/RegisterImage";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
+    const router = useRouter();
     const [errors, setErrors] = useState<string[]>([]);
+    const [imageUser, setImageUser] = useState<string>("https://res.cloudinary.com/dsrdos5pb/image/upload/v1698623834/qa4ex6esskztxkfkmrqd.jpg");
     const [name, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [checkPassword, setCheckPassword] = useState<string>("");
     const [dni, setDni] = useState<string>("");
+
 
     const handlerSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -22,10 +27,10 @@ export default function RegisterForm() {
         setErrors([...stateErrors]);
         if (stateErrors.length != 0) return;
         const nameUser = name.split(" ");
-        const res = axios.post(
+        axios.post(
             `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/create`,
             {
-
+                image: imageUser,
                 name: nameUser,
                 email: email,
                 dni: dni,
@@ -48,6 +53,7 @@ export default function RegisterForm() {
                 return;
             }
 
+            router.push("/")
         }).catch((error) => {
             setErrors(error.message);
             return;
@@ -57,14 +63,7 @@ export default function RegisterForm() {
 
     return (
         <section className="flex flex-wrap w-screen items-center sm:justify-center lg:justify-around">
-            <div className="flex relative h-80 w-80 aligne-center">
-                <Image src={"/images/viajero.jpg"} alt="Fondo"
-                    fill
-                    className="absolute overflow-hidden object-cover rounded-full" />
-                <div className="flex flex-col justify-end">
-                    <button className="text-white flex aligne- bg-black relative ">Subir imagen</button>
-                </div>
-            </div>
+            <RegisterImage imageUser={imageUser} handler={() => setImageUser} />
             <div>
 
                 <form className="flex flex-col w-96" onSubmit={handlerSubmit}>

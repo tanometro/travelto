@@ -13,7 +13,8 @@ const handler = NextAuth({
                 email: { label: "email", type: "email", placeholder: "abc123@example.com" },
                 password: { label: "Password", type: "password" }
             },
-            async authorize(credentials, req) {
+            authorize(credentials, req) {
+                //async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
                 /* const res = await fetch(
                     `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
@@ -31,6 +32,7 @@ const handler = NextAuth({
                 if (user.error) throw user;
                  */
                 const user = {
+                    id: "1",
                     name: credentials?.name,
                     email: credentials?.email,
                     password: credentials?.password,

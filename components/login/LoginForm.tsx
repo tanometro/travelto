@@ -3,8 +3,10 @@ import { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import FormInput from "./FormInput/FormInput";
 import validate from "./validate";
+import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
+  const router = useRouter();
   const { data: session, status } = useSession();
   const [errors, setErrors] = useState<string[]>([]);
   const [email, setEmail] = useState<string>("");
@@ -28,7 +30,7 @@ export const LoginForm = () => {
         setErrors(responseNextAuth.error.split(","));
         return;
       }
-
+      router.push("/");
     }
   };
   return (
