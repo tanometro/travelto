@@ -1,6 +1,7 @@
 'use client'
+import { File } from "buffer";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 type Props = {
     imageUser: string;
     handler: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -8,6 +9,7 @@ type Props = {
 export default function RegisterImage({ imageUser, handler }: Props): React.ReactNode {
     const [file, setFile] = useState<File | null>(null);
     const [inputValue, setInputValue] = useState("");
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         handler(event);
         setInputValue(event.target?.value);
@@ -26,16 +28,16 @@ export default function RegisterImage({ imageUser, handler }: Props): React.Reac
 
         const data = await response.json();
 
-        handleInputChange(data.url);
+        handleInputChange({ target: { value: data.url } } as React.ChangeEvent<HTMLInputElement>);
     }
     return (
         <div className="flex relative h-80 w-80 aligne-center justify-center">
-            <Image src={imageUser} alt="Foto usuario"
+            <Image src={inputValue != "" ? imageUser : inputValue} alt="Foto usuario"
                 fill
                 className="absolute overflow-hidden object-cover rounded-full" />
             <form onSubmit={handlerSubmit} className="flex flex-col relative justify-end">
                 <input name="image" className="bg-white" type="file" onChange={(event) => {
-                    setFile(event.target.files[0]);
+                    setFile(event.target.files[0] || null);
                 }} />
                 <button className="text-white flex bg-black ">Subir imagen</button>
             </form>

@@ -15,7 +15,7 @@ type Props = {
     const previusPage = () => {
         setPage(page - 1)
     }
-    const numeracion = [];
+    const numeracion: number[] = [];
     let i = 1
     while (i <= pageAmount ) {
         numeracion.push(i)
