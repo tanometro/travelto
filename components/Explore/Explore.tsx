@@ -253,7 +253,7 @@ export default function Explore() {
             <h2 className={styles.section__title}>
               Comience su viaje aqui <i className="ri-arrow-right-line" />
             </h2> 
-            <a href="#explore" className={styles.btn + " w-[12em] h-[1.8em]"} >
+            <a href="#explore" className={styles.btn + " w-[15em] h-[2em] text-center"} >
                     Busque su Atraccion <i className="ri-search-2-line" />
             </a>
           </div>

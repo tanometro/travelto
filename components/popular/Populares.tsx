@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import styles from "./popular.module.css";
+import styles from "./populares.module.css";
 import "remixicon/fonts/remixicon.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -53,13 +53,12 @@ export default function Popular() {
                 {attraction.slice(0, 3).map((e)=>{
                     return (
                         <article className={styles.popular__card}>
-                        <div className={styles.popular__image}>
+                        <div className="relative mb-[1rem] overflow-hidden w-full h-[180px] hover:scale-105 transition-all duration-300 ease-in-out">
                         <Image
-                            src={e.image}
-                            width={600}
-                            height={800}
+                            src={e.image} layout= "fill"
+                            
                             alt="popular image"
-                            className={styles.popular__img}
+                            className={styles.popular__img }
                         />
                         <div className={styles.popular__shadow} />
                         </div>
