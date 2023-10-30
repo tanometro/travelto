@@ -6,9 +6,52 @@ const data = require("@/public/Attractions.json");
 import Cards from "@/components/Cards/Cards";
 import locations from "../../public/Locations.json";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { baseURL } from "@/constant";
 
 export default function Explore() {
-  const [filteredData, setFilteredData] = useState(data.attractions);
+  const cities = locations.locations.map((location) => {
+    return location.city;
+  });
+  const countr = locations.locations.map((location) => {
+    return location.country;
+  });
+  let [state, setState] = useState({
+    order: "",
+    city: "",
+    country: ""
+    
+})
+  
+  const [attraction, setAttraction] = useState([])
+   
+  const getDatos =async () => {
+      try {
+          let res = await axios.get(`http://localhost:3001/attractions`)
+      let datos= res.data
+      console.log(datos);    
+      if (!datos.length) {
+              window.alert("No se encuentran datos")
+          } else {
+              setAttraction(datos)
+              
+          }
+      } catch (error) {
+          console.log(error); 
+      }
+  }    
+  useEffect(()=> {  
+    getDatos()
+  }, [])
+ 
+  const handleChange = e => {
+    let newState = {
+        ...state,
+        [e.target.name]: e.target.value
+        
+    }
+  }
+  /* const [filteredData, setFilteredData] = useState(data.attractions);
 
   const cities = locations.locations.map((location) => {
     return location.city;
@@ -35,21 +78,21 @@ export default function Explore() {
   }
   useEffect(() => {
     addOptions("cities", cities);
-  },);
+  });
 
   useEffect(() => {
     addOptions("countries", countries);
-  },);
+  });
 
   const orderForPrice = (a, b) => {
-      if (a.price < b.price) {
-        return -1;
-      }
-      if (a.price > b.price) {
-        return 1;
-      }
-      return 0;
-    };
+    if (a.price < b.price) {
+      return -1;
+    }
+    if (a.price > b.price) {
+      return 1;
+    }
+    return 0;
+  }; */
 
   return (
     <div className={styles.explore__container}>
@@ -58,71 +101,44 @@ export default function Explore() {
       >
         <div className={styles.explore__data}>
           <h2 className={styles.section__title}>
-            Explore The <br />
-            Best Attractions
-          </h2>
-
-          <div>
-            <div className="flex flex-row justify-center">
-              <div>
-                <select
-                  name="countries"
-                  className={styles.button}
-                  onChange={(event) => {
-                    const selectedValue = String(event.target.value);
-                    const resultado = filteredData.filter(
-                      (e) => e.country == selectedValue
-                    );
-                    setFilteredData(resultado);
-                  }}
-                >
-                  <option className=" bg-black bg-opacity-60">
-                    Filtrar por Pais
-                  </option>
-                </select>
-              </div>
-              <div>
-                <select
-                  name="cities"
-                  className={styles.button}
-                  onChange={(event) => {
-                    const selectedValue = String(event.target.value);
-                    const resultado = filteredData.filter(
-                      (e) => e.city == selectedValue
-                    );
-                    setFilteredData(resultado);
-                  }}
-                >
-                  <option className=" text-black bg-black bg-opacity-60">
-                    Filtrar por Ciudad
-                  </option>
-                </select>
-              </div>
-            </div>
-            <button className={styles.button} onClick={()=>{
-                var aux = filteredData
-                aux.sort(orderForPrice)
-                setFilteredData(aux)
-              }}>
-              Menor Precio <i className="ri-arrow-right-line" />
-            </button>
-            <a href="#" className={styles.button}>
-              Ranking <i className="ri-arrow-right-line" />
-            </a>
-            <button
-              className={styles.cleanbutton}
-              onClick={() => {
-                setFilteredData(data.attractions);
-              }}
-            >
-              Limpiar Filtros
-              <i className="ri-arrow-left-line" />
-            </button>
-          </div>
-          <div>
-            <Cards data={filteredData} />
-          </div>
+            Comience su viaje aqui
+          </h2> 
         </div>
+        <div className= {styles.container_select}>
+                    <select className= {styles.select} name="order" id="" onChange = { handleChange }>
+                        <option className= {styles.option} value= "">Order</option>
+                        <option className= {styles.option} value= "A">A-Z</option>
+                        <option className= {styles.option} value= "D">Z-A</option>
+                        <option className= {styles.option} value="RA">Ranking Asc.</option>
+                        <option className= {styles.option} value="RD">Ranking Desc.</option>
+                        
+                    </select>
+                    
+                    {/* <select className= {styles.select} name="origin" id="" onChange = { handleChange }>
+                        <option className= {styles.option} value="ALL">ALL</option>
+                        <option className= {styles.option} value="API"> Only API</option>
+                        <option className= {styles.option} value="DB">Only DB</option>
+                    </select> */}
+                    <select className= {styles.select} name="city" id="" onChange = { handleChange }>
+                        <option className= {styles.option} value="All">Todas las ciudades </option>
+                        {cities.map((dato, index) => (
+                            <option className= {styles.option} key= {index} value={dato}>{dato}</option>          
+                        ))}
+                        
+                    </select>
+                    <select className= {styles.select} name="country" id="" onChange = { handleChange }>
+                        <option className= {styles.option} value="All">Todos los paises </option>
+                        {countr.map((dato, index) => (
+                            <option className= {styles.option} key= {index} value={dato}>{dato}</option>          
+                        ))}
+                        
+                    </select>
+                </div>
+        
+        
+        <div>
+            <Cards data={attraction} />
+          </div>
       </div>
       <div className={styles.explore__image}>
         <Image
