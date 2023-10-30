@@ -1,12 +1,17 @@
 "use client";
 import React, { useState } from "react";
+<<<<<<< HEAD
 import axios from "axios";
 import { baseURL } from "@/constant";
 import { getOnEditAttraction } from "@/src/redux/features/attractionsSlice";
+=======
+import {AdminAttractionFormInterface} from '@/src/interfaces';
+import createAttraction from "@/src/requests/postAttraction";
+>>>>>>> 6c470ef56aa19ddad0e27d6981df3bd15c12474a
 
-export default function AdminAttractionForm() {
-
-  const [formData, setFormData] = useState(
+export default function AdminAttractionForm(props) {
+const {initialFormData} = props;
+  const [formData, setFormData] = useState<AdminAttractionFormInterface>(
     {
       name:"",
       description: "",
@@ -16,7 +21,11 @@ export default function AdminAttractionForm() {
       hours: "",
       duration: "",
       imageUrl: "",
+<<<<<<< HEAD
       isActive: false,
+=======
+      isActive: "",
+>>>>>>> 6c470ef56aa19ddad0e27d6981df3bd15c12474a
       location: [],
     }
   );
@@ -33,7 +42,7 @@ export default function AdminAttractionForm() {
     }
   }
 
-  const handleSubmit = (e : React.FormEvent) => {
+  const handleSubmit = async (e : React.FormEvent) => {
     e.preventDefault();
       const attraction = {
       name: formData.name,
@@ -47,8 +56,7 @@ export default function AdminAttractionForm() {
       isActive: formData.isActive,
       location: [],
     };
-    console.log(attraction)
-    axios.post(`${baseURL}/attractions/create`, attraction)
+    const response = await createAttraction(attraction)
       .then(response => {
         console.log(attraction)
         window.alert('Attraction Create success')
