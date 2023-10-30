@@ -1,27 +1,16 @@
 "use client";
 import AdminAttractionForm from "@/src/Components/AdminComponents/Attractions/AdminAttractonForm";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { baseURL } from "@/constant";
 import { useParams } from "next/navigation";
+import { getOnEditAttraction, setOnEditAttraction } from "@/src/redux/features/attractionsSlice";
 
 
 export default function EditAttraction() {
   const params = useParams();
-  const [attraction, setAttraction] = useState({
-    name: "",
-    description:"",
-    latitude: "",
-    longitude: "",
-    price: "",
-    hours: "",
-    duration: "",
-    image: "",
-    isActive: "",
-  })
-  /*const attractionId = Array.isArray(params.id)
-  ? parseInt(params.id[0], 10)
-  :parseInt(params.id, 10)*/
+
   const attractionId = params.id
 
   useEffect(()=> {
@@ -29,13 +18,12 @@ export default function EditAttraction() {
       try {
        const response = await axios.get(`${baseURL}/attractions/${attractionId}`);
        console.log(attractionId)
-       setAttraction(response.data);
+       setOnEditAttraction(response.data);
       } catch (error) {
        console.error ("Error en Fetch Data")
       } 
      }
      fetchData()}, [])
 
-  
-    return <AdminAttractionForm initialFormData={attraction}/>;
+    return <AdminAttractionForm />;
 }

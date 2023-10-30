@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { baseURL } from "@/constant";
+import { getOnEditAttraction } from "@/src/redux/features/attractionsSlice";
 
 export default function AdminAttractionForm() {
 
@@ -14,11 +15,12 @@ export default function AdminAttractionForm() {
       price: "",
       hours: "",
       duration: "",
-      image: "",
-      isActive: "",
+      imageUrl: "",
+      isActive: false,
       location: [],
     }
   );
+  setFormData(getOnEditAttraction)
   
   const handleInputChange = (e : React.FormEvent) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
@@ -41,7 +43,7 @@ export default function AdminAttractionForm() {
       price: formData.price,
       hours: formData.hours,
       duration: formData.duration,
-      imageUrl: formData.image,
+      imageUrl: formData.imageUrl,
       isActive: formData.isActive,
       location: [],
     };
@@ -184,7 +186,7 @@ export default function AdminAttractionForm() {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             name="imageUrl"
-            value={formData.image}
+            value={formData.imageUrl}
             onChange={handleInputChange}
           />
         </div>

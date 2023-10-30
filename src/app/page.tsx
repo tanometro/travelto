@@ -1,10 +1,13 @@
-"use client "
+
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-no-comment-textnodes */
+"use client "
 import Image from 'next/image';
 import styles from './page.module.css';
 import 'remixicon/fonts/remixicon.css';
 import Link from 'next/link'
+import { useEffect } from 'react';
+import AppUseDispatch from 
 
 //Importando componentes
 import Explore from '@/components/Explore/Explore'
@@ -20,11 +23,15 @@ import popular_mountain from '../../public/images/popular-mountain.jpg'
 import popular_lake from '../../public/images/popular-lake.jpg'
 import popular_forest from '../../public/images/popular-forest.jpg'
 import about_beach from '../../public/images/about-beach.jpg'
-
 import join_island from '../../public/images/join-island.jpg'
+import FetchDataToStates from '../redux/sevices/FetchDataToStates';
 
 export default function Home() {
-   
+const dispatch = useDispatch()
+useEffect(() => {
+    useDispatch(FetchDataToStates)
+})
+
 
     return (
     <>
@@ -52,15 +59,15 @@ export default function Home() {
                 </li>
                 <li className={styles.nav__item}>
 
-                    <a href="#explore" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70">
+                    <a href="#explore" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70"/>
 
-                    <Link href="#explore" className={styles.nav__link}>
+                    <Link href="#explore" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70">
 
                     Explore
                     </Link>
                 </li>
                 <li className={styles.nav__item}>
-                    <Link href="/login" className={styles.nav__link}>
+                    <Link href="/login" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70">
                     Login
                     </Link>
                 </li>

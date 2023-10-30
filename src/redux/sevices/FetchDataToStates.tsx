@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { setAttractions, setRenderAttractions } from "../redux/sliceAttractions";
+import { setAttractions, setRenderAttractions } from "../features/attractionsSlice";
 //import { setLocations } from "../redux/sliceLocations";
 import { baseURL } from "@/constant";
 
@@ -11,6 +11,14 @@ export default function FetchDataToStates () {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    axios.get(`${baseURL}/attractions/data`)
+    .then(response => {
+        console.log("Datos cargados a la base de datos");
+    })
+    .catch(error => {
+        throw new Error(error);
+    });
+
       // Carga de Attracciones al estado de redux como copia fiel de todas las atracciones, no se modificará
       axios.get(`${baseURL}/attractions`)
           .then(response => {
@@ -40,4 +48,5 @@ export default function FetchDataToStates () {
         });
     }, [dispatch]);
     */
+   return console.log("Data cargada correctamente")
 }
