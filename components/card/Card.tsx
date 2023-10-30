@@ -1,8 +1,19 @@
 import style from "./Card.module.css";
 import Image from "next/image";
 import taverna from "@/public/images/la-trattoria-del-campo.jpg";
+import AddToCart from "../Cart/AddToCart/AddToCart";
 
-const Card = ({ id, name, city, country, ranking, price, image }) => {
+const Card = ({
+  id,
+  name,
+  city,
+  country,
+  ranking,
+  price,
+  image,
+  latitude,
+  longitude,
+}) => {
   return (
     <>
       <div className={style.container}>
@@ -10,7 +21,19 @@ const Card = ({ id, name, city, country, ranking, price, image }) => {
         <div className="flex justify-between w-48">
           <i className="ri-map-pin-line" />
           <h2 className={style.titleName}>{name}</h2>
-          <i className="ri-shopping-cart-line"></i>
+          <AddToCart
+            attraction={{
+              id,
+              name,
+              city,
+              country,
+              ranking,
+              price,
+              image,
+              latitude,
+              longitude,
+            }}
+          />
         </div>
         <h3 className={style.genero}>
           {city} - {country}
