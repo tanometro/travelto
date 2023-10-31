@@ -4,6 +4,7 @@ import AdminAttractionsTable from "@/src/Components/AdminComponents/Attractions/
 import AdminLocationsTable from "@/src/Components/AdminComponents/Locations/AdminLocationsTable";
 import style from "./page.module.css";
 import { useState } from "react";
+import AdminAttractionForm from "@/src/Components/AdminComponents/Attractions/AdminAttractonForm";
 
 export default function AdminDashboard() {
   const [mostrar, setMostrar] = useState(<>Elija una Opcion en el panel lateral para visualizar y 
@@ -20,6 +21,9 @@ export default function AdminDashboard() {
   const locationsClick = () => {
     setMostrar(<AdminLocationsTable />);
   };
+  const newAttractionClick = () => {
+    setMostrar(<AdminAttractionForm/>)
+  }
 
   return (
     <main className={style.grid}>
@@ -48,7 +52,7 @@ export default function AdminDashboard() {
         <button className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 h-4/5 w-1/5 border-solid">
           Nuevo Usuario
         </button>
-        <button className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 h-4/5 w-1/5 border-solid">
+        <button onClick= {newAttractionClick} className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 h-4/5 w-1/5 border-solid">
           Nueva Atraccion
         </button>
         <button className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 h-4/5 w-1/5 border-solid">

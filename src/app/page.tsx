@@ -151,6 +151,11 @@ export default function Home() {
                   Login
                 </Link>
               </li>
+              <li className={styles.nav__item}>
+                <Link href="/AdminDashboard" className={styles.nav__link}>
+                  Admin
+                </Link>
+              </li>
             </ul>
             {/*Close button*/}
             <div className={styles.nav__close} id="nav-close">
