@@ -3,10 +3,9 @@ import React, { useState } from "react";
 import { AdminAttractionFormInterface } from "@/src/interfaces";
 import createAttraction from "@/src/requests/postAttraction";
 
-export default function AdminAttractionForm() {
-
-  const [formData, setFormData] = useState<AdminAttractionFormInterface>(
-    {
+export default function AdminAttractionForm(props) {
+  const { initialFormData } = props;
+  const [formData, setFormData] = useState<AdminAttractionFormInterface>({
     name: "",
     country: "",
     city: "",
@@ -17,7 +16,6 @@ export default function AdminAttractionForm() {
     hours: "",
     duration: "",
     image: "",
-    description: "",
     isActive: false,
   });
 
@@ -46,7 +44,6 @@ export default function AdminAttractionForm() {
       hours: formData.hours,
       duration: formData.duration,
       image: formData.image,
-      description: formData.description,
       isActive: formData.isActive,
     };
     console.log(attraction)
@@ -65,7 +62,6 @@ export default function AdminAttractionForm() {
           hours: "",
           duration: "",
           image: "",
-          description: "",
           isActive: false,
         });
       })
@@ -206,7 +202,7 @@ export default function AdminAttractionForm() {
             <textarea
               className="shadow appearance-none border rounded resize-none w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
               name="description"
-              value={formData.description}
+              
               onChange={handleInputChange}
             />
           </div>
@@ -216,7 +212,7 @@ export default function AdminAttractionForm() {
               className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 w-1/6 p-4 border-solid"
               type="submit"
             >
-              Crear Atracción
+              Crear Ciudad
             </button>
           </div>
         </form>

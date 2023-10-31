@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import attractionsHandler from "./sliceAttractions";
-import locationsHandler from "./sliceLocations"
-import usersHandler from "./sliceUsers";
+import attractionsHandler from "./features/attractionsSlice";
+import locationsHandler from "./features/locationsSlice"
+import usersHandler from "./features/usersSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,3 +10,5 @@ export const store = configureStore({
     users: usersHandler
   },
 });
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

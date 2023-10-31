@@ -1,23 +1,29 @@
-import data from "../../../../public/Locations.json";
+
+import { baseURL } from "@/constant";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
-export default function AdminLocationsTable() {
+export default async function AdminLocationsTable() {
 
-    const locations = data.locations
+    const locations = await axios.get(`${baseURL}/locations/`)
+    .then (response => {
+      console.log(response)
+      return response.data
+    })
     const router = useRouter()
 
     return (
+      <main className="h-full w-full m-4 justify-center">
+      <div className="mb-4 justify-center">
+      <input placeholder=" Search" />
+        <button>Search</button>
+      </div>
       <div>
-        <table className="min-w-full bg-white border border-gray-200">
+        <table className="min-w-full rounded-lg w-full h-full bg-slate-700">
           <thead>
             <tr className="bg-gray-100">
               <th className="border-b p-2 border-r-2">City</th>
               <th className="border-b p-2 border-r-2">Country</th>
-              <th className="border-b p-2 border-r-2">coordinates</th>
-              <th className="border-b p-2 border-r-2">Attractions</th>
-              <th className="border-b p-2 border-r-2">CP</th>
-              <th className="border-b p-2 border-r-2">Prefix</th>
-              <th className="border-b p-2 border-r-2">Image</th>
               <th className="border-b p-2 border-r-2">Edit</th>
             </tr>
           </thead>
@@ -26,28 +32,6 @@ export default function AdminLocationsTable() {
               <tr key={location.id}>
                 <td className="border-b p-2 border-r-2">{location.city}</td>
                 <td className="border-b p-2 border-r-2">{location.country}</td>
-                <td className="border-b p-2 border-r-2">
-                  {location.latitude.split(".")[0] + "°"} -{" "}
-                  {location.longitude.split(".")[0] + "°"}
-                </td>
-                <td className="border-b p-2 border-r-2">
-                  {location.attractions.join(", ")}
-                </td>
-                <td className="border-b p-2 border-r-2">{location.CP}</td>
-                <td className="border-b p-2 border-r-2">{location.prefijo}</td>
-                <td className="border-b p-2 border-r-2 flex justify-center items-center">
-                  <a
-                    href={location.image}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={location.image}
-                      alt="Image Not Found"
-                      style={{ maxWidth: "60px" }}
-                    />
-                  </a>
-                </td>
                 <td className="border-b p-2 border-r-2 text-center">
                   <button
                     className=" border-red-600 border-solid border-2 bg-green-200 w-32 h-8 rounded"
@@ -63,6 +47,7 @@ export default function AdminLocationsTable() {
           </tbody>
         </table>
       </div>
+      </main>
     );
 
 }
