@@ -23,7 +23,7 @@ export default function CartCounter(): ReactNode {
           cart.length < 10 ? "w-4 h-4" : " w-6 h-6"
         } text-white text-xs flex items-center justify-center bg-red-800 rounded-full`}
       >
-        {cart.length}
+        {Object.keys(cart).length}
       </div>
     </div>
   );

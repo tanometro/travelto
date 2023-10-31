@@ -1,10 +1,11 @@
 "use client";
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([
+  const [cart, setCart] = useState(
+    localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : {}
     // {
     //   id: 1,
     //   name: "Prueba",
@@ -19,7 +20,19 @@ export function CartProvider({ children }) {
     //   duration: "3:00",
     //   image: "",
     // },
-  ]);
+  );
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+
   return (
     <CartContext.Provider value={{ cart, setCart }}>
       {children}
