@@ -38,12 +38,12 @@ export default function RegisterForm() {
 
             }
         ).then(async (res) => {
-            console.log(res.data);
+            console.log(res);
+
 
             const responseNextAuth = await signIn("credentials", {
-                name,
-                email,
-                password,
+                email: res.data.email,
+                password: password,
                 redirect: false,
             });
 
@@ -53,7 +53,7 @@ export default function RegisterForm() {
                 return;
             }
 
-            router.push("/")
+            router.push("/login")
         }).catch((error) => {
             setErrors(error.message);
             return;

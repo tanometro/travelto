@@ -1,6 +1,7 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
+import userLogin from "@/src/requests/postLoginUser";
 
 const handler = NextAuth({
     providers: [
@@ -9,38 +10,20 @@ const handler = NextAuth({
             name: "Credentials",
 
             credentials: {
-                name: { label: "name", type: "name", placeholder: "name.." },
                 email: { label: "email", type: "email", placeholder: "abc123@example.com" },
                 password: { label: "Password", type: "password" }
             },
             //authorize(credentials, req) {
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
-                const res = await fetch(
-                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
-                    {
-                        method: "POST",
-                        body: JSON.stringify({
-                            email: credentials?.email,
-                            password: credentials?.password,
-                        }),
-                        headers: { "Content-Type": "aplication/json" },
-                    }
-                );
+                try {
+                    const user = await userLogin(credentials);
+                    return user;
+                } catch (error) {
+                    return (null);
+                }
 
-                const user = await res.json();
-                if (user.error) throw user;
-
-                /* const user = {
-                    id: "1",
-                    name: credentials?.name,
-                    email: credentials?.email,
-                    password: credentials?.password,
-                    image: credentials?.image,
-                } */
-
-                return user;
-            }
+            },
         }),
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -61,6 +44,7 @@ const handler = NextAuth({
         async session({ session, token }) {
             // Send properties to the client, like an access_token from a provider.
             session.user = token;
+
             return session;
         }
     },
