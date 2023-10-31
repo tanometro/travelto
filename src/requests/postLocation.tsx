@@ -1,16 +1,16 @@
 import { baseURL } from "@/constant";
-import { AttractionInterface } from "../interfaces";
+import { LocationInterface } from "../interfaces";
 
-const createAttraction= async (attraction: AttractionInterface) => {
+const createLocation= async (location:LocationInterface) => {
     try {
        
-          const response = await fetch(`${baseURL}/attractions/create`, {
+          const response = await fetch(`${baseURL}/locations/create`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               //Authorization: storedToken,
             },
-            body: JSON.stringify(attraction),
+            body: JSON.stringify(location),
           });
     
           if (!response.ok) {
@@ -19,15 +19,14 @@ const createAttraction= async (attraction: AttractionInterface) => {
             if (response.status === 401) {
               throw new Error("No autorizado. Por favor, vuelve a iniciar sesión.");
             } else {
-              throw new Error(`Error al crear la Atraccion: ${errorMessage}`);
+              throw new Error(`Error al crear la Ciudad: ${errorMessage}`);
             }
           }
-          window.alert("Atraccion creada exitosamente");
+          window.alert("Ciudad Creada Exitosamente");
       } catch (error) { 
         if (error as Error) {
           window.alert((error as Error).message);
         } 
       }
 };
-
-export default createAttraction;
+export default createLocation

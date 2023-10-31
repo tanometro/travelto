@@ -1,9 +1,15 @@
-import data from "../../../../public/Locations.json";
+
+import { baseURL } from "@/constant";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
-export default function AdminLocationsTable() {
+export default async function AdminLocationsTable() {
 
-    const locations = data.locations
+    const locations = await axios.get(`${baseURL}/locations/`)
+    .then (response => {
+      console.log(response)
+      return response.data
+    })
     const router = useRouter()
 
     return (

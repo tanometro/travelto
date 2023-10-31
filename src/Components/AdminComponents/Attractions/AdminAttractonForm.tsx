@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { AdminAttractionFormInterface } from "@/src/interfaces";
 import createAttraction from "@/src/requests/postAttraction";
 
-export default function AdminAttractionForm(props) {
-  const { initialFormData } = props;
-  const [formData, setFormData] = useState<AdminAttractionFormInterface>({
+export default function AdminAttractionForm() {
+
+  const [formData, setFormData] = useState<AdminAttractionFormInterface>(
+    {
     name: "",
     country: "",
     city: "",
@@ -16,6 +17,7 @@ export default function AdminAttractionForm(props) {
     hours: "",
     duration: "",
     image: "",
+    description: "",
     isActive: false,
   });
 
@@ -44,6 +46,7 @@ export default function AdminAttractionForm(props) {
       hours: formData.hours,
       duration: formData.duration,
       image: formData.image,
+      description: formData.description,
       isActive: formData.isActive,
     };
     console.log(attraction)
@@ -62,6 +65,7 @@ export default function AdminAttractionForm(props) {
           hours: "",
           duration: "",
           image: "",
+          description: "",
           isActive: false,
         });
       })
@@ -202,7 +206,7 @@ export default function AdminAttractionForm(props) {
             <textarea
               className="shadow appearance-none border rounded resize-none w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
               name="description"
-              
+              value={formData.description}
               onChange={handleInputChange}
             />
           </div>

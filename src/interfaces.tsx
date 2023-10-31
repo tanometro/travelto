@@ -9,6 +9,7 @@ export interface AdminAttractionFormInterface {
     hours: string,
     duration: string,
     image: string,
+    description: string,
     isActive: boolean,
 }
 
@@ -23,9 +24,19 @@ export interface AttractionInterface {
     hours: string,
     duration: string,
     image: string,
+    description: string,
     isActive: boolean,
 }
 
+export interface AdminLocationFormInterface {
+    city: string,
+    country: string
+}
+
+export interface LocationInterface {
+    city: string,
+    country: string
+}
 export interface ButtonProps {
     text: string,
     size: string,
