@@ -1,5 +1,6 @@
 import style from "./Card.module.css";
 import Image from "next/image";
+import Link from "next/link";
 import taverna from "@/public/images/la-trattoria-del-campo.jpg";
 import AddToCart from "../Cart/AddToCart/AddToCart";
 
@@ -16,6 +17,7 @@ const Card = ({
 }) => {
   return (
     <>
+      
       <div className={style.container}>
         {/* <h3 className={style.rating}>Rating: {rating}</h3> */}
         <div className="flex justify-between w-48">
@@ -52,10 +54,11 @@ const Card = ({
 
         <h3 className={style.genero}>Precio: {price} $</h3>
         <h3 className={style.genero}>Ranking: {ranking}</h3>
-        {/* <Link to={`/videogames/${id}`}>
-                  <button className={style.button} >See more...</button>
-                </Link> */}
+       <Link href={`/Detail/${id}`}>
+                  <button className={style.button} >Ver más...</button>
+        </Link>
       </div>
+      
     </>
   );
 };

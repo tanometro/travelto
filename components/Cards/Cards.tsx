@@ -22,7 +22,7 @@ interface attractions {
 interface Props {
   data: attractions[];
   flag: boolean;
-  setFlag: (newState: boolean) => void;
+  setFlag: (newState:boolean) => void
 }
 
 export default function Cards(props: Props) {

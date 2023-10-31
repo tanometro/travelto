@@ -24,7 +24,7 @@ import about_beach from "../../public/images/about-beach.jpg";
 
 import join_island from "../../public/images/join-island.jpg";
 import axios from "axios";
-import Popular from "@/components/Popular/Popular";
+import Popular from "../../components/popular/Populares";
 import CartCounter from "@/components/Cart/CartCounter/CartCounter";
 
 export default function Home() {

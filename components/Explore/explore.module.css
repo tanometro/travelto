@@ -59,7 +59,7 @@
   background-color: hsla(0, 0%, 100%, .2);
   padding: .2rem .2rem;
   color: var(--title-color);
-  display: inline-flex;
+ 
   align-items: center;
   column-gap: .5rem;
   font-family: var(--second-font);
