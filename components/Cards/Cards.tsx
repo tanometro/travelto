@@ -22,7 +22,7 @@ interface attractions {
 interface Props {
   data: attractions[];
   flag: boolean;
-  setFlag: (newState:boolean) => void
+  setFlag: (newState: boolean) => void;
 }
 
 export default function Cards(props: Props) {
@@ -44,6 +44,8 @@ export default function Cards(props: Props) {
                 id,
                 name,
                 city,
+                hours,
+                duration,
                 country,
                 ranking,
                 price,
@@ -53,6 +55,7 @@ export default function Cards(props: Props) {
               },
               index
             ) => {
+              console.log(hours, duration);
               return (
                 <Card
                   key={id}
@@ -61,6 +64,8 @@ export default function Cards(props: Props) {
                   city={city}
                   country={country}
                   ranking={ranking}
+                  hours={hours}
+                  duration={duration}
                   price={price}
                   image={image}
                   longitude={longitude}

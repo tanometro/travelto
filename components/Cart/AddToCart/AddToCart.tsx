@@ -13,12 +13,11 @@ export default function AddToCart({ attraction }): ReactNode {
   const { cart, setCart } = useContext(CartContext);
   const [showMenu, setShowMenu] = useState(false);
   const [selected, setSelected] = useState(cart.hasOwnProperty(attraction.id));
-  console.log(cart.hasOwnProperty(attraction.id));
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setShowMenu(!showMenu);
   };
-
+  console.log(attraction);
   return (
     <div className="relative">
       <div onClick={handleClick}>
