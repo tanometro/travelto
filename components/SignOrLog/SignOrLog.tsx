@@ -7,7 +7,7 @@ export default function SignOrLog(): React.ReactNode {
     <div className="flex flex-col items-center w-[80%] md:w-[40rem] p-1 pt-5 md:p-5">
       <h1 className="text-2xl mb-16">¿No registrado?</h1>
       <Link href={"/login/register"}>
-        <Button text="Registrarce" size="" />
+        <Button text="Registrarse" size="" />
       </Link>
     </div>
   );

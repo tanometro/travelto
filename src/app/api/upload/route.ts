@@ -3,8 +3,8 @@ import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
 
 cloudinary.config({
     cloud_name: 'dsrdos5pb',
-    api_key: '126311844268791',
-    api_secret: 'C05y_63lwSiW2-kGGYE7CvFwd-o'
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
 });
 
 export async function POST(request): Promise<NextResponse> {
