@@ -1,27 +1,48 @@
 export interface AdminAttractionFormInterface {
     name: string,
-    description:string,
+    location: number,
     latitude: string,
     longitude: string,
     price: string,
+    ranking: number,
     hours: string,
     duration: string,
-    imageUrl: string,
-    isActive: string,
+    image: string,
+    description: string,
+    isActive: boolean,
+}
+
+export interface PostAttractionFormInterface {
+    name: string,
+    location: number,
+    latitude: string,
+    longitude: string,
+    price: string,
+    ranking: number,
+    hours: string,
+    duration: string,
+    image: string,
+    description: string,
+    isActive: boolean,
 }
 
 export interface AttractionInterface {
     name: string,
-    description:string,
-    latitude: string,
+    Location: {city: string, latitude: string}
     longitude: string,
     price: string,
+    ranking: number,
     hours: string,
     duration: string,
-    imageUrl: string,
-    isActive: string,
+    image: string,
+    description: string,
+    isActive: boolean,
 }
 
+export interface LocationInterface {
+    city: string,
+    country: string
+}
 export interface ButtonProps {
     text: string,
     size: string,

@@ -10,8 +10,7 @@ interface attractions {
   name: string;
   isActive: boolean;
   hours: string;
-  city: string;
-  country: string;
+  Location: {city: string, country: string}
   latitude: string;
   ranking: number;
   longitude: string;

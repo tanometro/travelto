@@ -1,12 +1,19 @@
-import data from "../../../../public/Users.json";
+"use client"
+import { baseURL } from "@/constant";
+import getAllUsers from "@/src/requests/getAllUsers";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import axios from 'axios'
+
 
 type UserType = {
   id: number;
   name: string[];
-  DNI: number;
-  isActive: boolean;
+  DNI: string;
+  email: string,
+  password: string,
+  image: string,
+  isActive: boolean,
   roleId: number;
 };
 
@@ -17,9 +24,15 @@ export default function AdminUsersTable() {
   const [searchUser, setSearchUser] = useState("");
 
   useEffect(() => {
-    setUsers(data.users), setTableUsers(data.users);
-  }),
-    [];
+    axios.get(`${baseURL}/users`)
+      .then((response) => {
+        setUsers(response.data);
+        setTableUsers(response.data);
+      })
+      .catch((error) => {
+        window.alert(error.message)
+      })    
+  }),[];
 
   const handleChange = (e) => {
     setSearchUser(e.target.value);
@@ -42,33 +55,28 @@ export default function AdminUsersTable() {
   };
 
   return (
-    <main className="grid grid-cols-2 grid-rows-1/4 3/4">
-      <div className="col-span-1 row-span-1 text-center h-1/4">
+    <main className="w-full h-full m-4">
+      <div className="mb-2">
         <input
+          className=" text-lg p-1 rounded-xl"
           value={searchUser}
-          placeholder=" Search by Name or DNI"
+          placeholder="Nombre o DNI"
           onChange={handleChange}
         />
-        <button>Search</button>
+        <button className=" ml-2 hover:border-lime-400 font-second-font font-semibold text-lg rounded-xl text-zinc-50 bg-slate-700 p-1 border-solid">Buscar</button>
       </div>
-      <div className=" text-center h-1/4">
-        <button
-          className=" col-span-2 row-span-1 text-center w-56 h-10 text-lg  border-red-600 border-solid border-2 bg-green-400 m-6 rounded-lg "
-          onClick={() => router.push("/AdminDashboard/AdminUsers/CreateUser")}
-        >
-          Create a New User
-        </button>
-      </div>
-
       <div className="flex justify-center col-span-2 row-span-1">
-        <table className="rounded-3xl w-3/4 bg-white border-red-600 border-solid">
+        <table className="border min-w-full rounded-lg w-full h-full bg-slate-700">
           <thead>
-            <tr className="bg-gray-100">
-              <th className="border-b p-2 border-r-2">Name</th>
-              <th className="border-b p-2 border-r-2">DNI</th>
-              <th className="border-b p-2 border-r-2">Rol</th>
-              <th className="border-b p-2 border-r-2">Active</th>
-              <th className="border-b p-2">Edit</th>
+            <tr>
+              <th className="border-b p-2 border-r-2 border">Name</th>
+              <th className="border-b p-2 border-r-2 border">DNI</th>
+              <th className="border-b p-2 border-r-2 border">Email</th>
+              <th className="border-b p-2 border-r-2 border">Password</th>
+              <th className="border-b p-2 border-r-2 border">imagen</th>
+              <th className="border-b p-2 border-r-2 border">Rol</th>
+              <th className="border-b p-2 border-r-2 border">Active</th>
+              <th className="border-b p-2 border-r-2 border">Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -78,19 +86,29 @@ export default function AdminUsersTable() {
                   {user.name[0] + " " + user.name[1]}
                 </td>
                 <td className="border-b p-2 border-r-2">{user.DNI}</td>
+                <td className="border-b p-2 border-r-2">{user.email}</td>
+                <td className="border-b p-2 border-r-2">{user.password}</td>
+                <td className="border-b p-2 border-r-2">
+                  <a
+                    href={user.email}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                  </a>
+                </td>
                 <td className="border-b p-2 border-r-2">
                   {user.roleId == 1
                     ? "Admin"
                     : user.roleId == 2
-                    ? "Support"
-                    : "User"}
+                      ? "Support"
+                      : "User"}
                 </td>
                 <td className="border-b p-2 border-r-2">
                   {user.isActive ? "YES" : "NO"}
                 </td>
                 <td className="border-b p-2 text-center">
                   <button
-                    className=" border-red-600 border-solid border-2 bg-green-200 w-32 h-8 rounded"
+                    className="hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 w-32 h-8"
                     onClick={() =>
                       router.push("/AdminDashboard/AdminUsers/EditUser")
                     }

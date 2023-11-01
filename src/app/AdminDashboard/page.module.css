@@ -1,0 +1,9 @@
+.grid{
+    display: grid;
+    grid-template-columns: 25% auto;
+    grid-template-rows: 10% auto;
+    margin: 10px;
+    height: 95vh;
+    background-image: url(../../../public/images/AdminDashboardBg.jpg);
+    background-size: cover;
+}

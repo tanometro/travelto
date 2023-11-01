@@ -155,9 +155,13 @@ export default function Home() {
                   Login
                 </Link>
               </li>
+              <li className={styles.nav__item}>
+                <Link href="/AdminDashboard" className={styles.nav__link}>
+                  Admin
               <li>
                 <Link href="/cart">
                   <CartCounter />
+
                 </Link>
               </li>
             </ul>
