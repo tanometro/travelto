@@ -43,6 +43,27 @@ export interface LocationInterface {
     city: string,
     country: string
 }
+
+export interface UserInterface {
+    name: [string, string],
+    dni: string,
+    image: string,
+    email: string,
+    password: string,
+    isActive: boolean,
+    roleID: number
+}
+
+export interface UserPostInterface {
+    name: string,
+    lastname: string,
+    dni: string,
+    image: string,
+    email: string,
+    password: string,
+    isActive: boolean,
+    roleID: number
+}
 export interface ButtonProps {
     text: string,
     size: string,

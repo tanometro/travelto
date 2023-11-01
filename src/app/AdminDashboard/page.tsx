@@ -1,12 +1,13 @@
 "use client"
 import AdminUsersTable from "@/src/Components/AdminComponents/Users/AdminUsersTable";
+import AdminUserForm from "@/src/Components/AdminComponents/Users/AdminUserForm"
 import AdminAttractionsTable from "@/src/Components/AdminComponents/Attractions/AdminAttractionsTable";
-import AdminAttractionForm from "@/src/Components/AdminComponents/Locations/AdminLocationForm";
+import AdminAttractionForm from "@/src/Components/AdminComponents/Attractions/AdminAttractonForm";
 import AdminLocationsTable from "@/src/Components/AdminComponents/Locations/AdminLocationsTable";
-import AdminLocationForm from "@/src/Components/AdminComponents/Attractions/AdminAttractonForm";
+import AdminLocationForm from "@/src/Components/AdminComponents/Locations/AdminLocationForm";
 import style from "./page.module.css";
 import { useState } from "react";
-import Link from "next/link";
+import Link from "next/link";AdminLocationForm
 
 export default function AdminDashboard() {
   const [mostrar, setMostrar] = useState(<>Elija una Opcion en el panel lateral para visualizar y 
@@ -15,19 +16,22 @@ export default function AdminDashboard() {
 
 
   const userClick = () => {
-    setMostrar(<AdminUsersTable />);
+    setMostrar(<AdminUsersTable/>);
   };
   const attractionsClick = () => {
-    setMostrar(<AdminAttractionsTable />);
+    setMostrar(<AdminAttractionsTable/>);
   };
   const locationsClick = () => {
-    setMostrar(<AdminLocationsTable />);
+    setMostrar(<AdminLocationsTable/>);
   };
   const newAttractionClick = () => {
     setMostrar(<AdminAttractionForm/>)
   }
   const newLocationClick = () => {
     setMostrar(<AdminLocationForm/>)
+  }
+  const newUserClick = () => {
+    setMostrar(<AdminUserForm/>)
   }
 
 
@@ -55,7 +59,7 @@ export default function AdminDashboard() {
         </button>
       </div>
       <div className=" rounded-lg w-full h-full bg-black border bg-title-color border-solid col-start-2 col-end-2 col-span-1 mb-2 ml-2 justify-evenly items-center flex">
-        <button className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 h-4/5 w-1/5 border-solid">
+        <button onClick={newUserClick}className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 h-4/5 w-1/5 border-solid">
           Nuevo Usuario
         </button>
         <button onClick= {newAttractionClick} className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 h-4/5 w-1/5 border-solid">

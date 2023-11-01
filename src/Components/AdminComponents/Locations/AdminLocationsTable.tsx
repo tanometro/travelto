@@ -30,9 +30,9 @@ export default function AdminLocationsTable() {
           <thead>
             <tr className="bg-gray-100">
               <th className="border-b p-2 border-r-2">ID</th>
-              <th className="border-b p-2 border-r-2">City</th>
-              <th className="border-b p-2 border-r-2">Country</th>
-              <th className="border-b p-2 border-r-2">Edit</th>
+              <th className="border-b p-2 border-r-2">Ciudad</th>
+              <th className="border-b p-2 border-r-2">Pais</th>
+              <th className="border-b p-2 border-r-2">Editar</th>
             </tr>
           </thead>
           <tbody>
@@ -48,7 +48,7 @@ export default function AdminLocationsTable() {
                       router.push("/AdminDashboard/AdminLocations/EditLocation")
                     }
                   >
-                    Edit
+                    Editar
                   </button>
                 </td>
               </tr>

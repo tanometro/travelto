@@ -4,6 +4,7 @@ import axios from 'axios';
 const getAllLocations = async () => {
     try {
         const response = await axios.get(`${baseURL}/locations`);
+        console.log(response.data)
         return response
     } 
     catch (error) {
