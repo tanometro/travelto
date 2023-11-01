@@ -10,8 +10,7 @@ interface attractions {
   name: string;
   isActive: boolean;
   hours: string;
-  city: string;
-  country: string;
+  Location: {city: string, country: string}
   latitude: string;
   ranking: number;
   longitude: string;
@@ -36,7 +35,7 @@ export default function Cards(props: Props) {
       <div className={style.container}>
         {props?.data
           .slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize)
-          .map(({ id, name, city, country, ranking, price, image }, index) => {
+          .map(({ id, name, Location:{city, country}, ranking, price, image }, index) => {
             return (
               <Card
                 key={index}

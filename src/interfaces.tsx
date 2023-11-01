@@ -1,7 +1,20 @@
 export interface AdminAttractionFormInterface {
     name: string,
-    country:string,
-    city: string,
+    location: number,
+    latitude: string,
+    longitude: string,
+    price: string,
+    ranking: number,
+    hours: string,
+    duration: string,
+    image: string,
+    description: string,
+    isActive: boolean,
+}
+
+export interface PostAttractionFormInterface {
+    name: string,
+    location: number,
     latitude: string,
     longitude: string,
     price: string,
@@ -15,9 +28,7 @@ export interface AdminAttractionFormInterface {
 
 export interface AttractionInterface {
     name: string,
-    country:string,
-    city: string,
-    latitude: string,
+    Location: {city: string, latitude: string}
     longitude: string,
     price: string,
     ranking: number,

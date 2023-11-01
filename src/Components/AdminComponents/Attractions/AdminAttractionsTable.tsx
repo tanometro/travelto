@@ -1,13 +1,12 @@
 //import data from "../../../../public/Attractions.json";
-import {baseURL} from "../../../../constant"
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import getAllAttractions from "@/src/requests/getAllAttractions";
+import { AttractionInterface } from "@/src/interfaces";
 
 export default function AdminAttractionsTable() {
 
-  const [attractions, setAttractions] = useState([])
+  const [attractions, setAttractions] = useState<AttractionInterface> ([])
     
   useEffect(() => {
     async function fetchData () {
@@ -35,44 +34,38 @@ export default function AdminAttractionsTable() {
         <table className="border min-w-full rounded-lg w-full h-full bg-slate-700">
           <thead>
             <tr className="bg-gray-100">
-              <th className="border-b p-2 border-r-2">Name</th>
-              <th className="border-b p-2 border-r-2">City</th>
-              <th className="border-b p-2 border-r-2">Coordinates</th>
-              <th className="border-b p-2 border-r-2">Price</th>
-              <th className="border-b p-2 border-r-2">Duration</th>
-              <th className="border-b p-2 border-r-2">Description</th>
-              <th className="border-b p-2 border-r-2">Active</th>
-              <th className="border-b p-2 border-r-2">Edit</th>
+              <th className=" border border-b p-2 border-r-2">Name</th>
+              <th className=" border border-b p-2 border-r-2">City</th>
+              <th className=" border border-b p-2 border-r-2">Country</th>
+              <th className=" border border-b p-2 border-r-2">Coordinates</th>
+              <th className=" border border-b p-2 border-r-2">Price</th>
+              <th className=" border border-b p-2 border-r-2">Duration</th>
+              <th className=" border border-b p-2 border-r-2">Active</th>
+              <th className=" border border-b p-2 border-r-2">Edit</th>
             </tr>
           </thead>
           <tbody>
             {attractions.map((attraction) => (
               <tr key={attraction.id}>
-                <td className="border-b p-2 border-r-2">{attraction.name}</td>
-                <td className="border-b p-2 border-r-2">
-                  {attraction.City}
+                <td className=" border border-b p-2 border-r-2">{attraction.name}</td>
+                <td className=" border border-b p-2 border-r-2">
+                  {attraction.Location.city}
                 </td>
-                <td className="border-b p-2 border-r-2">
-                  {attraction.latitud.split(".")[0] + "°"} -{" "}
-                  {attraction.longitud.split(".")[0] + "°"}
+                <td className="border border-b p-2 border-r-2">
+                  {attraction.Location.country}
                 </td>
-                <td className="border-b p-2 border-r-2">{attraction.price}</td>
-                <td className="border-b p-2 border-r-2">
+                <td className=" border border-b p-2 border-r-2">
+                  {attraction.latitude + "°"} -{" "}
+                  {attraction.longitude + "°"}
+                </td>
+                <td className=" border border-b p-2 border-r-2">{attraction.price}</td>
+                <td className=" border border-b p-2 border-r-2">
                   {attraction.duration}
                 </td>
-                <td className="border-b p-2 border-r-2">
-                  <a
-                    href={attraction.description}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Description
-                  </a>
+                <td className=" border border-b p-2 border-r-2">
+                  {attraction.isActive? "SI" : "NO"}
                 </td>
-                <td className="border-b p-2 border-r-2">
-                  {attraction.isActive}
-                </td>
-                <td className="border-b p-2 border-r-2 text-center">
+                <td className=" border border-b p-2 border-r-2 text-center">
                   <button
                     className=" border-red-600 border-solid border-2 bg-green-200 w-32 h-8 rounded"
                     onClick={() =>
