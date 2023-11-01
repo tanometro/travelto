@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import { AdminLocationFormInterface } from "@/src/interfaces";
+import { LocationInterface } from "@/src/interfaces";
 import createLocation from "@/src/requests/postLocation";
 
 export default function AdminAttractionForm(props) {
   const { initialFormData } = props;
-  const [formData, setFormData] = useState<AdminLocationFormInterface>({
+  const [formData, setFormData] = useState<LocationInterface>({
     country: "",
     city: "",
   });
@@ -41,13 +41,13 @@ export default function AdminAttractionForm(props) {
           onSubmit={handleSubmit}
           className=" bg-slate-700 shadow-md rounded-xl grid grid-cols-2"
         >
-          <div className="flex flex-row w-full justify-evenly">
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <div className=" flex flex-row w-full justify-evenly">
+            <div className=" w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label>Ciudad:</label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                name="latitude"
+                name="city"
                 value={formData.city}
                 onChange={handleInputChange}
               />
@@ -57,7 +57,7 @@ export default function AdminAttractionForm(props) {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                name="longitude"
+                name="country"
                 value={formData.country}
                 onChange={handleInputChange}
               />

@@ -1,7 +1,7 @@
 import { baseURL } from "@/constant";
-import { AttractionInterface } from "../interfaces";
+import { PostAttractionFormInterface } from "../interfaces";
 
-const createAttraction= async (attraction: AttractionInterface) => {
+const createAttraction= async (attraction: PostAttractionFormInterface) => {
     try {
        
           const response = await fetch(`${baseURL}/attractions/create`, {

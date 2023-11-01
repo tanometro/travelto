@@ -1,27 +1,35 @@
-
-import { baseURL } from "@/constant";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import getAllLocations from "@/src/requests/getAlllLocations";
+import { LocationInterface } from "@/src/interfaces";
 
-export default async function AdminLocationsTable() {
+export default function AdminLocationsTable() {
+  const [locations, setLocations] = useState<LocationInterface>([]);
 
-    const locations = await axios.get(`${baseURL}/locations/`)
-    .then (response => {
-      console.log(response)
-      return response.data
-    })
-    const router = useRouter()
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await getAllLocations();
+        setLocations(response.data);
+      } catch (error) {
+        console.error("Error en Fetch Data");
+      }
+    }
+    fetchData();
+  }, []);
+  const router = useRouter();
 
-    return (
-      <main className="h-full w-full m-4 justify-center">
+  return (
+    <main className="h-full w-full m-4 justify-center">
       <div className="mb-4 justify-center">
-      <input placeholder=" Search" />
+        <input placeholder=" Search" />
         <button>Search</button>
       </div>
       <div>
         <table className="min-w-full rounded-lg w-full h-full bg-slate-700">
           <thead>
             <tr className="bg-gray-100">
+              <th className="border-b p-2 border-r-2">ID</th>
               <th className="border-b p-2 border-r-2">City</th>
               <th className="border-b p-2 border-r-2">Country</th>
               <th className="border-b p-2 border-r-2">Edit</th>
@@ -30,6 +38,7 @@ export default async function AdminLocationsTable() {
           <tbody>
             {locations.map((location) => (
               <tr key={location.id}>
+                <td className="border-b p-2 border-r-2">{location.id}</td>
                 <td className="border-b p-2 border-r-2">{location.city}</td>
                 <td className="border-b p-2 border-r-2">{location.country}</td>
                 <td className="border-b p-2 border-r-2 text-center">
@@ -47,7 +56,6 @@ export default async function AdminLocationsTable() {
           </tbody>
         </table>
       </div>
-      </main>
-    );
-
+    </main>
+  );
 }

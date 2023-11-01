@@ -10,8 +10,7 @@ interface attractions {
   name: string;
   isActive: boolean;
   hours: string;
-  city: string;
-  country: string;
+  Location: {city: string, country: string}
   latitude: string;
   ranking: number;
   longitude: string;
@@ -21,6 +20,8 @@ interface attractions {
 }
 interface Props {
   data: attractions[];
+  flag: boolean;
+  setFlag: (newState: boolean) => void;
 }
 
 export default function Cards(props: Props) {
@@ -36,20 +37,41 @@ export default function Cards(props: Props) {
       <div className={style.container}>
         {props?.data
           .slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize)
-          .map(({ id, name, city, country, ranking, price, image }, index) => {
-            return (
-              <Card
-                key={index}
-                id={id}
-                name={name}
-                city={city}
-                country={country}
-                ranking={ranking}
-                price={price}
-                image={image}
-              />
-            );
-          })}
+          .map(
+            (
+              {
+                id,
+                name,
+                Location:{city, country},
+                hours,
+                duration,
+                ranking,
+                price,
+                image,
+                longitude,
+                latitude,
+              },
+              index
+            ) => {
+              console.log(hours, duration);
+              return (
+                <Card
+                  key={id}
+                  id={id}
+                  name={name}
+                  city={city}
+                  country={country}
+                  ranking={ranking}
+                  hours={hours}
+                  duration={duration}
+                  price={price}
+                  image={image}
+                  longitude={longitude}
+                  latitude={latitude}
+                />
+              );
+            }
+          )}
       </div>
       <div className={style.page}>
         <Paginacion page={page} setPage={setPage} pageAmount={pageAmount} />

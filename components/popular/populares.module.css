@@ -25,11 +25,6 @@
   justify-content: center;
   row-gap: 2.5rem;
 }
-.popular__image {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
 .popular__img {
   transition: transform 0.4s;
 }
@@ -60,7 +55,7 @@
 .popular__location i {
   font-size: 1rem;
 }
-.popular__image:hover .popular__img {
+#popular__image:hover .popular__img {
   transform: scale(1.2);
 }
 
