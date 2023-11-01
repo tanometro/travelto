@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import { AdminAttractionFormInterface } from "@/src/interfaces";
 import createAttraction from "@/src/requests/postAttraction";
 
+
 export default function AdminAttractionForm() {
 
   const [formData, setFormData] = useState<AdminAttractionFormInterface>(
     {
     name: "",
-    country: "",
-    city: "",
+    location: 0,
     latitude: "",
     longitude: "",
     price: "",
@@ -35,10 +35,9 @@ export default function AdminAttractionForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const attraction = {
+    const attractionForm  = {
       name: formData.name,
-      country: formData.country,
-      city: formData.country,
+      location: formData.location,
       latitude: formData.latitude,
       longitude: formData.longitude,
       price: formData.price,
@@ -49,15 +48,14 @@ export default function AdminAttractionForm() {
       description: formData.description,
       isActive: formData.isActive,
     };
-    console.log(attraction)
-    const response = await createAttraction(attraction)
+    console.log(attractionForm)
+    const response = await createAttraction(attractionForm)
       .then((response) => {
-        console.log(attraction);
+        console.log(attractionForm);
         window.alert("Attraction Create success");
         setFormData({
           name: "",
-          country: "",
-          city: "",
+          location: 0,
           latitude: "",
           longitude: "",
           price: "",
@@ -99,6 +97,7 @@ export default function AdminAttractionForm() {
                 name="price"
                 value={formData.price}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="w-full md:w-1/3 px-3 justify-center content-center">
@@ -114,23 +113,12 @@ export default function AdminAttractionForm() {
           </div>
           <div className="flex flex-row w-full justify-evenly">
             <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-              <label className="font-bold mb-2 text-center">City:</label>
+              <label className="font-bold mb-2 text-center">Location:</label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
-                name="city"
-                value={formData.city}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="w-full md:w-1/3 px-3">
-              <label className="font-bold mb-2 text-center">Country:</label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
-                name="country"
-                value={formData.country}
+                name="location"
+                value= {formData.location}
                 onChange={handleInputChange}
                 required
               />
@@ -156,6 +144,7 @@ export default function AdminAttractionForm() {
                 name="hours"
                 value={formData.hours}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="w-full md:w-1/2 px-3">
@@ -166,6 +155,7 @@ export default function AdminAttractionForm() {
                 name="duration"
                 value={formData.duration}
                 onChange={handleInputChange}
+                required
               />
             </div>
           </div>
@@ -178,6 +168,7 @@ export default function AdminAttractionForm() {
                 name="latitude"
                 value={formData.latitude}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="w-full md:w-1/2 px-3">
@@ -188,6 +179,7 @@ export default function AdminAttractionForm() {
                 name="longitude"
                 value={formData.longitude}
                 onChange={handleInputChange}
+                required
               />
             </div>
           </div>
@@ -199,6 +191,7 @@ export default function AdminAttractionForm() {
               name="image"
               value={formData.image}
               onChange={handleInputChange}
+              required
             />
             </div>
             <div className="w-full md:w-1/2 px-3 mb-3 md:mb-0">
@@ -208,11 +201,12 @@ export default function AdminAttractionForm() {
               name="description"
               value={formData.description}
               onChange={handleInputChange}
+              required
             />
           </div>
           </div>
           <div>
-            <button
+            <button            
               className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 w-1/6 p-4 border-solid"
               type="submit"
             >

@@ -19,7 +19,7 @@ export default function AdminAttractionForm(props) {
     e.preventDefault();
     const location = {
       country: formData.country,
-      city: formData.country,
+      city: formData.city,
     };
     console.log(location)
     const response = await createLocation(location)
