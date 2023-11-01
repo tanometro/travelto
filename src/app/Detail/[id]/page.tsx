@@ -42,7 +42,7 @@ export default function DetailID ({params}) {
     })
     const getDatos =async () => {
         try {
-            let res = await axios.get(`http://localhost:3001/attractions/${id}`)
+            let res = await axios.get(`${baseURL}/attractions/${id}`)
         let datos= res.data
         console.log(datos);    
         if (!datos.name) {
