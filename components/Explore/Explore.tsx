@@ -46,7 +46,7 @@ export default function Explore() {
   
   const getDatos =async () => {
     try {
-      let res = await axios.get(`http://localhost:3001/attractions`)
+      let res = await axios.get(`${baseURL}/attractions`)
       let datos= res.data
       console.log(datos);    
       if (!datos.length) {

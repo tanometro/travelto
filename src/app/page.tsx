@@ -29,16 +29,16 @@ import CartCounter from "@/components/Cart/CartCounter/CartCounter";
 
 export default function Home() {
   useEffect(() => {
-    axios
-      .get(`${baseURL}/attractions`)
-      .then((response) => response.data)
-      .then((data) => {
-        if (!data.length) {
-          axios
-            .get(`${baseURL}/attractions/data`)
-            .then((response) => console.log(response));
-        }
-      });
+  //   axios
+  //     .get(`${baseURL}/attractions`)
+  //     .then((response) => response.data)
+  //     .then((data) => {
+  //       if (!data.length) {
+  //         axios
+  //           .get(`${baseURL}/attractions/data`)
+  //           .then((response) => console.log(response));
+  //       }
+  //     });
     /*=============== SHOW MENU ===============*/
     const navMenu = document.getElementById("nav-menu"),
       navContainer = document.getElementById("header"),
@@ -155,9 +155,16 @@ export default function Home() {
                   Login
                 </Link>
               </li>
+              <li className={styles.nav__item}>
+                <Link href="/AdminDashboard" className={styles.nav__link}>
+                  Admin
+                </Link>
+              </li>
               <li>
+
                 <Link href="/cart">
                   <CartCounter />
+
                 </Link>
               </li>
             </ul>

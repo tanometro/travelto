@@ -6,6 +6,8 @@ import AddToCart from "../Cart/AddToCart/AddToCart";
 
 const Card = ({
   id,
+  hours,
+  duration,
   name,
   city,
   country,
@@ -15,9 +17,9 @@ const Card = ({
   latitude,
   longitude,
 }) => {
+  console.log(hours, duration);
   return (
     <>
-      
       <div className={style.container}>
         {/* <h3 className={style.rating}>Rating: {rating}</h3> */}
         <div className="flex justify-between w-48">
@@ -31,6 +33,8 @@ const Card = ({
               country,
               ranking,
               price,
+              hours,
+              duration,
               image,
               latitude,
               longitude,
@@ -54,11 +58,10 @@ const Card = ({
 
         <h3 className={style.genero}>Precio: {price} $</h3>
         <h3 className={style.genero}>Ranking: {ranking}</h3>
-       <Link href={`/Detail/${id}`}>
-                  <button className={style.button} >Ver más...</button>
+        <Link href={`/Detail/${id}`}>
+          <button className={style.button}>Ver más...</button>
         </Link>
       </div>
-      
     </>
   );
 };

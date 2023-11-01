@@ -1,16 +1,16 @@
 import { baseURL } from "@/constant";
-import { PostAttractionFormInterface } from "../interfaces";
+import { UserInterface } from "../interfaces";
 
-const createAttraction= async (attraction: PostAttractionFormInterface) => {
+const createUser= async (user:UserInterface) => {
     try {
        
-          const response = await fetch(`${baseURL}/attractions/create`, {
+          const response = await fetch(`${baseURL}/users/create`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               //Authorization: storedToken,
             },
-            body: JSON.stringify(attraction),
+            body: JSON.stringify(user),
           });
     
           if (!response.ok) {
@@ -19,15 +19,14 @@ const createAttraction= async (attraction: PostAttractionFormInterface) => {
             if (response.status === 401) {
               throw new Error("No autorizado. Por favor, vuelve a iniciar sesión.");
             } else {
-              throw new Error(`Error al crear la Atraccion: ${errorMessage}`);
+              throw new Error(`Error al crear el Usuario: ${errorMessage}`);
             }
           }
-          window.alert("Atraccion creada exitosamente");
+          window.alert("Usuario Creado Exitosamente");
       } catch (error) { 
         if (error as Error) {
           window.alert((error as Error).message);
         } 
       }
 };
-
-export default createAttraction;
+export default createUser
