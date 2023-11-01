@@ -1,4 +1,3 @@
-//import data from "../../../../public/Attractions.json";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import getAllAttractions from "@/src/requests/getAllAttractions";
@@ -6,7 +5,7 @@ import { AttractionInterface } from "@/src/interfaces";
 
 export default function AdminAttractionsTable() {
 
-  const [attractions, setAttractions] = useState<AttractionInterface> ([])
+  const [attractions, setAttractions] = useState <AttractionInterface> ([])
     
   useEffect(() => {
     async function fetchData () {

@@ -1,10 +1,11 @@
-"use client";
+"use client"
 import AdminUsersTable from "@/src/Components/AdminComponents/Users/AdminUsersTable";
 import AdminAttractionsTable from "@/src/Components/AdminComponents/Attractions/AdminAttractionsTable";
+import AdminAttractionForm from "@/src/Components/AdminComponents/Locations/AdminLocationForm";
 import AdminLocationsTable from "@/src/Components/AdminComponents/Locations/AdminLocationsTable";
+import AdminLocationForm from "@/src/Components/AdminComponents/Attractions/AdminAttractonForm";
 import style from "./page.module.css";
 import { useState } from "react";
-import AdminAttractionForm from "@/src/Components/AdminComponents/Attractions/AdminAttractonForm";
 import Link from "next/link";
 
 export default function AdminDashboard() {
@@ -25,6 +26,10 @@ export default function AdminDashboard() {
   const newAttractionClick = () => {
     setMostrar(<AdminAttractionForm/>)
   }
+  const newLocationClick = () => {
+    setMostrar(<AdminLocationForm/>)
+  }
+
 
   return (
     <main className={style.grid}>

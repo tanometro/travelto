@@ -39,11 +39,6 @@ export interface AttractionInterface {
     isActive: boolean,
 }
 
-export interface AdminLocationFormInterface {
-    city: string,
-    country: string
-}
-
 export interface LocationInterface {
     city: string,
     country: string
