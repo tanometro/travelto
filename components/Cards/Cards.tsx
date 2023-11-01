@@ -42,10 +42,9 @@ export default function Cards(props: Props) {
               {
                 id,
                 name,
-                city,
+                Location:{city, country},
                 hours,
                 duration,
-                country,
                 ranking,
                 price,
                 image,
