@@ -5,11 +5,10 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import "remixicon/fonts/remixicon.css";
 import Link from "next/link";
-
-//Importando componentes
-import Explore from "@/components/Explore/Explore";
 import { baseURL } from "@/constant";
 import { useEffect } from "react";
+//Importando componentes
+import Explore from "@/components/Explore/Explore";
 // Impotrtando imagenes
 import Logo from "@/public/images/logo.png";
 import london from "../../public/images/london.jpeg";
@@ -25,22 +24,22 @@ import about_beach from "../../public/images/about-beach.jpg";
 
 import join_island from "../../public/images/join-island.jpg";
 import axios from "axios";
-import Popular from "@/components/Popular/Popular";
+import Popular from "../../components/popular/Populares";
+import CartCounter from "@/components/Cart/CartCounter/CartCounter";
 
 export default function Home() {
   useEffect(() => {
-    let resultado: [] = [];
     axios
       .get(`${baseURL}/attractions`)
       .then((response) => response.data)
       .then((data) => {
         if (!data.length) {
-          axios.get(`${baseURL}/attractions/data`);
+          axios
+            .get(`${baseURL}/attractions/data`)
+            .then((response) => console.log(response));
         }
       });
-
     /*=============== SHOW MENU ===============*/
-
     const navMenu = document.getElementById("nav-menu"),
       navContainer = document.getElementById("header"),
       navToggle = document.getElementById("nav-toggle"),
@@ -116,7 +115,6 @@ export default function Home() {
     };
     window.addEventListener("scroll", scrollActive);
   }, []);
-
   return (
     <>
       <header className={styles.header} id="header">
@@ -125,21 +123,27 @@ export default function Home() {
             TravelTo
           </a>
           <div className={styles.nav__menu} id="nav-menu">
-            <ul className={styles.nav__list + " " + styles.hide}>
+            <ul className={styles.nav__list}>
               <li className={styles.nav__item}>
-                <a href="#home" className={`${styles.nav__link}`}>
+                <a
+                  href="#home"
+                  className={`${styles.nav__link} ${styles.active_link}`}
+                >
                   Home
                 </a>
               </li>
+
               <li className={styles.nav__item}>
                 <a href="#popular" className={styles.nav__link}>
                   Popular
                 </a>
               </li>
               <li className={styles.nav__item}>
-                <a href="#explore" className={styles.nav__link}>
-                  Explore
-                </a>
+                {/* <a href="#explore" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70"> */}
+
+                <Link href="#explore" className={styles.nav__link}>
+                  Explorar
+                </Link>
               </li>
               <li className={styles.nav__item}>
                 <a href="#footer" className={styles.nav__link}>
@@ -154,6 +158,10 @@ export default function Home() {
               <li className={styles.nav__item}>
                 <Link href="/AdminDashboard" className={styles.nav__link}>
                   Admin
+              <li>
+                <Link href="/cart">
+                  <CartCounter />
+
                 </Link>
               </li>
             </ul>
@@ -300,138 +308,137 @@ export default function Home() {
             </div>
           </div>
         </section>
-        {/*==================== FOOTER ====================*/}
-        <section className={styles.footer} id="footer">
-          <div
-            className={`${styles.footer__container} ${styles.container} ${styles.grid}`}
-          >
-            <div className={`${styles.footer__content} ${styles.grid}`}>
-              <div>
-                <a href="#" className={styles.footer__logo}>
-                  TravelTo
-                </a>
-                <p className={styles.footer__description}>
-                  Viaja con nosotros y explora <br />
-                  el mundo sin límites.
-                </p>
-              </div>
-              <div className={`${styles.footer__data} ${styles.grid}`}>
-                <div>
-                  <h3 className={styles.footer__title}>Acerca de</h3>
-                  <ul className={styles.footer__links}>
-                    <a href="#" className={styles.footer__link}>
-                      Sobre nosotros
-                    </a>
-                  </ul>
-                  <ul className={styles.footer__links}>
-                    <a href="#" className={styles.footer__link}>
-                      Características
-                    </a>
-                  </ul>
-                  <ul className={styles.footer__links}>
-                    <a href="#" className={styles.footer__link}>
-                      News &amp; Blog
-                    </a>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className={styles.footer__title}>Compania</h3>
-                  <ul className={styles.footer__links}>
-                    <a href="#" className={styles.footer__link}>
-                      FAQs
-                    </a>
-                  </ul>
-                  <ul className={styles.footer__links}>
-                    <a href="#" className={styles.footer__link}>
-                      Historial
-                    </a>
-                  </ul>
-                  <ul className={styles.footer__links}>
-                    <a href="#" className={styles.footer__link}>
-                      Testimoniales
-                    </a>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className={styles.footer__title}>Contáctos</h3>
-                  <ul className={styles.footer__links}>
-                    <a href="#" className={styles.footer__link}>
-                      Call Center
-                    </a>
-                  </ul>
-                  <ul className={styles.footer__links}>
-                    <a href="#" className={styles.footer__link}>
-                      Centro de soporte
-                    </a>
-                  </ul>
-                  <ul className={styles.footer__links}>
-                    <a href="#" className={styles.footer__link}>
-                      Contactenos
-                    </a>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className={styles.footer__title}>Soporte</h3>
-                  <ul className={styles.footer__links}>
-                    <a href="#" className={styles.footer__link}>
-                      Politica de privacidad
-                    </a>
-                  </ul>
-                  <ul className={styles.footer__links}>
-                    <a href="#" className={styles.footer__link}>
-                      Terminos &amp; Servicios
-                    </a>
-                  </ul>
-                  <ul className={styles.footer__links}>
-                    <a href="#" className={styles.footer__link}>
-                      Medios de pago
-                    </a>
-                  </ul>
-                </div>
-              </div>
+      </main>
+      {/*==================== FOOTER ====================*/}
+      <section className={styles.footer} id="footer">
+        <div
+          className={`${styles.footer__container} ${styles.container} ${styles.grid}`}
+        >
+          <div className={`${styles.footer__content} ${styles.grid}`}>
+            <div>
+              <a href="#" className={styles.footer__logo}>
+                TravelTo
+              </a>
+              <p className={styles.footer__description}>
+                Viaja con nosotros y explora <br />
+                el mundo sin límites.
+              </p>
             </div>
-            <div className={styles.footer__group}>
-              <div className={styles.footer__social}>
-                <a
-                  href="https://www.facebook.com/"
-                  target="_blank"
-                  className={styles.footer__social_link}
-                >
-                  <i className="ri-facebook-line" />
-                </a>
-                <a
-                  href="https://www.instagram.com/"
-                  target="_blank"
-                  className={styles.footer__social_link}
-                >
-                  <i className="ri-instagram-line" />
-                </a>
-                <a
-                  href="ttps://twitter.com/"
-                  target="_blank"
-                  className={styles.footer__social_link}
-                >
-                  <i className="ri-twitter-line" />
-                </a>
-                <a
-                  href="https://www.youtube.com/"
-                  target="_blank"
-                  className={styles.footer__social_link}
-                >
-                  <i className="ri-youtube-line" />
-                </a>
+            <div className={`${styles.footer__data} ${styles.grid}`}>
+              <div>
+                <h3 className={styles.footer__title}>Acerca de</h3>
+                <ul className={styles.footer__links}>
+                  <a href="#" className={styles.footer__link}>
+                    Sobre nosotros
+                  </a>
+                </ul>
+                <ul className={styles.footer__links}>
+                  <a href="#" className={styles.footer__link}>
+                    Características
+                  </a>
+                </ul>
+                <ul className={styles.footer__links}>
+                  <a href="#" className={styles.footer__link}>
+                    News &amp; Blog
+                  </a>
+                </ul>
               </div>
-              <span className={styles.footer__copy}>
-                © Copyright GenioTotal. Todos los derechos reservados
-              </span>
+              <div>
+                <h3 className={styles.footer__title}>Compania</h3>
+                <ul className={styles.footer__links}>
+                  <a href="#" className={styles.footer__link}>
+                    FAQs
+                  </a>
+                </ul>
+                <ul className={styles.footer__links}>
+                  <a href="#" className={styles.footer__link}>
+                    Historial
+                  </a>
+                </ul>
+                <ul className={styles.footer__links}>
+                  <a href="#" className={styles.footer__link}>
+                    Testimoniales
+                  </a>
+                </ul>
+              </div>
+              <div>
+                <h3 className={styles.footer__title}>Contáctos</h3>
+                <ul className={styles.footer__links}>
+                  <a href="#" className={styles.footer__link}>
+                    Call Center
+                  </a>
+                </ul>
+                <ul className={styles.footer__links}>
+                  <a href="#" className={styles.footer__link}>
+                    Centro de soporte
+                  </a>
+                </ul>
+                <ul className={styles.footer__links}>
+                  <a href="#" className={styles.footer__link}>
+                    Contactenos
+                  </a>
+                </ul>
+              </div>
+              <div>
+                <h3 className={styles.footer__title}>Soporte</h3>
+                <ul className={styles.footer__links}>
+                  <a href="#" className={styles.footer__link}>
+                    Politica de privacidad
+                  </a>
+                </ul>
+                <ul className={styles.footer__links}>
+                  <a href="#" className={styles.footer__link}>
+                    Terminos &amp; Servicios
+                  </a>
+                </ul>
+                <ul className={styles.footer__links}>
+                  <a href="#" className={styles.footer__link}>
+                    Medios de pago
+                  </a>
+                </ul>
+              </div>
             </div>
           </div>
-          <a href="#" className={styles.scrollup} id="scroll-up">
-            <i className="ri-arrow-up-line" />
-          </a>
-        </section>
-        {/*========== SCROLL UP ==========*/}
-      </main>
+          <div className={styles.footer__group}>
+            <div className={styles.footer__social}>
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                className={styles.footer__social_link}
+              >
+                <i className="ri-facebook-line" />
+              </a>
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                className={styles.footer__social_link}
+              >
+                <i className="ri-instagram-line" />
+              </a>
+              <a
+                href="ttps://twitter.com/"
+                target="_blank"
+                className={styles.footer__social_link}
+              >
+                <i className="ri-twitter-line" />
+              </a>
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                className={styles.footer__social_link}
+              >
+                <i className="ri-youtube-line" />
+              </a>
+            </div>
+            <span className={styles.footer__copy}>
+              © Copyright GenioTotal. Todos los derechos reservados
+            </span>
+          </div>
+        </div>
+        <a href="#" className={styles.scrollup} id="scroll-up">
+          <i className="ri-arrow-up-line" />
+        </a>
+      </section>
     </>
   );
 }
