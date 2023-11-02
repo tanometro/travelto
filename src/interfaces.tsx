@@ -27,8 +27,10 @@ export interface PostAttractionFormInterface {
 }
 
 export interface AttractionInterface {
+    id: number,
     name: string,
-    Location: {city: string, latitude: string}
+    Location: {city: string, country: string},
+    latitude: string,
     longitude: string,
     price: string,
     ranking: number,
@@ -40,11 +42,13 @@ export interface AttractionInterface {
 }
 
 export interface LocationInterface {
+    id: number,
     city: string,
     country: string
 }
 
 export interface UserInterface {
+    id: number,
     name: [string, string],
     dni: string,
     image: string,

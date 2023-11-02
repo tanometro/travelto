@@ -2,12 +2,10 @@
   max-width: 1120px;
   margin-inline: 1.5rem;
 }
-
 .grid {
   display: grid;
   gap: 1.5rem;
 }
-
 .section {
   padding-block: 3rem 1rem;
 }
@@ -58,7 +56,6 @@
 #popular__image:hover .popular__img {
   transform: scale(1.2);
 }
-
 .section__title {
   text-align: center;
   font-size: var(--h1-font-size);

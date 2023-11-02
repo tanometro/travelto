@@ -2,9 +2,7 @@
 import Image from "next/image";
 import styles from "./explore.module.css";
 import explore_beach from "../../public/images/explore-beach.jpg";
-const data = require("@/public/Attractions.json");
 import Cards from "@/components/Cards/Cards";
-import locations from "../../public/Locations.json";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { baseURL } from "@/constant";
@@ -16,14 +14,13 @@ export default function Explore() {
     name: string;
     isActive: boolean;
     hours: string;
-    city: string;
-    country:string;
+    Location: {city: string, country: string}
     latitude: string;
-    ranking:number;
+    ranking: number;
     longitude: string;
     price: number;
     duration: string;
-    image: string
+    image: string;
 }
   
   /* const cities = locations.locations.map((location) => {
@@ -73,14 +70,14 @@ export default function Explore() {
     if(state.country !== "") {
       if (state.country !== "All") {
           orderAndFilter= allAttraction
-          orderAndFilter =  orderAndFilter.filter(v => v.country.includes(state.country))
+          orderAndFilter =  orderAndFilter.filter(v => v.Location.country.includes(state.country))
       }  
     }  
     //Ordenar Por city ...aprobado
     if(state.city !== "" ) {
       if (state.city !== "All" ) {
         orderAndFilter= allAttraction
-        orderAndFilter =  orderAndFilter.filter(v => v.city.includes(state.city))
+        orderAndFilter =  orderAndFilter.filter(v => v.Location.city.includes(state.city))
     }
     } 
     //Ordenar Por name alfabeticamente y por rating y precios asc y desc...aprobado
@@ -175,7 +172,7 @@ export default function Explore() {
   
   //Haciendo los arrays de city y country para los select
   const countr = allAttraction.map(e => {
-      return e.country
+      return e.Location.country
     }).sort((a, b) => {
       if (a < b ) {
         return -1
@@ -195,10 +192,10 @@ export default function Explore() {
    //filtrado de ciudades por pais
    const getCities = (e)=> {
     const filterCities = allAttraction.filter((dato)=> {
-      return dato.country === e
+      return dato.Location.country === e
     })
     const cities = filterCities.map(e => {
-      return e.city
+      return e.Location.city
     }).sort((a, b) => {
       if (a < b ) {
         return -1
