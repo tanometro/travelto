@@ -26,6 +26,22 @@ export interface PostAttractionFormInterface {
     isActive: boolean,
 }
 
+export interface AttractionsCartInterface {
+    id: number;
+    name: string;
+    isActive: boolean;
+    hours: string;
+    city: string;
+    country: string;
+    latitude: string;
+    ranking: number;
+    longitude: string;
+    price: number;
+    duration: string;
+    image: string;
+    quantity: number;
+  }
+
 export interface AttractionInterface {
     id: number,
     name: string,
