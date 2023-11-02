@@ -1,7 +1,7 @@
 import { baseURL } from "@/constant";
-import { LocationInterface } from "../interfaces";
+import { LocationFormInterface } from "../interfaces";
 
-const createLocation= async (location:LocationInterface) => {
+const createLocation= async (location:LocationFormInterface) => {
     try {
        
           const response = await fetch(`${baseURL}/locations/create`, {

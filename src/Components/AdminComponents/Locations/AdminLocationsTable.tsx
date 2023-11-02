@@ -4,7 +4,7 @@ import getAllLocations from "@/src/requests/getAlllLocations";
 import { LocationInterface } from "@/src/interfaces";
 
 export default function AdminLocationsTable() {
-  const [locations, setLocations] = useState<LocationInterface>([]);
+  const [locations, setLocations] = useState<LocationInterface[]>([]);
 
   useEffect(() => {
     async function fetchData() {

@@ -44,12 +44,18 @@ export interface AttractionInterface {
 export interface LocationInterface {
     id: number,
     city: string,
-    country: string
+    country: string,
 }
+
+export interface LocationFormInterface {
+    city: string,
+    country: string,
+}
+
 
 export interface UserInterface {
     id: number,
-    name: [string, string],
+    name: string [],
     dni: string,
     image: string,
     email: string,
@@ -59,6 +65,16 @@ export interface UserInterface {
 }
 
 export interface UserPostInterface {
+    name: string [],
+    dni: string,
+    image: string,
+    email: string,
+    password: string,
+    isActive: boolean,
+    roleID: number
+}
+
+export interface UserFormInterface {
     name: string,
     lastname: string,
     dni: string,

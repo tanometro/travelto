@@ -1,7 +1,7 @@
 import { baseURL } from "@/constant";
-import { UserInterface } from "../interfaces";
+import { UserPostInterface } from "../interfaces";
 
-const createUser= async (user:UserInterface) => {
+const createUser= async (user:UserPostInterface) => {
     try {
        
           const response = await fetch(`${baseURL}/users/create`, {
