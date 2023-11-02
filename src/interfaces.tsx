@@ -26,6 +26,22 @@ export interface PostAttractionFormInterface {
     isActive: boolean,
 }
 
+export interface AttractionsCartInterface {
+    id: number;
+    name: string;
+    isActive: boolean;
+    hours: string;
+    city: string;
+    country: string;
+    latitude: string;
+    ranking: number;
+    longitude: string;
+    price: number;
+    duration: string;
+    image: string;
+    quantity: number;
+  }
+
 export interface AttractionInterface {
     id: number,
     name: string,
@@ -44,12 +60,18 @@ export interface AttractionInterface {
 export interface LocationInterface {
     id: number,
     city: string,
-    country: string
+    country: string,
 }
+
+export interface LocationFormInterface {
+    city: string,
+    country: string,
+}
+
 
 export interface UserInterface {
     id: number,
-    name: [string, string],
+    name: string [],
     dni: string,
     image: string,
     email: string,
@@ -59,6 +81,16 @@ export interface UserInterface {
 }
 
 export interface UserPostInterface {
+    name: string [],
+    dni: string,
+    image: string,
+    email: string,
+    password: string,
+    isActive: boolean,
+    roleID: number
+}
+
+export interface UserFormInterface {
     name: string,
     lastname: string,
     dni: string,

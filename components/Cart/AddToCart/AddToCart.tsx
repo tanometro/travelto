@@ -1,13 +1,6 @@
 import QuantitySelector from "@/components/QuantitySelector/QuantitySelector";
 import { CartContext } from "@/src/app/context/cart";
-import React, {
-  FC,
-  MouseEventHandler,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
-import { useContext } from "react";
+import React, {FC, MouseEventHandler, ReactNode, useEffect, useState, useContext } from "react";
 
 export default function AddToCart({ attraction }): ReactNode {
   const { cart, setCart } = useContext(CartContext);

@@ -6,6 +6,7 @@ type Props = {
   name: string;
   handler: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
+  autoComplete: string;
 };
 
 export default function FormInput({
@@ -13,6 +14,7 @@ export default function FormInput({
   name,
   handler,
   value = "",
+  autoComplete,
 }: Props): React.ReactNode {
   const [inputValue, setInputValue] = useState(value);
 
@@ -29,16 +31,16 @@ export default function FormInput({
         `}
         value={inputValue}
         onChange={handleInputChange}
+        autoComplete={autoComplete}
         required
         name={name}
       />
       <label
         htmlFor={name}
-        className={`absolute transition-all duration-200 ease-in-out ${
-          inputValue
+        className={`absolute transition-all duration-200 ease-in-out ${inputValue
             ? "top-1 left-5 text-xs text-white"
             : "top-[44px] left-7 -translate-y-1/2 text-gray-400"
-        } `}
+          } `}
       >
         {name}
       </label>

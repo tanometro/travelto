@@ -4,20 +4,6 @@ import Link from "next/link";
 import React, { ReactNode } from "react";
 import "remixicon/fonts/remixicon.css";
 
-interface attractions {
-  id: number;
-  name: string;
-  isActive: boolean;
-  hours: string;
-  city: string;
-  country: string;
-  latitude: string;
-  ranking: number;
-  longitude: string;
-  price: number;
-  duration: string;
-  image: string;
-}
 
 export default function CartCard({ attraction }): ReactNode {
   const {
