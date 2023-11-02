@@ -16,7 +16,6 @@
   transform: perspective(60em) rotateX(10deg);
   transition: all 1s ease;
 }
-
 .container:hover {
   box-shadow: 0 2px 4px #000;
   transform: rotate(0);
@@ -51,12 +50,10 @@
   font-weight: 700;
   transition: transform 0.3s ease;
 }
-
 .container button:hover {
   background-color: #ff6f3c;
   transform: scale(1.1);
 }
-
 .container h2 {
   font-size: 1.2em;
   margin: 0.2em;

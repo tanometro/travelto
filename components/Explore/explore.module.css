@@ -2,9 +2,6 @@
 .explore {
     position: relative;
   }
-  /* .explore__data {
-    display: flex
-  } */
   .section__title {
     text-align: center;
     font-size: var(--h2-font-size);
@@ -100,7 +97,7 @@
    margin-bottom: .3rem;
    border-radius: 1em;
    color: white;
-   transition: 0.5s
+   transition: 0.5s;
 }
 .select:hover {
   background: rgba(244, 239, 239, 0.7);

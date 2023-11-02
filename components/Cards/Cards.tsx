@@ -1,30 +1,12 @@
 "use client";
 import Card from "../card/Card";
 import style from "./Cards.module.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import Paginacion from "../paginacion/Paginacion";
-import React, { FC } from "react";
+import { PropCards } from "@/src/interfaces";
 
-interface attractions {
-  id: number;
-  name: string;
-  isActive: boolean;
-  hours: string;
-  Location: {city: string, country: string}
-  latitude: string;
-  ranking: number;
-  longitude: string;
-  price: number;
-  duration: string;
-  image: string;
-}
-interface Props {
-  data: attractions[];
-  flag: boolean;
-  setFlag: (newState: boolean) => void;
-}
 
-export default function Cards(props: Props) {
+export default function Cards(props: PropCards) {
   //Paginado
   const [page, setPage] = useState(1); //page es la pagina actual
   const [pageSize, setPageSize] = useState(4);
