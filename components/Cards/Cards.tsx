@@ -24,7 +24,8 @@ export default function Cards(props: PropCards) {
               {
                 id,
                 name,
-                Location:{city, country},
+                city,
+                country,
                 hours,
                 duration,
                 ranking,

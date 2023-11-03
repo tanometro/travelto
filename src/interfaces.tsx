@@ -53,14 +53,14 @@ export interface LocationFormInterface {
 }
 
 export interface PropCards {
-    data: AttractionInterface[];
+    data: AttractionsCartInterface[];
     flag: boolean;
     setFlag: (newState: boolean) => void;
 }
 
 export interface UserInterface {
     id: number,
-    name: string[],
+    name: string,
     dni: string,
     image: string,
     email: string,
@@ -70,7 +70,8 @@ export interface UserInterface {
 }
 
 export interface UserPostInterface {
-    name: string[],
+    name: string,
+    last: string,
     dni: string,
     image: string,
     email: string,
