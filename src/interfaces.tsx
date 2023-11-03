@@ -68,6 +68,11 @@ export interface LocationFormInterface {
     country: string,
 }
 
+export interface PropCards {
+data: AttractionInterface [];
+  flag: boolean;
+  setFlag: (newState: boolean) => void;
+}
 
 export interface UserInterface {
     id: number,

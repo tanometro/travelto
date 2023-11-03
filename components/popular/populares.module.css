@@ -35,7 +35,7 @@
   background: linear-gradient(
     180deg,
     hsla(0, 0%, 0%, 0) 50%,
-    hsl(0, 0%, 0%) 125%
+    hsl(0, 0%, 0%) 125%,
   );
 }
 .popular__title {
@@ -56,12 +56,6 @@
 #popular__image:hover .popular__img {
   transform: scale(1.2);
 }
-.section__title {
-  text-align: center;
-  font-size: var(--h1-font-size);
-  margin-bottom: 1.5rem;
-}
-
 @media screen and (max-width: 340px) {
   .container {
     margin-inline: 1rem;
