@@ -6,6 +6,7 @@ import Cards from "@/components/Cards/Cards";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { baseURL } from "@/constant";
+import ReactTooltip from 'react-tooltip'
 
 export default function Explore() {
   
@@ -23,16 +24,11 @@ export default function Explore() {
     image: string;
 }
   
-  /* const cities = locations.locations.map((location) => {
-    return location.city;
-  });
-  const countr = locations.locations.map((location) => {
-    return location.country;
-  }); */
   let [state, setState] = useState({
     order: "",
     city: "",
-    country: ""
+    country: "",
+    priceRange:""
     
 })   //estado de los select...
   const [countrySelected, setCountrySelected ] = useState<string>("")
@@ -150,23 +146,24 @@ export default function Explore() {
           return 0;
           })
     }
+  }
     //Por rangos de precios
-    if (state.order === "R1") {
+    if (state.priceRange === "R1") {
       orderAndFilter = orderAndFilter.filter(e => {
         return e.price <= 1000 
       })
     } 
-    if (state.order === "R2") {
+    if (state.priceRange === "R2") {
       orderAndFilter = orderAndFilter.filter(e => {
         return e.price >= 1000 && e.price <= 2000 
       })
     }
-    if (state.order === "R3") {
+    if (state.priceRange === "R3") {
       orderAndFilter = orderAndFilter.filter(e => {
         return e.price >= 2000 
       })
     }  
-  }
+  
   setAttraction([...orderAndFilter])
     },[state])
   
@@ -268,8 +265,8 @@ export default function Explore() {
                         
                         
                     </select>
-                    <select className= {styles.select} name="price-range" id="" onChange = { handleChange }>
-                        <option className= {styles.option} value= "">Rango de precios</option>
+                    <select className= {styles.select} name="priceRange" id="" onChange = { handleChange }>
+                        <option className= {styles.option} value= "All">Rango de precios</option>
                         <option className= {styles.option} value="R1">De 0-1000</option>
                         <option className= {styles.option} value="R2">De 1000-2000</option>
                         <option className= {styles.option} value="R3">Más de 2000</option>
@@ -286,7 +283,8 @@ export default function Explore() {
                         
                             <select className= {styles.select_disable} name="city" id="" onChange = { handleChange } disabled = {true}>
                           
-                            <option className= {styles.option} disabled selected value="">Ciudades </option>
+                            <option className= {styles.option} disabled selected value="" id="ciudad">Ciudades </option>
+                          
                           </select>
                           
                         : citiesPerCountry.length && 
@@ -296,11 +294,7 @@ export default function Explore() {
                             <option className= {styles.option} key= {index} value={dato}>{dato}</option>          
                             ))}
                         </select>
-                        }
-                        
-                        
-                        
-                    
+                        }           
                     
                 </div>
         <div>
