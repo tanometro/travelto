@@ -16,13 +16,8 @@ const handler = NextAuth({
             //authorize(credentials, req) {
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
-                try {
-                    const user = await userLogin(credentials);
-                    return user;
-                } catch (error) {
-                    return (null);
-                }
-
+                const user = await userLogin(credentials);
+                return user;
             },
         }),
         GoogleProvider({
@@ -43,7 +38,10 @@ const handler = NextAuth({
         },
         async session({ session, token }) {
             // Send properties to the client, like an access_token from a provider.
-            session.user = token;
+            if (!token.error)
+                session.user = token;
+            else
+                throw new Error("no autorizado")
 
             return session;
         }

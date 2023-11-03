@@ -1,6 +1,6 @@
 export interface AdminAttractionFormInterface {
     name: string,
-    description:string,
+    description: string,
     latitude: string,
     longitude: string,
     price: string,
@@ -12,7 +12,7 @@ export interface AdminAttractionFormInterface {
 
 export interface AttractionInterface {
     name: string,
-    description:string,
+    description: string,
     latitude: string,
     longitude: string,
     price: string,
@@ -25,4 +25,13 @@ export interface AttractionInterface {
 export interface ButtonProps {
     text: string,
     size: string,
-  };
+};
+
+export interface UserInterface {
+    name: string,
+    lastName: string,
+    dni: string,
+    image: string,
+    email: string,
+    password: string,
+}

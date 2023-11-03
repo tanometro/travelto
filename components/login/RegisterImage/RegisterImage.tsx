@@ -1,5 +1,4 @@
 'use client'
-import { File } from "buffer";
 import Image from "next/image";
 import { useState } from "react";
 type Props = {
@@ -7,7 +6,7 @@ type Props = {
     handler: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 export default function RegisterImage({ imageUser, handler }: Props): React.ReactNode {
-    const [file, setFile] = useState<File | null>(null);
+    const [file, setFile] = useState<FileList | null>(null);
     const [inputValue, setInputValue] = useState("");
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +18,8 @@ export default function RegisterImage({ imageUser, handler }: Props): React.Reac
         event.preventDefault();
 
         const formData = new FormData();
-        formData.append("file", file);
+
+        file !== null && formData.append("file", file[0]);
 
         const response = await fetch("/api/upload", {
             method: "POST",
@@ -37,7 +37,7 @@ export default function RegisterImage({ imageUser, handler }: Props): React.Reac
                 className="absolute overflow-hidden object-cover rounded-full" />
             <form onSubmit={handlerSubmit} className="flex flex-col relative justify-end">
                 <input name="image" className="bg-white" type="file" onChange={(event) => {
-                    setFile(event.target.files[0] || null);
+                    setFile(event.target.files || null);
                 }} />
                 <button className="text-white flex bg-black ">Subir imagen</button>
             </form>

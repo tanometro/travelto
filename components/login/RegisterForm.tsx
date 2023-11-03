@@ -3,16 +3,16 @@ import FormInput from "@/components/login/FormInput/FormInput";
 import { signIn } from "next-auth/react";
 import React, { useState } from "react";
 import registerValidate from "./registerValidate";
-import Image from "next/image";
-import axios from "axios";
 import RegisterImage from "./RegisterImage/RegisterImage";
 import { useRouter } from "next/navigation";
+import createUser from "@/src/requests/postCreateUser";
 
 export default function RegisterForm() {
     const router = useRouter();
-    const [errors, setErrors] = useState<string[]>([]);
+    const [errors, setErrors] = useState<string>("");
     const [imageUser, setImageUser] = useState<string>("https://res.cloudinary.com/dsrdos5pb/image/upload/v1698623834/qa4ex6esskztxkfkmrqd.jpg");
     const [name, setName] = useState<string>("");
+    const [lastName, setLastName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [checkPassword, setCheckPassword] = useState<string>("");
@@ -21,49 +21,43 @@ export default function RegisterForm() {
 
     const handlerSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setErrors([]);
+        setErrors("");
 
-        const stateErrors: string[] = registerValidate(name, email, password, checkPassword, dni);
-        setErrors([...stateErrors]);
+        let stateErrors: string = registerValidate(name, email, password, checkPassword, dni);
+        setErrors(stateErrors);
         if (stateErrors.length != 0) return;
-        const nameUser = name.split(" ");
-        axios.post(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/create`,
-            {
+        try {
+            let newUser = await createUser({
+                name,
+                lastName,
+                dni,
                 image: imageUser,
-                name: nameUser,
-                email: email,
-                dni: dni,
-                password: password,
-
-            }
-        ).then(async (res) => {
-            console.log(res);
-
-
-            const responseNextAuth = await signIn("credentials", {
-                email: res.data.email,
-                password: password,
-                redirect: false,
-            });
-
-            if (responseNextAuth?.error) {
-                // aca responde la app
-                setErrors(responseNextAuth.error.split(","));
-                return;
-            }
-
-            router.push("/login")
-        }).catch((error) => {
+                email,
+                password,
+            })
+        } catch (error) {
             setErrors(error.message);
             return;
+        }
+
+        const responseNextAuth = await signIn("credentials", {
+            email: email,
+            password: password,
+            redirect: false,
         });
 
+        if (responseNextAuth?.error) {
+            // aca responde la app
+            setErrors(responseNextAuth.error);
+            return;
+        }
+
+        router.push("/login");
     }
 
     return (
         <section className="flex flex-wrap w-screen items-center sm:justify-center lg:justify-around">
-            <RegisterImage imageUser={imageUser} handler={() => setImageUser} />
+            <RegisterImage imageUser={imageUser} handler={(event) => setImageUser(event.target.value)} />
             <div>
 
                 <form className="flex flex-col w-96" onSubmit={handlerSubmit}>
@@ -73,6 +67,13 @@ export default function RegisterForm() {
                         value={name}
                         handler={(event) => setName(event.target.value)}
                         autoComplete="name"
+                    />
+                    <FormInput
+                        type="text"
+                        name="LastName"
+                        value={lastName}
+                        handler={(event) => setLastName(event.target.value)}
+                        autoComplete="lastName"
                     />
                     <FormInput
                         type="email"
@@ -112,9 +113,9 @@ export default function RegisterForm() {
                         <div className="text-red-900 ">
                             {errors.length > 0 && (
                                 <div className="form-group relative mb-10 w-[80%] justify-self-center justify-center">
-                                    {errors?.map((error, index) => (
-                                        <p className="text-white bg-red-700" key={index}>* {error}</p>
-                                    ))}
+                                    {errors && (
+                                        <p className="text-white bg-red-700" >* {errors}</p>
+                                    )}
                                 </div>
                             )}
                         </div>
