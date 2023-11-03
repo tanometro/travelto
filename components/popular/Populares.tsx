@@ -8,6 +8,7 @@ import popular_mountain from '../../public/images/popular-mountain.jpg'
 import popular_lake from '../../public/images/popular-lake.jpg'
 import popular_forest from '../../public/images/popular-forest.jpg'
 import { emit } from "process";
+import { baseURL } from "@/constant";
 
 
 interface attractions {
@@ -28,7 +29,7 @@ export default function Popular() {
     const [attraction, setAttraction] = useState<attractions[]>([]) //trae las attractions 
     const getDatos =async () => {
         try {
-          let res = await axios.get(`http://localhost:3001/attractions`)
+          let res = await axios.get(`${baseURL}/attractions`)
           let datos= res.data
           console.log(datos);    
           if (!datos.length) {

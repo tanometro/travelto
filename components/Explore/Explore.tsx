@@ -258,17 +258,21 @@ export default function Explore() {
         
         <div className= {styles.container_select}>
                     <select className= {styles.select} name="order" id="" onChange = { handleChange }>
-                        <option className= {styles.option} value= "">Order</option>
+                        <option className= {styles.option} value= "">Orden</option>
                         <option className= {styles.option} value= "A">A-Z</option>
                         <option className= {styles.option} value= "D">Z-A</option>
                         <option className= {styles.option} value="RA">Ranking Asc.</option>
                         <option className= {styles.option} value="RD">Ranking Desc.</option>
                         <option className= {styles.option} value="PA">Precio Asc.</option>
                         <option className= {styles.option} value="PD">Precio Desc.</option>
-                        <option className= {styles.option} value="R1">Precio 0-1000</option>
-                        <option className= {styles.option} value="R2">Precio 1000-2000</option>
-                        <option className= {styles.option} value="R3">Precio más de 2000</option>
                         
+                        
+                    </select>
+                    <select className= {styles.select} name="price-range" id="" onChange = { handleChange }>
+                        <option className= {styles.option} value= "">Rango de precios</option>
+                        <option className= {styles.option} value="R1">De 0-1000</option>
+                        <option className= {styles.option} value="R2">De 1000-2000</option>
+                        <option className= {styles.option} value="R3">Más de 2000</option>
                     </select>
                     <select className= {styles.select} name="country" id="" onChange = { handleChange }>
                         <option className= {styles.option} value="All">Todos los paises </option>
@@ -277,24 +281,26 @@ export default function Explore() {
                         ))}
                         
                     </select>
-                    <select className= {styles.select} name="city" id="" onChange = { handleChange }>
-                        {citiesPerCountry.length && 
-                          <>
-                            <option className= {styles.option} value="All">Todas las ciudades </option>
+                    
+                    {!citiesPerCountry.length ? 
+                        
+                            <select className= {styles.select_disable} name="city" id="" onChange = { handleChange } disabled = {true}>
+                          
+                            <option className= {styles.option} disabled selected value="">Ciudades </option>
+                          </select>
+                          
+                        : citiesPerCountry.length && 
+                        <select className= {styles.select} name="city" id="" onChange = { handleChange }>
+                            <option className= {styles.option} value="All">Ciudades </option>
                             {citiesPerCountry.map((dato, index) => (
                             <option className= {styles.option} key= {index} value={dato}>{dato}</option>          
                             ))}
-                          </>
-                        }
-                        {!citiesPerCountry.length && 
-                          <>
-                            <option className= {styles.option} disabled selected value="">Seleccione País </option>
-                          
-                          </>
+                        </select>
                         }
                         
                         
-                    </select>
+                        
+                    
                     
                 </div>
         <div>
