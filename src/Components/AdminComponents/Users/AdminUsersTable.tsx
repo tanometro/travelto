@@ -60,7 +60,7 @@ export default function AdminUsersTable() {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {!users && users.map((user) => (
               <tr key={user.id}>
                 <td className="border-b p-2 border-r-2">
                   {user.name[0] + " " + user.name[1]}
