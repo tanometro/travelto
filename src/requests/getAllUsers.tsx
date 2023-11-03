@@ -1,9 +1,9 @@
 import { baseURL } from "@/constant";
 import axios from 'axios';
 
-const getAllAttractions = async () => {
+const getAllUsers = async () => {
     try {
-        const response = await axios.get(`${baseURL}/attractions`);
+        const response = await axios.get(`${baseURL}/users`);
         console.log(response.data)
         return response
     } 
@@ -12,4 +12,4 @@ const getAllAttractions = async () => {
     }
 }
 
-export default getAllAttractions;
+export default getAllUsers;
