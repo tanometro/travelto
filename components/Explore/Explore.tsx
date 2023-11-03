@@ -20,35 +20,35 @@ export default function Explore() {
     order: "",
     city: "",
     country: ""
-    
-})
-  
+
+  })
+
   const [attraction, setAttraction] = useState([])
-   
-  const getDatos =async () => {
-      try {
-          let res = await axios.get(`http://localhost:3001/attractions`)
-      let datos= res.data
-      console.log(datos);    
+
+  const getDatos = async () => {
+    try {
+      let res = await axios.get(`https://traveltoback-production.up.railway.app/attractions`)
+      let datos = res.data
+      console.log(datos);
       if (!datos.length) {
-              window.alert("No se encuentran datos")
-          } else {
-              setAttraction(datos)
-              
-          }
-      } catch (error) {
-          console.log(error); 
+        window.alert("No se encuentran datos")
+      } else {
+        setAttraction(datos)
+
       }
-  }    
-  useEffect(()=> {  
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
     getDatos()
   }, [])
- 
+
   const handleChange = e => {
     let newState = {
-        ...state,
-        [e.target.name]: e.target.value
-        
+      ...state,
+      [e.target.name]: e.target.value
+
     }
   }
   /* const [filteredData, setFilteredData] = useState(data.attractions);
@@ -102,43 +102,43 @@ export default function Explore() {
         <div className={styles.explore__data}>
           <h2 className={styles.section__title}>
             Comience su viaje aqui
-          </h2> 
+          </h2>
         </div>
-        <div className= {styles.container_select}>
-                    <select className= {styles.select} name="order" id="" onChange = { handleChange }>
-                        <option className= {styles.option} value= "">Order</option>
-                        <option className= {styles.option} value= "A">A-Z</option>
-                        <option className= {styles.option} value= "D">Z-A</option>
-                        <option className= {styles.option} value="RA">Ranking Asc.</option>
-                        <option className= {styles.option} value="RD">Ranking Desc.</option>
-                        
-                    </select>
-                    
-                    {/* <select className= {styles.select} name="origin" id="" onChange = { handleChange }>
+        <div className={styles.container_select}>
+          <select className={styles.select} name="order" id="" onChange={handleChange}>
+            <option className={styles.option} value="">Order</option>
+            <option className={styles.option} value="A">A-Z</option>
+            <option className={styles.option} value="D">Z-A</option>
+            <option className={styles.option} value="RA">Ranking Asc.</option>
+            <option className={styles.option} value="RD">Ranking Desc.</option>
+
+          </select>
+
+          {/* <select className= {styles.select} name="origin" id="" onChange = { handleChange }>
                         <option className= {styles.option} value="ALL">ALL</option>
                         <option className= {styles.option} value="API"> Only API</option>
                         <option className= {styles.option} value="DB">Only DB</option>
                     </select> */}
-                    <select className= {styles.select} name="city" id="" onChange = { handleChange }>
-                        <option className= {styles.option} value="All">Todas las ciudades </option>
-                        {cities.map((dato, index) => (
-                            <option className= {styles.option} key= {index} value={dato}>{dato}</option>          
-                        ))}
-                        
-                    </select>
-                    <select className= {styles.select} name="country" id="" onChange = { handleChange }>
-                        <option className= {styles.option} value="All">Todos los paises </option>
-                        {countr.map((dato, index) => (
-                            <option className= {styles.option} key= {index} value={dato}>{dato}</option>          
-                        ))}
-                        
-                    </select>
-                </div>
-        
-        
+          <select className={styles.select} name="city" id="" onChange={handleChange}>
+            <option className={styles.option} value="All">Todas las ciudades </option>
+            {cities.map((dato, index) => (
+              <option className={styles.option} key={index} value={dato}>{dato}</option>
+            ))}
+
+          </select>
+          <select className={styles.select} name="country" id="" onChange={handleChange}>
+            <option className={styles.option} value="All">Todos los paises </option>
+            {countr.map((dato, index) => (
+              <option className={styles.option} key={index} value={dato}>{dato}</option>
+            ))}
+
+          </select>
+        </div>
+
+
         <div>
-            <Cards data={attraction} />
-          </div>
+          <Cards data={attraction} />
+        </div>
       </div>
       <div className={styles.explore__image}>
         <Image
