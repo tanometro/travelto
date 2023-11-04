@@ -35,7 +35,7 @@ export default function Cards(props: PropCards) {
               },
               index
             ) => {
-              console.log(hours, duration);
+              /* console.log(hours, duration); */
               return (
                 <Card
                   key={id}
