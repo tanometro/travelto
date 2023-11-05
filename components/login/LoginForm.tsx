@@ -22,7 +22,7 @@ export const LoginForm = () => {
       const responseNextAuth = await signIn("credentials", {
         email,
         password,
-        redirect: false,
+        redirect: true,
       });
 
       if (responseNextAuth?.error) {
@@ -30,7 +30,7 @@ export const LoginForm = () => {
         setErrors(responseNextAuth.error.split(","));
         return;
       }
-      router.push("/");
+      router.push("/login");
     }
   };
   return (
@@ -64,17 +64,19 @@ export const LoginForm = () => {
             className="flex w-full justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
             onClick={() =>
               signIn("google", {
-                redirect: false,
+                redirect: true,
               })
             }
           >
             Sign In with Google
           </button>
         </div>
-        {errors.length > 0 && (
+        {errors && errors.length > 0 && (
           <div className="form-group relative mb-10 w-[80%] justify-self-center justify-center">
             {errors?.map((error, index) => (
-              <p className="text-white bg-red-700" key={index}>* {error}</p>
+              <p className="text-white bg-red-700" key={index}>
+                * {error}
+              </p>
             ))}
           </div>
         )}

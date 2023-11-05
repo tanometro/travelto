@@ -7,8 +7,6 @@ import Total from "@/components/Total/Total";
 import { useRouter } from "next/navigation";
 import { AttractionsCartInterface } from "@/src/interfaces";
 
-
-
 export default function Page() {
   const { cart } = useContext(CartContext);
   const router = useRouter();
@@ -18,11 +16,10 @@ export default function Page() {
     router.back();
   };
   return (
-
-    <div className="container mx-auto flex justify-center items-start gap-5 p-10">
+    <div className="container mx-auto flex flex-col sm:flex-row justify-center items-start gap-5 p-10">
       <div className=" flex flex-col gap-5">
         <div className="flex justify-between">
-          <h1 className="text-2xl">Shopping cart</h1>
+          <h1 className="text-2xl">Mi Carrito 🛒</h1>
           <button
             onClick={handleBack}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-full"
@@ -46,6 +43,5 @@ export default function Page() {
       </div>
       <Total />
     </div>
-   
   );
 }

@@ -4,7 +4,6 @@ import Link from "next/link";
 import React, { ReactNode } from "react";
 import "remixicon/fonts/remixicon.css";
 
-
 export default function CartCard({ attraction }): ReactNode {
   const {
     id,
@@ -21,8 +20,8 @@ export default function CartCard({ attraction }): ReactNode {
   } = attraction;
   const googleMapsLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
   return (
-    <div className="flex gap-10 p-5 justify-between w-full bg-slate-500 bg-opacity-70 rounded-md max-w-[50rem]">
-      <div className="w-[300px] h-[200px] rounded-md overflow-hidden">
+    <div className="flex flex-col w-[20rem] sm:flex-row gap-10 p-5 justify-between lg:w-full md:w-[40rem] bg-slate-500 bg-opacity-70 rounded-md max-w-[50rem]">
+      <div className="w-[180px] h-[100px]  lg:w-[300px] lg:h-[200px] md:w-[220px] md:h-[140px] rounded-md overflow-hidden">
         <Image
           src={image}
           alt={`Image${id}`}
@@ -31,27 +30,27 @@ export default function CartCard({ attraction }): ReactNode {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="flex flex-1">
+      <div className="flex flex-col md:flex-row flex-1 gap-5">
         <ul className="w-[300px]">
           <li>
             <h1 className="text-xl">{name}</h1>
           </li>
           <li>
-            Location: {city} - {country}
+            Lugar: {city} - {country}
           </li>
-          <li>Hours: {hours}</li>
-          <li>Duration: {duration}</li>
+          <li>Horas: {hours}</li>
+          <li>Duración: {duration}</li>
           <li>
-            Price: <span className="font-bold">${price}</span>
+            Precio: <span className="font-bold">${price}</span>
           </li>
           <br />
           <Link href={googleMapsLink}>
-            <i className="ri-map-pin-line"></i> Show in google maps
+            <i className="ri-map-pin-line"></i> Ver en google maps
           </Link>
         </ul>
-        <div className="flex-col self-end">
+        <div className="flex-col justify-center md:self-end">
           <h3 className="mb-5">
-            Added to Cart:
+            Agregado:
             <br />
             <div className="flex gap-2 mt-2">
               <QuantitySelector attraction={attraction} />
