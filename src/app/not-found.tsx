@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 export default function NotFound() {
   const router = useRouter();
   return (
-    <main className=" place-content-center">
+    <main className="container mx-auto flex flex-col gap-10 min-h-screen justify-center items-center">
       <h1>404 - La página que buscas no existe.</h1>
       <button
         className=" text-center justify-center text-6xl"

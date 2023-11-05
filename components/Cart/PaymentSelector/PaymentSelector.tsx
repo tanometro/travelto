@@ -5,6 +5,7 @@ function PaymentSelector() {
     <div className="my-5">
       <div className="flex items-center mb-4">
         <input
+          checked
           id="mercadoPagoRadio"
           type="radio"
           value="mercadopago"
