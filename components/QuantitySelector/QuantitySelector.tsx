@@ -41,7 +41,9 @@ export default function QuantitySelector({
       <input
         type="text"
         disabled
-        className="w-[2rem] h-[1.5rem] text-center text-black bg-white rounded-md"
+        className={`${
+          quantity < 10 ? "w-[2rem]" : "w-[3.2rem]"
+        } h-[1.5rem] text-center text-black bg-white rounded-md`}
         value={quantity}
       />
       <div
