@@ -33,7 +33,7 @@ export interface AttractionInterface {
     description: string,
     latitude: string,
     longitude: string,
-    price: string,
+    price: number,
     ranking: number,
     hours: string,
     duration: string,

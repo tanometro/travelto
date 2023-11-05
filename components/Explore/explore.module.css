@@ -109,7 +109,13 @@
   color: rgb(251, 251, 251);
   border-radius: 1rem;
 }
-
+.select_disable {
+  background: rgba(244, 239, 239, 0.7);
+  color: black;
+  border-radius: 1em;
+  width: 12vw;
+   height: 5vh;
+}
 .option:hover {
   background: rgba(244, 239, 239, 0.7);
   color: black;

@@ -22,7 +22,7 @@ type Props = {
         i++
     }
     
-    return (
+    return  pageAmount !== 1 && (
     
         <div className={styles.container}>
             <button 
@@ -31,14 +31,16 @@ type Props = {
                 className={styles.button}>
                 <i className="ri-arrow-left-circle-fill"></i>
             </button>
-            {numeracion.map((e) => {
+            {/* {numeracion.map((e) => {
                 return <NumberPage 
                     key = {e}    
                     number= {e}
                     page = {page}
                     setPage = {setPage}
-                />})}
-                
+                />})} */}
+                <div className=" block text-2xl bg-blue color-white">
+                    {page} de {pageAmount}
+                </div>
             <button 
                 disabled={page === Math.ceil (pageAmount) || page > Math.ceil (pageAmount)}
                 onClick={nextPage}

@@ -3,12 +3,27 @@ import Image from "next/image";
 import styles from "./explore.module.css";
 import explore_beach from "../../public/images/explore-beach.jpg";
 import Cards from "@/components/Cards/Cards";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { baseURL } from "@/constant";
-import { AttractionsCartInterface } from "@/src/interfaces";
+import { useEffect, useState, useRef, ChangeEvent } from "react";
+import { Tooltip } from 'react-tooltip'
+import 'react-tooltip/dist/react-tooltip.css'
+import { AttractionInterface } from "@/src/interfaces";
+import getAllAttractions from "@/src/requests/getAllAttractions"
 
 export default function Explore() {
+
+  interface attractions {
+    id: number;
+    name: string;
+    isActive: boolean;
+    hours: string;
+    Location: { city: string, country: string }
+    latitude: string;
+    ranking: number;
+    longitude: string;
+    price: number;
+    duration: string;
+    image: string;
+  }
 
   /* const cities = locations.locations.map((location) => {
     return location.city;
@@ -25,13 +40,14 @@ export default function Explore() {
   const [countrySelected, setCountrySelected] = useState<string>("")
   const [citiesPerCountry, setCitiesPerCountry] = useState<string[]>([])
   const [flag, setFlag] = useState<boolean>(false)
-  const [allAttraction, setAllAttraction] = useState<AttractionsCartInterface[]>([]) //todas las attraction
-  const [attraction, setAttraction] = useState<AttractionsCartInterface[]>([]) //attraction para filter
+  const [allAttraction, setAllAttraction] = useState<attractions[]>([]) //todas las attraction
+  const [attraction, setAttraction] = useState<attractions[]>([]) //attraction para filter
 
   const getDatos = async () => {
     try {
       let res = await axios.get(`${baseURL}/attractions`)
       let datos = res.data
+      console.log(datos);
       /* if (!datos.length) {
         window.alert("No se encuentran datos")
       } else { */
@@ -39,17 +55,18 @@ export default function Explore() {
       setAllAttraction([...datos])
 
     } catch (error) {
-
+      console.log(error);
     }
   }
 
   useEffect(() => {
     getDatos()
+
   }, [])
 
   useEffect(() => {
 
-
+    console.log(state)
     let orderAndFilter = [...attraction]
 
     //Ordenar Por country ...aprobado
@@ -223,58 +240,72 @@ export default function Explore() {
         className={`${styles.explore__content} ${styles.contaimer} ${styles.grid}`}
       >
         <div className={styles.explore__data}>
+          <div className={styles.explore__image}>
+            <Image
+              src={explore_beach}
+              alt="explore image"
+              className={styles.explore__img}
+            />
+            <div className={styles.explore__shadow} />
+          </div>
+        </div>
+        <div className="flex justify-center gap-16 items-center my-6">
           <h2 className={styles.section__title}>
-            Comience su viaje aqui
+            Comience su viaje aqui <i className="ri-arrow-right-line" />
           </h2>
+          <a href="#explore" className={styles.btn + " w-[15em] h-[2em] text-center"} >
+            Busque su Atraccion <i className="ri-search-2-line" />
+          </a>
         </div>
+      </div>
 
-        <div className={styles.container_select}>
-          <select className={styles.select} name="order" id="" onChange={handleChange}>
-            <option className={styles.option} value="">Order</option>
-            <option className={styles.option} value="A">A-Z</option>
-            <option className={styles.option} value="D">Z-A</option>
-            <option className={styles.option} value="RA">Ranking Asc.</option>
-            <option className={styles.option} value="RD">Ranking Desc.</option>
-            <option className={styles.option} value="PA">Precio Asc.</option>
-            <option className={styles.option} value="PD">Precio Desc.</option>
-            <option className={styles.option} value="R1">Precio 0-1000</option>
-            <option className={styles.option} value="R2">Precio 1000-2000</option>
-            <option className={styles.option} value="R3">Precio más de 2000</option>
+      <div className={styles.container_select}>
+        <select className={styles.select} name="order" id="" onChange={handleChange}>
+          <option className={styles.option} value="">Order</option>
+          <option className={styles.option} value="A">A-Z</option>
+          <option className={styles.option} value="D">Z-A</option>
+          <option className={styles.option} value="RA">Ranking Asc.</option>
+          <option className={styles.option} value="RD">Ranking Desc.</option>
+          <option className={styles.option} value="PA">Precio Asc.</option>
+          <option className={styles.option} value="PD">Precio Desc.</option>
+          <option className={styles.option} value="R1">Precio 0-1000</option>
+          <option className={styles.option} value="R2">Precio 1000-2000</option>
+          <option className={styles.option} value="R3">Precio más de 2000</option>
 
-          </select>
-          <select className={styles.select} name="country" id="" onChange={handleChange}>
-            <option className={styles.option} value="All">Todos los paises </option>
-            {countr.map((dato, index) => (
-              <option className={styles.option} key={index} value={dato}>{dato}</option>
-            ))}
+        </select>
+        <select className={styles.select} name="country" id="" onChange={handleChange}>
+          <option className={styles.option} value="All">Todos los paises </option>
+          {countr.map((dato, index) => (
+            <option className={styles.option} key={index} value={dato}>{dato}</option>
+          ))}
 
-          </select>
-          <select className={styles.select} name="city" id="" onChange={handleChange}>
-            {citiesPerCountry.length &&
-              <>
-                <option className={styles.option} value="All">Todas las ciudades </option>
-                {citiesPerCountry.map((dato, index) => (
-                  <option className={styles.option} key={index} value={dato}>{dato}</option>
-                ))}
-              </>
-            }
-            {!citiesPerCountry.length &&
-              <>
-                <option className={styles.option} disabled selected value="">Seleccione País </option>
+        </select>
+        <select className={styles.select} name="city" id="" onChange={handleChange}>
+          {citiesPerCountry.length &&
+            <>
+              <option className={styles.option} value="All">Todas las ciudades </option>
+              {citiesPerCountry.map((dato, index) => (
+                <option className={styles.option} key={index} value={dato}>{dato}</option>
+              ))}
+            </>
+          }
+          {!citiesPerCountry.length &&
+            <>
+              <option className={styles.option} disabled selected value="">Seleccione País </option>
 
-              </>
-            }
+            </>
+          }
 
 
-          </select>
-
-        </div>
-        <div>
-          <Cards data={attraction} flag={flag} setFlag={setFlag} />
-        </div>
-
+        </select>
 
       </div>
+      <div>
+        <Cards data={attraction} flag={flag} setFlag={setFlag} />
+      </div>
+
+
     </div>
+    </div >
   );
 }
