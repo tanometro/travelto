@@ -1,6 +1,6 @@
 import QuantitySelector from "@/components/QuantitySelector/QuantitySelector";
 import { CartContext } from "@/src/app/context/cart";
-import React, {FC, MouseEventHandler, ReactNode, useEffect, useState, useContext } from "react";
+import React, { FC, MouseEventHandler, ReactNode, useEffect, useState, useContext } from "react";
 
 export default function AddToCart({ attraction }): ReactNode {
   const { cart, setCart } = useContext(CartContext);
@@ -10,7 +10,6 @@ export default function AddToCart({ attraction }): ReactNode {
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setShowMenu(!showMenu);
   };
-  console.log(attraction);
   return (
     <div className="relative">
       <div onClick={handleClick}>

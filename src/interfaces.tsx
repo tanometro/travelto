@@ -58,17 +58,6 @@ export interface PropCards {
     setFlag: (newState: boolean) => void;
 }
 
-export interface UserInterface {
-    id: number,
-    name: string,
-    dni: string,
-    image: string,
-    email: string,
-    password: string,
-    isActive: boolean,
-    roleID: number
-}
-
 export interface UserPostInterface {
     name: string,
     last: string,

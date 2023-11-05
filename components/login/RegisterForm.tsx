@@ -27,7 +27,7 @@ export default function RegisterForm() {
         setErrors(stateErrors);
         if (stateErrors.length != 0) return;
         try {
-            let newUser = await createUser({
+            await createUser({
                 name,
                 lastName,
                 dni,
@@ -52,7 +52,24 @@ export default function RegisterForm() {
             return;
         }
 
-        router.push("/login");
+        const newUser = {
+            name: name,
+            email: email,
+        }
+
+        const resMail = await fetch('/api/send', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                //Authorization: storedToken,
+            },
+            body: JSON.stringify(newUser),
+        });
+        const respuesta = await resMail.json();
+        console.log(respuesta);
+
+
+        router.push("/");
     }
 
     return (

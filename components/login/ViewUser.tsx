@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 
-import { UserData } from "./UserData";
+import { UserData } from "./DetailUser/UserData";
 import { LoginForm } from "./LoginForm";
 import SignOrLog from "../SignOrLog/SignOrLog";
 

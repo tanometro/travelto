@@ -5,16 +5,17 @@ import FormInput from "./FormInput/FormInput";
 import validate from "./validate";
 import { useRouter } from "next/navigation";
 
+
 export const LoginForm = () => {
   const router = useRouter();
-  const [errors, setErrors] = useState<string[]>([]);
+  const [errors, setErrors] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handlerSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const stateErrors: string[] = validate(email, password);
-    setErrors([...stateErrors]);
+    const stateErrors: string = validate(email, password);
+    setErrors(stateErrors);
     if (stateErrors.length === 0) {
       // aca llamo a la api
 
@@ -26,10 +27,10 @@ export const LoginForm = () => {
 
       if (responseNextAuth?.error) {
         // aca responde la app
-        setErrors(responseNextAuth.error.split(","));
+        setErrors(responseNextAuth.error);
         return;
       }
-      router.push("/");
+      router.push("/login");
     }
   };
   return (
@@ -72,7 +73,7 @@ export const LoginForm = () => {
         </div>
         {errors.length > 0 && (
           <div className="form-group relative mb-10 w-[80%] justify-self-center justify-center">
-            {errors?.map((error, index) => (
+            {errors?.split("*").map((error, index) => (
               <p className="text-white bg-red-700" key={index}>* {error}</p>
             ))}
           </div>

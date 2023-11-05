@@ -32,7 +32,6 @@ export default function Explore() {
     try {
       let res = await axios.get(`${baseURL}/attractions`)
       let datos = res.data
-      console.log(datos);
       /* if (!datos.length) {
         window.alert("No se encuentran datos")
       } else { */
@@ -40,7 +39,7 @@ export default function Explore() {
       setAllAttraction([...datos])
 
     } catch (error) {
-      console.log(error);
+
     }
   }
 
@@ -50,7 +49,7 @@ export default function Explore() {
 
   useEffect(() => {
 
-    console.log(state)
+
     let orderAndFilter = [...attraction]
 
     //Ordenar Por country ...aprobado

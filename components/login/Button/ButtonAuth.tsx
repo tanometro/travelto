@@ -5,14 +5,14 @@ export default function ButtonAuth() {
     const { data: session, status } = useSession();
 
     if (status === "loading") {
-        return <button className="h-10 px-6 font-semibold rounded-md border border-slate-200 text-white">Loading...</button>
+        return <button className="h-10 px-6 font-semibold rounded-md border border-slate-200 text-white">Login</button>
     }
 
     if (session) {
         return (
             <>
-                Welcome {session.user?.email}
-                <button onClick={async () => { await signOut({ callbackUrl: "/" }) }} className="h-10 px-6 font-semibold rounded-md border border-slate-200 text-white">Close</button>
+
+                <button onClick={async () => { await signOut({ callbackUrl: "/" }) }} className="h-10 px-6 font-semibold rounded-md border border-slate-200 text-white">Bienvenido {session.user?.name}</button>
             </>
         )
     }
