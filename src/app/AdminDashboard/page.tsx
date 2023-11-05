@@ -7,7 +7,7 @@ import AdminLocationsTable from "@/src/Components/AdminComponents/Locations/Admi
 import AdminLocationForm from "@/src/Components/AdminComponents/Locations/AdminLocationForm";
 import style from "./page.module.css";
 import { useState } from "react";
-import Link from "next/link";AdminLocationForm
+import Link from "next/link";
 
 export default function AdminDashboard() {
   const [mostrar, setMostrar] = useState(<>Elija una Opcion en el panel lateral para visualizar y 

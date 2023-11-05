@@ -1,7 +1,6 @@
 import style from "./Card.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import taverna from "@/public/images/la-trattoria-del-campo.jpg";
 import AddToCart from "../Cart/AddToCart/AddToCart";
 
 const Card = ({
@@ -17,9 +16,7 @@ const Card = ({
   latitude,
   longitude,
 }) => {
-  console.log(hours, duration);
   return (
-    <>
       <div className={style.container}>
         {/* <h3 className={style.rating}>Rating: {rating}</h3> */}
         <div className="flex justify-between w-48">
@@ -62,7 +59,6 @@ const Card = ({
           <button className={style.button}>Ver más...</button>
         </Link>
       </div>
-    </>
   );
 };
 

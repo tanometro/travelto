@@ -1,17 +1,17 @@
 "use client";
 import React, { useState } from "react";
-import { LocationInterface } from "@/src/interfaces";
+import { LocationFormInterface } from "@/src/interfaces";
 import createLocation from "@/src/requests/postLocation";
 
-export default function AdminAttractionForm(props) {
-  const { initialFormData } = props;
-  const [formData, setFormData] = useState<LocationInterface>({
+export default function AdminLocationForm() {
+
+  const [formData, setFormData] = useState<LocationFormInterface>({
     country: "",
     city: "",
   });
 
   const handleInputChange = (e: React.FormEvent) => {
-    const { name, value, type } = e.target as HTMLInputElement;
+    const { name, value} = e.target as HTMLInputElement;
       setFormData((formData) => ({ ...formData, [name]: value }));
   };
 
@@ -21,11 +21,8 @@ export default function AdminAttractionForm(props) {
       country: formData.country,
       city: formData.city,
     };
-    console.log(location)
-    const response = await createLocation(location)
-      .then((response) => {
-        console.log(location);
-        window.alert("Attraction Create success");
+    await createLocation(location)
+      .then(() => {
         setFormData({
           country: "",
           city: "",

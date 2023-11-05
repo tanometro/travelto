@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import FilterPanel from "../Filtrado/FilterPanel";
 import { useState } from "react";
 
 export default function NavBar() {
@@ -70,18 +69,6 @@ export default function NavBar() {
         {/*Close button*/}
         {/*Toggle button*/}
       </div>
-      <div className="flex mb-4">
-        <button
-          onClick={togglePanel}
-          className="mr-4 py-2 px-6 nav__link relative 
-           text-title-color text-second-font font-bold hover:text-title-color-hover hover:after-width-70 active:after-width-70"
-        >
-          Filtrar y Ordenar
-        </button>
-
-        <FilterPanel isOpen={isPanelOpen}/>
-      </div>
-
       <div
         className="flex text-title-color text-1.25rem cursor-pointer"
         id="nav-toggle"

@@ -1,6 +1,6 @@
 import { CartContext } from "@/src/app/context/cart";
-import React, { FC, ReactNode } from "react";
-import { useContext } from "react";
+import React, { ReactNode, useContext} from "react";
+
 
 export default function CartCounter(): ReactNode {
   const { cart } = useContext(CartContext);
