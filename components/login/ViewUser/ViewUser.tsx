@@ -2,10 +2,10 @@
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 
-import { UserData } from "./DetailUser/UserData";
-import { LoginForm } from "./LoginForm";
+import { UserData } from "../DetailUser/UserData";
+import { LoginForm } from "../LoginForm/LoginForm";
 import { useRouter } from "next/navigation";
-import SignOrLog from "../SignOrLog/SignOrLog";
+import SignOrLog from "../../SignOrLog/SignOrLog";
 
 export const ViewUser = () => {
   const router = useRouter();

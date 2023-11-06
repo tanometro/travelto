@@ -3,7 +3,7 @@ import FormInput from "@/components/login/FormInput/FormInput";
 import { signIn } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import registerValidate from "./registerValidate";
-import RegisterImage from "./RegisterImage/RegisterImage";
+import RegisterImage from "../RegisterImage/RegisterImage";
 import { useRouter } from "next/navigation";
 import createUser from "@/src/requests/postCreateUser";
 

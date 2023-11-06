@@ -1,4 +1,4 @@
-import { ViewUser } from "@/components/login/ViewUser";
+import { ViewUser } from "@/components/login/ViewUser/ViewUser";
 import Image from "next/image";
 
 export default function DashboardLogin() {

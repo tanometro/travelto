@@ -17,13 +17,16 @@ const handler = NextAuth({
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
                 const user = await userLogin(credentials);
+                console.log("respuesta back");
+
+                console.log(user);
 
                 if (user.error) throw new Error(user.error);
                 return user;
 
             },
         }),
-        GoogleProvider({
+        /* GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
             authorization: {
@@ -32,21 +35,33 @@ const handler = NextAuth({
                     response_type: "code"
                 }
             }
-        })
+        }) */
     ],
     callbacks: {
         async jwt({ token, user }) {
             // Persist the OAuth access_token to the token right after signin
+            /*        console.log("token");
+       
+                   console.log(token);
+                   console.log("user");
+                   console.log(user);
+       
+       
+        */
+
             return { ...token, ...user }
         },
         async session({ session, token }) {
             // Send properties to the client, like an access_token from a provider.
+            console.log("aqui esta session");
+
+
+            console.log(token);
 
             if (token.email) {
                 session.user = token;
                 return session;
             }
-
             throw new Error("no autorizado")
 
 
