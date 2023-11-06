@@ -4,7 +4,8 @@ import axios from 'axios';
 const getAllUsers = async () => {
     try {
         const response = await axios.get(`${baseURL}/users`);
-        return response.data
+        console.log(response.data)
+        return response
     } 
     catch (error) {
         throw new Error(error);

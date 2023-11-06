@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { CartContext } from "@/src/app/context/cart";
 import { useContext } from "react";
+import Swal from "sweetalert2";
 
 export default function QuantitySelector({
   attraction,
@@ -27,7 +28,23 @@ export default function QuantitySelector({
     setQuantity(quantity === 100 ? 100 : quantity + 1);
   };
 
-  const decQuantity = () => {
+  const decQuantity = async () => {
+    let result;
+    if (quantity === 1) {
+      result = await Swal.fire({
+        title: "¿Deseas retirar este producto del carrito?",
+        showDenyButton: true,
+        confirmButtonText: "Si, borrar",
+        denyButtonText: `Cancelar`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire("Producto Eliminado", "", "success");
+          setQuantity(0);
+        }
+      });
+      return;
+    }
     setQuantity(quantity === 0 ? 0 : quantity - 1);
   };
   return (
@@ -41,7 +58,9 @@ export default function QuantitySelector({
       <input
         type="text"
         disabled
-        className="w-[2rem] h-[1.5rem] text-center text-black bg-white rounded-md"
+        className={`${
+          quantity < 10 ? "w-[2rem]" : "w-[3.2rem]"
+        } h-[1.5rem] text-center text-black bg-white rounded-md`}
         value={quantity}
       />
       <div

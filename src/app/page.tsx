@@ -1,183 +1,42 @@
 "use client";
+
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Image from "next/image";
 import styles from "./page.module.css";
 import "remixicon/fonts/remixicon.css";
-import Link from "next/link";
-import { baseURL } from "@/constant";
 import { useEffect } from "react";
 //Importando componentes
 import Explore from "@/components/Explore/Explore";
 // Impotrtando imagenes
-import Logo from "@/public/images/logo.png";
-import london from "../../public/images/london.jpeg";
 import img_home from "../../public/images/home-bg.jpg";
-import trees from "../../public/images/home-trees.jpg";
-import lake from "../../public/images/home-lake.jpg";
-import mountain from "../../public/images/home-mountain.jpg";
-import beach from "../../public/images/home-beach.jpg";
-import popular_mountain from "../../public/images/popular-mountain.jpg";
-import popular_lake from "../../public/images/popular-lake.jpg";
-import popular_forest from "../../public/images/popular-forest.jpg";
-import about_beach from "../../public/images/about-beach.jpg";
-
 import join_island from "../../public/images/join-island.jpg";
-import axios from "axios";
 import Popular from "../../components/popular/Populares";
-import CartCounter from "@/components/Cart/CartCounter/CartCounter";
 
 export default function Home() {
-  useEffect(() => {
-    axios
-      .get(`${baseURL}/attractions`)
-      .then((response) => response.data)
-      .then((data) => {
-        if (!data.length) {
-          axios
-            .get(`${baseURL}/attractions/data`)
-            .then((response) => console.log(response));
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const elemento = event.target as HTMLElement;
+    if (
+      elemento &&
+      !(
+        elemento.id.includes("Attraction") ||
+        elemento.parentElement?.id.includes("Attraction")
+      )
+    ) {
+      const menues = document.querySelectorAll(".quantity_selector");
+      menues.forEach((menu) => {
+        if (!menu.classList.contains("hidden")) {
+          menu.classList.remove("flex");
+          menu.classList.add("hidden");
         }
       });
-    /*=============== SHOW MENU ===============*/
-    const navMenu = document.getElementById("nav-menu"),
-      navContainer = document.getElementById("header"),
-      navToggle = document.getElementById("nav-toggle"),
-      navClose = document.getElementById("nav-close");
-    /*===== MENU SHOW =====*/
-    /* Validate if constant exists */
-    if (navToggle) {
-      navToggle.addEventListener("click", () => {
-        navMenu?.classList.add(styles.show_menu);
-        navContainer?.classList.add(styles.expanded);
-        if (navToggle && window.innerWidth < 1023)
-          navToggle.style.display = "none";
-      });
     }
+  };
 
-    /*===== MENU HIDDEN =====*/
-    /* Validate if constant exists */
-    if (navClose) {
-      navClose.addEventListener("click", () => {
-        navMenu?.classList.remove(styles.show_menu);
-        navContainer?.classList.remove(styles.expanded);
-        if (navToggle && window.innerWidth < 1023)
-          navToggle.style.display = "flex";
-      });
-    }
-
-    /*=============== REMOVE MENU MOBILE ===============*/
-    const navLink = document.querySelectorAll(`.${styles.nav__link}`);
-    const linkAction = () => {
-      const navMenu = document.getElementById("nav-menu");
-      // When we click on each nav__link, we remove the show-menu class
-      navMenu?.classList.remove(styles.show_menu);
-      navContainer?.classList.remove(styles.expanded);
-      if (navToggle && window.innerWidth < 1023)
-        navToggle.style.display = "flex";
-    };
-    navLink.forEach((n) => n.addEventListener("click", linkAction));
-
-    /*=============== SHOW SCROLL UP ===============*/
-    const scrollUp = () => {
-      const scrollUp = document.getElementById("scroll-up");
-      if (!scrollUp) return;
-      // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
-      window.scrollY >= 350
-        ? scrollUp.classList.add(styles.show_scroll)
-        : scrollUp.classList.remove(styles.show_scroll);
-    };
-    window.addEventListener("scroll", scrollUp);
-    window.addEventListener("resize", () => {
-      window.innerWidth > 1023
-        ? navToggle && (navToggle.style.display = "none")
-        : navToggle && (navToggle.style.display = "flex");
-    });
-
-    /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-    const sections = document.querySelectorAll("section[id]");
-
-    const scrollActive = () => {
-      const scrollY = window.pageYOffset;
-      sections.forEach((current: HTMLElement) => {
-        const sectionHeight = current.offsetHeight,
-          sectionTop = current.offsetTop - 58,
-          sectionId = current.getAttribute("id"),
-          sectionsClass = document.querySelector(
-            "#nav-menu a[href='#" + sectionId + "']"
-          );
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          sectionsClass?.classList.add(styles.active_link);
-        } else {
-          sectionsClass?.classList.remove(styles.active_link);
-        }
-      });
-    };
-    window.addEventListener("scroll", scrollActive);
-  }, []);
   return (
     <>
-      <header className={styles.header} id="header">
-        <nav className={`${styles.nav} ${styles.container}`}>
-          <a href="#" className={styles.nav__logo}>
-            TravelTo
-          </a>
-          <div className={styles.nav__menu} id="nav-menu">
-            <ul className={styles.nav__list}>
-              <li className={styles.nav__item}>
-                <a
-                  href="#home"
-                  className={`${styles.nav__link} ${styles.active_link}`}
-                >
-                  Home
-                </a>
-              </li>
-
-              <li className={styles.nav__item}>
-                <a href="#popular" className={styles.nav__link}>
-                  Popular
-                </a>
-              </li>
-              <li className={styles.nav__item}>
-                {/* <a href="#explore" className="nav__link relative text-title-color text-second-font font-medium hover:text-title-color-hover hover:after-width-70 active:after-width-70"> */}
-
-                <Link href="#explore" className={styles.nav__link}>
-                  Explorar
-                </Link>
-              </li>
-              <li className={styles.nav__item}>
-                <a href="#footer" className={styles.nav__link}>
-                  About
-                </a>
-              </li>
-              <li className={styles.nav__item}>
-                <Link href="/login" className={styles.nav__link}>
-                  Login
-                </Link>
-              </li>
-              <li className={styles.nav__item}>
-                <Link href="/AdminDashboard" className={styles.nav__link}>
-                  Admin
-              <li>
-                <Link href="/cart">
-                  <CartCounter />
-
-                </Link>
-              </li>
-            </ul>
-            {/*Close button*/}
-            <div className={styles.nav__close} id="nav-close">
-              <i className="ri-close-line" />
-            </div>
-          </div>
-          {/*Toggle button*/}
-          <div className={styles.nav__toggle} id="nav-toggle">
-            <i className="ri-menu-fill" />
-          </div>
-        </nav>
-      </header>
       {/*==================== MAIN ====================*/}
-      <main className="main">
+      <main className="main" onClick={handleClick}>
         {/*==================== HOME ====================*/}
         <section className={`${styles.home} ${styles.section}`} id="home">
           <Image src={img_home} alt="home image" className={styles.home__bg} />

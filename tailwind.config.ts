@@ -6,6 +6,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {
@@ -13,14 +14,16 @@ const config: Config = {
         'title-color': 'var(--title-color), hsl(0, 0%, 95%)',
       },
       fontFamily: {
-        'second-font': 'var(--second-font) "Montserrat", sans-serif"',
+        'second-font': 'var(--second-font), "Montserrat", sans-serif',
       },
       fontWeight: {
         'semi-bold': 'var(--font-semi-bold) 600',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
   
 };
 export default config;

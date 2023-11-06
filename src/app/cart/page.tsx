@@ -1,40 +1,37 @@
 "use client";
 import "remixicon/fonts/remixicon.css";
 import React, { useContext, useEffect, useState } from "react";
+import Image from "next/image";
 import CartCard from "@/components/Cart/CartCard/CartCard";
 import { CartContext } from "@/src/app/context/cart";
 import Total from "@/components/Total/Total";
+import Fondo from "@/public/images/fondo_cart.jpg";
+import { AttractionsCartInterface } from "@/src/interfaces";
 import { useRouter } from "next/navigation";
 
-interface attractions {
-  id: number;
-  name: string;
-  isActive: boolean;
-  hours: string;
-  city: string;
-  country: string;
-  latitude: string;
-  ranking: number;
-  longitude: string;
-  price: number;
-  duration: string;
-  image: string;
-  quantity: number;
-}
-
-export default function page() {
+export default function Page() {
   const { cart } = useContext(CartContext);
   const router = useRouter();
-  const [resultado, setResultado] = useState<attractions[]>([]);
+  const [resultado, setResultado] = useState<AttractionsCartInterface[]>([]);
 
   const handleBack = () => {
     router.back();
   };
+
+  useEffect(() => {
+    if (Object.keys(cart).length === 0) router.push("/");
+  }, [cart]);
   return (
-    <div className="container mx-auto flex justify-center items-start gap-5 p-10">
-      <div className=" flex flex-col gap-5">
+    <div className="md:container m-0 sm:mx-auto flex flex-col sm:flex-row justify-center items-center sm:items-start gap-5 pt-10 sm:p-10">
+      <Image
+        src={Fondo}
+        alt="FondoCart"
+        layout="cover"
+        className="fixed z-[100] min-w-screen min-h-screen top-0 left-0 overflow-y-hidden"
+      />
+      <div className="z-[101] flex flex-col gap-5 mx-auto lg:max-w-[75%]">
         <div className="flex justify-between">
-          <h1 className="text-2xl">Shopping cart</h1>
+          <h1 className="text-2xl">Mi Carrito 🛒</h1>
           <button
             onClick={handleBack}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-full"
@@ -53,7 +50,7 @@ export default function page() {
           </button>
         </div>
         {Object.keys(cart).map((id) => (
-          <CartCard attraction={cart[id]} />
+          <CartCard key={"Card" + id} attraction={cart[id]} />
         ))}
       </div>
       <Total />
