@@ -8,6 +8,7 @@ import {
   useReactTable,
   getPaginationRowModel,
   getSortedRowModel,
+  getFilteredRowModel
 } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -15,6 +16,7 @@ import { useEffect, useState } from "react";
 export default function AdminLocationsTable() {
   const [locations, setLocations] = useState<LocationInterface[]>([]);
   const [sorting, setSorting] = useState([]);
+  const [filtering, setFiltering] = useState("");
 
   const table = useReactTable({
     data: locations,
@@ -22,10 +24,13 @@ export default function AdminLocationsTable() {
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     state: {
       sorting,
+      globalFilter: filtering,
     },
     onSortingChange: setSorting,
+    onGlobalFilterChange: setFiltering,
   });
 
   useEffect(() => {
@@ -43,7 +48,20 @@ export default function AdminLocationsTable() {
   const router = useRouter();
 
   return (
-    <div className=" w-full h-full">
+    <div className=" w-full h-full ">
+      <div className="rounded-lg w-full h-1/6 bg-slate-700 mb-2 justify-between">
+        <span className="m-2 text-2xl text-white">Total de Ciudades: </span>
+        <span className="m-2 mr-4 text-2xl text-lime-600">{locations.length}</span>
+        <div>
+        <span className="m-2 text-lg text-white">Filtrar por cualquier Propiedad</span>
+        <input 
+        className="rounded-lg text-black"
+        type="text"
+        value= {filtering}
+        onChange={(e) => setFiltering(e.target.value)}
+        />
+        </div>
+      </div>
       <div className="h-4/6">
         <table className="min-w-full rounded-lg w-full h-full bg-slate-700">
           <thead>
@@ -66,9 +84,9 @@ export default function AdminLocationsTable() {
                         )}
 
                         {
-                          { asc: "⬆️", desc: "⬇️" }[
-                            header.column.getIsSorted() ?? null
-                          ]
+                          header.column.getIsSorted() 
+                          ? { asc: "⬆️", desc: "⬇️" }[header.column.getIsSorted() as 'asc' | 'desc'] 
+                          : null
                         }
                       </div>
                     )}
@@ -106,7 +124,15 @@ export default function AdminLocationsTable() {
         <span className="text-2xl">
           {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
         </span>
-        <button className="text-4xl" onClick={() => table.nextPage()}>
+        <button 
+        className="text-4xl" 
+        onClick={() => {
+          if (table.getPageCount() > 1 && table.getState().pagination.pageIndex < table.getPageCount() - 1) {
+            table.nextPage();
+          }
+        }}
+        disabled={table.getPageCount() <= 1 || table.getState().pagination.pageIndex >= table.getPageCount() - 1}
+            >
           ➡️
         </button>
         <button
