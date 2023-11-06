@@ -9,7 +9,7 @@ export default function Total() {
   let total = 0;
   Object.keys(cart).map((id) => (total += cart[id].price * cart[id].quantity));
   return (
-    <div className="p-5 mt-[52px] bg-slate-500 bg-opacity-70 rounded-md">
+    <div className="p-5 m-0 sm:mt-[52px] bg-slate-500 bg-opacity-90 rounded-md z-[100]">
       <h2 className="text-xl mb-10">Selecciona tu método de pago:</h2>
       <PaymentSelector />
       <h1 className="text-2xl mb-10">

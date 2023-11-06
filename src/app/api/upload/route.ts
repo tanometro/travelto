@@ -9,7 +9,6 @@ cloudinary.config({
 
 export async function POST(request): Promise<NextResponse> {
     const data = await request.formData();
-
     const image = data.get('file');
 
     if (!image) {
@@ -19,12 +18,13 @@ export async function POST(request): Promise<NextResponse> {
     const bytes = await image.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const response: Promise<UploadApiResponse> = new Promise((resolve, reject) => {
+    return new Promise<NextResponse>(async (resolve, reject) => {
         cloudinary.uploader.upload_stream({}, (err, result) => {
-            if (err) { reject(err) }
-            resolve(result);
-        }).end(buffer)
-    })
-
-    return NextResponse.json({ message: "imagen subida", url: (await response).secure_url, })
+            if (err || !result) {
+                reject(err || "Error al subir la imagen");
+            } else {
+                resolve(NextResponse.json({ message: "imagen subida", url: result.secure_url }));
+            }
+        }).end(buffer);
+    });
 }

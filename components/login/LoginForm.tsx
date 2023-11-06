@@ -65,6 +65,7 @@ export const LoginForm = () => {
             onClick={() =>
               signIn("google", {
                 redirect: true,
+                callbackUrl: "/",
               })
             }
           >

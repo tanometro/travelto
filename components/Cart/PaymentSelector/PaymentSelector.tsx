@@ -5,6 +5,7 @@ function PaymentSelector() {
     <div className="my-5">
       <div className="flex items-center mb-4">
         <input
+          defaultChecked
           id="mercadoPagoRadio"
           type="radio"
           value="mercadopago"
@@ -12,7 +13,7 @@ function PaymentSelector() {
           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
         />
         <label
-          htmlFor="mercadopago"
+          htmlFor="mercadoPagoRadio"
           className="ml-2 text-sm font-medium text-gray-400 dark:text-gray-500"
         >
           Mercado Pago
@@ -27,7 +28,7 @@ function PaymentSelector() {
           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
         />
         <label
-          htmlFor="paypal"
+          htmlFor="payPalRadio"
           className="ml-2 text-sm font-medium text-gray-400 dark:text-gray-500"
         >
           Pay Pal
