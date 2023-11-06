@@ -1,34 +1,104 @@
 "use client";
+
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Image from "next/image";
 import styles from "./page.module.css";
 import "remixicon/fonts/remixicon.css";
 import Link from "next/link";
-import { baseURL } from "@/constant";
 import { useEffect } from "react";
 //Importando componentes
 import Explore from "@/components/Explore/Explore";
 // Impotrtando imagenes
-import Logo from "@/public/images/logo.png";
-import london from "../../public/images/london.jpeg";
+
 import img_home from "../../public/images/home-bg.jpg";
-import trees from "../../public/images/home-trees.jpg";
-import lake from "../../public/images/home-lake.jpg";
-import mountain from "../../public/images/home-mountain.jpg";
-import beach from "../../public/images/home-beach.jpg";
-import popular_mountain from "../../public/images/popular-mountain.jpg";
-import popular_lake from "../../public/images/popular-lake.jpg";
-import popular_forest from "../../public/images/popular-forest.jpg";
-import about_beach from "../../public/images/about-beach.jpg";
 
 import join_island from "../../public/images/join-island.jpg";
-import axios from "axios";
 import Popular from "../../components/popular/Populares";
 import CartCounter from "@/components/Cart/CartCounter/CartCounter";
 import NavBar from "@/components/NavBar/NavBar";
 
 export default function Home() {
+
+  useEffect(() => {
+
+    /*=============== SHOW MENU ===============*/
+    const navMenu = document.getElementById("nav-menu"),
+      navContainer = document.getElementById("header"),
+      navToggle = document.getElementById("nav-toggle"),
+      navClose = document.getElementById("nav-close");
+    /*===== MENU SHOW =====*/
+    /* Validate if constant exists */
+    if (navToggle) {
+      navToggle.addEventListener("click", () => {
+        navMenu?.classList.add(styles.show_menu);
+        navContainer?.classList.add(styles.expanded);
+        if (navToggle && window.innerWidth < 1023)
+          navToggle.style.display = "none";
+      });
+    }
+
+    /*===== MENU HIDDEN =====*/
+    /* Validate if constant exists */
+    if (navClose) {
+      navClose.addEventListener("click", () => {
+        navMenu?.classList.remove(styles.show_menu);
+        navContainer?.classList.remove(styles.expanded);
+        if (navToggle && window.innerWidth < 1023)
+          navToggle.style.display = "flex";
+      });
+    }
+
+    /*=============== REMOVE MENU MOBILE ===============*/
+    const navLink = document.querySelectorAll(`.${styles.nav__link}`);
+    const linkAction = () => {
+      const navMenu = document.getElementById("nav-menu");
+      // When we click on each nav__link, we remove the show-menu class
+      navMenu?.classList.remove(styles.show_menu);
+      navContainer?.classList.remove(styles.expanded);
+      if (navToggle && window.innerWidth < 1023)
+        navToggle.style.display = "flex";
+    };
+    navLink.forEach((n) => n.addEventListener("click", linkAction));
+
+    /*=============== SHOW SCROLL UP ===============*/
+    const scrollUp = () => {
+      const scrollUp = document.getElementById("scroll-up");
+      if (!scrollUp) return;
+      // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
+      window.scrollY >= 350
+        ? scrollUp.classList.add(styles.show_scroll)
+        : scrollUp.classList.remove(styles.show_scroll);
+    };
+    window.addEventListener("scroll", scrollUp);
+    window.addEventListener("resize", () => {
+      window.innerWidth > 1023
+        ? navToggle && (navToggle.style.display = "none")
+        : navToggle && (navToggle.style.display = "flex");
+    });
+
+    /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+    const sections = document.querySelectorAll("section[id]");
+
+    const scrollActive = () => {
+      const scrollY = window.pageYOffset;
+      sections.forEach((current: HTMLElement) => {
+        const sectionHeight = current.offsetHeight,
+          sectionTop = current.offsetTop - 58,
+          sectionId = current.getAttribute("id"),
+          sectionsClass = document.querySelector(
+            "#nav-menu a[href='#" + sectionId + "']"
+          );
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+          sectionsClass?.classList.add(styles.active_link);
+        } else {
+          sectionsClass?.classList.remove(styles.active_link);
+        }
+      });
+    };
+    window.addEventListener("scroll", scrollActive);
+  }, []);
+
   return (
     <>
       {/*==================== MAIN ====================*/}

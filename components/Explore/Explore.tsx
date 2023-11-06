@@ -17,9 +17,6 @@ export default function Explore() {
     country: "",
     priceRange:""
     
-})   //estado de los select y searchbar...
-  /* const [input, setInput] = useState<string>("") */
-  const [countrySelected, setCountrySelected ] = useState<string>("")
   const [citiesPerCountry, setCitiesPerCountry] = useState<string[]>([])
   const [flag, setFlag] = useState<boolean>(false)
   const [allAttraction, setAllAttraction] = useState<AttractionInterface[]>([]) //todas las attraction
@@ -30,7 +27,7 @@ export default function Explore() {
       let res = await getAllAttractions()
       let datos= res.data    
       setAttraction(datos)
-      setAllAttraction([...datos])      
+      setAllAttraction([...datos])
       
       } catch (error) {
           console.log(error); 
@@ -134,17 +131,17 @@ export default function Explore() {
     //Por rangos de precios
     if (state.priceRange === "R1") {
       orderAndFilter = orderAndFilter.filter(e => {
-        return e.price <= 1000 
+        return Number(e.price) <= 1000 
       })
     } 
     if (state.priceRange === "R2") {
       orderAndFilter = orderAndFilter.filter(e => {
-        return e.price >= 1000 && e.price <= 2000 
+        return Number(e.price) >= 1000 && Number(e.price) <= 2000 
       })
     }
     if (state.priceRange === "R3") {
       orderAndFilter = orderAndFilter.filter(e => {
-        return e.price >= 2000 
+        return Number(e.price) >= 2000 
       })
     }  
   

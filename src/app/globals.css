@@ -157,13 +157,13 @@ img {
 @media screen and (max-width: 1023px) {
   .nav__menu {
     position: fixed;
-    background-color: hlsa(0, 0%, 0%, .3);
+    background-color: hsla(0, 0%, 0%, .3);
     top: -100%;
     left: 0;
     width: 100%;
     padding-block: 4rem;
     backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px); /*for Safari*/
+    -webkit-backdrop-filter: blur(24px);
     transition: top .4s;
   }
   .nav__list {
@@ -202,15 +202,10 @@ img {
 .show-menu {
   top: 0;
 }
-
-/* Add blur to header */
-
-
 /* Active link */
 .active_link::after {
   width: 70%;
 }
-
 /*=============== HOME ===============*/
 .home {
   position: relative;
@@ -248,7 +243,6 @@ img {
 }
 .home__title {
   font-size: var(--biggest-font-size);
-  /* margin-bottom: .5rem; */
 }
 .home__description {
   margin-bottom: 2rem;
@@ -285,7 +279,6 @@ img {
 .home__card:hover .home__card_img {
   transform: scale(1.2);
 }
-
 /*=============== BUTTON ===============*/
 .button {
   background-color: hsla(0, 0%, 100%, .2);
@@ -297,7 +290,7 @@ img {
   font-family: var(--second-font);
   font-weight: var(--font-semi-bold);
   backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px); /*for Safari*/
+  -webkit-backdrop-filter: blur(24px);
 }
 .button i {
   font-size: 1.25rem;
@@ -307,11 +300,82 @@ img {
 .button:hover i {
   transform: translateX(.25rem);
 }
+/*=============== ABOUT ===============*/
+.about__container {
+  row-gap: 3rem;
+}
+.about__data {
+  text-align: center;
+}
+.about__description {
+  margin-bottom: 2rem;
+}
+.about__image {
+  position: relative;
+  justify-self: center;
+  overflow: hidden;
+}
+.about__img {
+  width: 300px;
+  transition: transform .4s;
+}
+.about__shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(180deg,
+              hsla(0, 0%, 0%, 0) 50%,
+              hsl(0, 0%, 0%)125%);
+}
+.about__image:hover .about__img {
+  transform: scale(1.2);
+}
 
 /*=============== POPULAR ===============*/
-
-/*=============== EXPLORE ===============*/
-
+.popular__container {
+  padding-top: 1.5rem;
+  grid-template-columns: 240px;
+  justify-content: center;
+  row-gap: 2.5rem;
+}
+.popular__image {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.popular__img {
+  transition: transform .4s;
+}
+.popular__shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(180deg,
+              hsla(0, 0%, 0%, 0) 50%,
+              hsl(0, 0%, 0%)125%);
+}
+.popular__title {
+  font-size: var(--h3-font-size);
+  margin-bottom: .5rem;
+}
+.popular__location {
+  display:inline-flex;
+  align-items: center;
+  column-gap: .25rem;
+  font-size: var(--small-font-size);
+  font-family: var(--second-font);
+  font-weight: 500;
+}
+.popular__location i {
+  font-size: 1rem;
+}
+.popular__image:hover .popular__img {
+   transform: scale(1.2);
+}
 /*=============== JOIN ===============*/
 .join__container {
   row-gap: 3rem;
@@ -351,8 +415,8 @@ img {
   left: 0;
   background: linear-gradient(180deg,
               hsla(0, 0%, 0%, 0) 50%,
-              hsl(0, 0%, 0%) 125%),          
-}
+              hsl(0, 0%, 0%) 125%);
+  }
 .join__image:hover .join__img {
   transform: scale(1.2);
 }
@@ -418,20 +482,6 @@ img {
   color: var(--text-color);
   text-align: center;
 }
-/*=============== SCROLL BAR ===============*/
-/* ::-webkit-scrollbar {
-  width: .6rem;
-  border-radius: .5rem;
-  background-color: hsl(0, 0%, 10%);
-}
-::-webkit-scrollbar-thumb {
-  border-radius: .5rem;
-  background-color: hsl(0, 0%, 20%);
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: hsl(0, 0%, 30%);
-} */
-
 /*=============== SCROLL UP ===============*/
 .scrollup {
   position: fixed;
@@ -443,7 +493,7 @@ img {
   color: var(--title-color);
   font-size: 1.25rem;
   backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px); /*for Safari*/
+  -webkit-backdrop-filter: blur(24px);
   z-index: var(--z-tooltip);
   transition: bottom .4s transform .4s;
 }
@@ -540,7 +590,6 @@ img {
     grid-template-columns: initial;
     justify-content: initial;
     row-gap: 4rem;
-    /* padding-top: 6.5rem; */
   }
   .home__shadow {
     height: 980px;
