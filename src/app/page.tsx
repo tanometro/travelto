@@ -19,9 +19,25 @@ import CartCounter from "@/components/Cart/CartCounter/CartCounter";
 import NavBar from "@/components/NavBar/NavBar";
 
 export default function Home() {
-
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const elemento = event.target as HTMLElement;
+    if (
+      elemento &&
+      !(
+        elemento.id.includes("Attraction") ||
+        elemento.parentElement?.id.includes("Attraction")
+      )
+    ) {
+      const menues = document.querySelectorAll(".quantity_selector");
+      menues.forEach((menu) => {
+        if (!menu.classList.contains("hidden")) {
+          menu.classList.remove("flex");
+          menu.classList.add("hidden");
+        }
+      });
+    }
+  };
   useEffect(() => {
-
     /*=============== SHOW MENU ===============*/
     const navMenu = document.getElementById("nav-menu"),
       navContainer = document.getElementById("header"),
@@ -102,7 +118,7 @@ export default function Home() {
   return (
     <>
       {/*==================== MAIN ====================*/}
-      <main className="main">
+      <main className="main" onClick={handleClick}>
         {/*==================== HOME ====================*/}
         <section className={`${styles.home} ${styles.section}`} id="home">
           <Image src={img_home} alt="home image" className={styles.home__bg} />
