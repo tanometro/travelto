@@ -1,18 +1,17 @@
 import Image from "next/image";
 import styles from "./populares.module.css";
 import "remixicon/fonts/remixicon.css";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { baseURL } from "@/constant";
 import { AttractionInterface } from "@/src/interfaces";
 import Link from "next/link";
+import  getAllAttractions  from "@/src/requests/getAllAttractions"
 
 export default function Popular() {
   const [attraction, setAttraction] = useState<AttractionInterface[]>([]); //trae las attractions ??? solo crea un estado esto!
 
   const getDatos = async () => {
     try {
-      let res = await axios.get(`${baseURL}/attractions`);
+      let res = await getAllAttractions();
       let datos = res.data;
       if (!datos.length) {
         window.alert("No se encuentran datos");
@@ -25,7 +24,18 @@ export default function Popular() {
   };
   useEffect(() => {
     getDatos();
+    
   }, []);
+  const filter = attraction.sort((a, b) => {
+    if(a.ranking > b.ranking) {
+        return 1;
+    }
+    if(b.ranking > a.ranking) {
+        return -1;
+    }
+    return 0;
+    })
+  
   return (
     <>
       <h2 className={styles.section__title}>
@@ -34,7 +44,7 @@ export default function Popular() {
       <div
         className={`${styles.popular__container} ${styles.container} ${styles.grid}`}
       >
-        {attraction.slice(0, 3).map((e) => {
+        {filter.slice(0, 3).map((e) => {
           return (
             <article key={e.id}className={styles.popular__card}>
               <Link href={`/Detail/${e.id}`}>
@@ -51,9 +61,14 @@ export default function Popular() {
               <h2 className={styles.popular__title}>{e.name}</h2>
               <div className={styles.popular__location}>
                 <i className="ri-map-pin-line" />
+                <div className="flex justify-around">
                 <span>
                   {e.Location.country} - {e.Location.city}
                 </span>
+                <span className="ml-12">
+                  Ranking: {e.ranking}
+                </span>
+                </div>
               </div>
             </article>
           );

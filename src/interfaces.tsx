@@ -48,7 +48,7 @@ export interface AttractionInterface {
     Location: {city: string, country: string},
     latitude: string,
     longitude: string,
-    price: string,
+    price: number,
     ranking: number,
     hours: string,
     duration: string,

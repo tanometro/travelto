@@ -10,7 +10,7 @@ export default function AddToCart({ attraction }): ReactNode {
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setShowMenu(!showMenu);
   };
-  console.log(attraction);
+  /* console.log(attraction); */
   return (
     <div className="relative">
       <div onClick={handleClick}>
