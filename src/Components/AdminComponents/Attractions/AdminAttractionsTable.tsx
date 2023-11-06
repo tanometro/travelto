@@ -5,7 +5,7 @@ import { AttractionInterface } from "@/src/interfaces";
 
 export default function AdminAttractionsTable() {
 
-  const [attractions, setAttractions] = useState <AttractionInterface> ([])
+  const [attractions, setAttractions] = useState <AttractionInterface[]> ([])
     
   useEffect(() => {
     async function fetchData () {

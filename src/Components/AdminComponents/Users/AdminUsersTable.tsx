@@ -7,7 +7,7 @@ import { UserInterface } from "@/src/interfaces";
 
 export default function AdminUsersTable() {
 
-  const [users, setUsers] = useState<UserInterface>([])
+  const [users, setUsers] = useState<UserInterface[]>([])
 
   useEffect(() => {
     async function fetchData() {
@@ -21,6 +21,16 @@ export default function AdminUsersTable() {
     }
     fetchData();
   }, [])
+
+  function getUserRole(roleID) {
+    if (roleID === 1) {
+      return "Admin";
+    } else if (roleID === 2) {
+      return "Support";
+    } else {
+      return "User";
+    }
+  }
 
   const router = useRouter();
 
@@ -65,14 +75,8 @@ export default function AdminUsersTable() {
                     style={{ border: 'none', background: 'none' }}
                   />
                 </td>
-                <td className="border-b p-2 border-r-2">{user.imagen}</td>
-                <td className="border-b p-2 border-r-2">
-                  {user.roleID == 1
-                    ? "Admin"
-                    : user.roleID == 2
-                      ? "Support"
-                      : "User"}
-                </td>
+                <td className="border-b p-2 border-r-2">{user.image}</td>
+                {getUserRole(user.roleID)}
                 <td className="border-b p-2 border-r-2">
                   {user.isActive ? "SI" : "NO"}
                 </td>

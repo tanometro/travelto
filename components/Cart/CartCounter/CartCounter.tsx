@@ -1,11 +1,10 @@
 import { CartContext } from "@/src/app/context/cart";
-import React, { FC, ReactNode } from "react";
-import { useContext } from "react";
+import React, { ReactNode, useContext } from "react";
 
 export default function CartCounter(): ReactNode {
   const { cart } = useContext(CartContext);
   return (
-    <div className="relative bg-opacity-30 rounded-full bg-slate-500 w-[40px] h-[40px] top-[-10%] left-[-10%]">
+    <div className="bg-opacity-30 rounded-full bg-slate-500 w-[40px] h-[40px] top-[-10%] left-[-10%]">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

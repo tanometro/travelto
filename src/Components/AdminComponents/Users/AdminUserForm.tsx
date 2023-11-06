@@ -1,11 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import { UserPostInterface } from "@/src/interfaces";
+import { UserFormInterface} from "@/src/interfaces";
 import createUser from "@/src/requests/postUser";
 
-export default function AdminAttractionForm(props) {
-  const { initialFormData } = props;
-  const [formData, setFormData] = useState<UserPostInterface>({
+export default function AdminAttractionForm() {
+  const [formData, setFormData] = useState<UserFormInterface>({
     name: "",
     lastname: "",
     dni: "",
@@ -40,10 +39,8 @@ export default function AdminAttractionForm(props) {
       roleID: formData.roleID
       }
     console.log(user)
-    const response = await createUser(user)
-      .then((response) => {
-        console.log(user);
-        window.alert("Attraction Create success");
+  await createUser(user)
+      .then(() => {
         setFormData({
             name: "",
             lastname: "",
