@@ -4,7 +4,6 @@ import styles from "./explore.module.css";
 import explore_beach from "../../public/images/explore-beach.jpg";
 import Cards from "@/components/Cards/Cards";
 import { useEffect, useState, useRef, ChangeEvent } from "react";
-import { Tooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
 import { AttractionInterface } from "@/src/interfaces";
 import  getAllAttractions  from "@/src/requests/getAllAttractions"

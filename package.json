@@ -54,6 +54,8 @@
 
     "react-router": "^6.17.0",
 
+    "react-tooltip": "^5.22.0",
+
     "redux": "^4.2.1",
 
     "remixicon": "^3.5.0"
