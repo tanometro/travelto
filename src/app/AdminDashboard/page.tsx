@@ -69,7 +69,7 @@ export default function AdminDashboard() {
           Nueva Ciudad
         </button>
         <Link href="/" className=" hover:border-red-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 h-4/5 w-1/5 border-solid">
-        <button >
+        <button className=" hover:border-red-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 h-full w-full border-solid">
           Log Out
         </button>
         </Link>
