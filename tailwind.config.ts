@@ -13,7 +13,7 @@ const config: Config = {
         'title-color': 'var(--title-color), hsl(0, 0%, 95%)',
       },
       fontFamily: {
-        'second-font': 'var(--second-font) "Montserrat", sans-serif"',
+        'second-font': 'var(--second-font), "Montserrat", sans-serif',
       },
       fontWeight: {
         'semi-bold': 'var(--font-semi-bold) 600',

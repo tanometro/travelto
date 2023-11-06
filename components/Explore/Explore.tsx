@@ -6,49 +6,27 @@ import Cards from "@/components/Cards/Cards";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { baseURL } from "@/constant";
+import { AttractionInterface } from "@/src/interfaces";
 
 export default function Explore() {
   
-  interface attractions {
-    id: number;
-    name: string;
-    isActive: boolean;
-    hours: string;
-    Location: {city: string, country: string}
-    latitude: string;
-    ranking: number;
-    longitude: string;
-    price: number;
-    duration: string;
-    image: string;
-}
-  
-  /* const cities = locations.locations.map((location) => {
-    return location.city;
-  });
-  const countr = locations.locations.map((location) => {
-    return location.country;
-  }); */
+
   let [state, setState] = useState({
     order: "",
     city: "",
     country: ""
     
 })   //estado de los select...
-  const [countrySelected, setCountrySelected ] = useState<string>("")
   const [citiesPerCountry, setCitiesPerCountry] = useState<string[]>([])
   const [flag, setFlag] = useState<boolean>(false)
-  const [allAttraction, setAllAttraction] = useState<attractions[]>([]) //todas las attraction
-  const [attraction, setAttraction] = useState<attractions[]>([]) //attraction para filter
+  const [allAttraction, setAllAttraction] = useState<AttractionInterface[]>([]) //todas las attraction
+  const [attraction, setAttraction] = useState<AttractionInterface[]>([]) //attraction para filter
   
   const getDatos =async () => {
     try {
       let res = await axios.get(`${baseURL}/attractions`)
       let datos= res.data
       console.log(datos);    
-      /* if (!datos.length) {
-        window.alert("No se encuentran datos")
-      } else { */
         setAttraction(datos)
         setAllAttraction([...datos])      
       
@@ -153,17 +131,17 @@ export default function Explore() {
     //Por rangos de precios
     if (state.order === "R1") {
       orderAndFilter = orderAndFilter.filter(e => {
-        return e.price <= 1000 
+        return Number(e.price) <= 1000 
       })
     } 
     if (state.order === "R2") {
       orderAndFilter = orderAndFilter.filter(e => {
-        return e.price >= 1000 && e.price <= 2000 
+        return Number(e.price) >= 1000 && Number(e.price) <= 2000 
       })
     }
     if (state.order === "R3") {
       orderAndFilter = orderAndFilter.filter(e => {
-        return e.price >= 2000 
+        return Number(e.price) >= 2000 
       })
     }  
   }

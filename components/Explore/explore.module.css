@@ -55,7 +55,6 @@
   background-color: hsla(0, 0%, 100%, .2);
   padding: .2rem .2rem;
   color: var(--title-color);
- 
   align-items: center;
   column-gap: .5rem;
   font-family: var(--second-font);
@@ -80,7 +79,6 @@
   width: 50vw;
   border-radius: 2em;
 }
-
 .container_select {
   display: flex;
   justify-content: space-around;

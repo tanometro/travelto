@@ -1,44 +1,25 @@
 "use client";
+
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Image from "next/image";
 import styles from "./page.module.css";
 import "remixicon/fonts/remixicon.css";
 import Link from "next/link";
-import { baseURL } from "@/constant";
 import { useEffect } from "react";
 //Importando componentes
 import Explore from "@/components/Explore/Explore";
 // Impotrtando imagenes
-import Logo from "@/public/images/logo.png";
-import london from "../../public/images/london.jpeg";
+
 import img_home from "../../public/images/home-bg.jpg";
-import trees from "../../public/images/home-trees.jpg";
-import lake from "../../public/images/home-lake.jpg";
-import mountain from "../../public/images/home-mountain.jpg";
-import beach from "../../public/images/home-beach.jpg";
-import popular_mountain from "../../public/images/popular-mountain.jpg";
-import popular_lake from "../../public/images/popular-lake.jpg";
-import popular_forest from "../../public/images/popular-forest.jpg";
-import about_beach from "../../public/images/about-beach.jpg";
 
 import join_island from "../../public/images/join-island.jpg";
-import axios from "axios";
 import Popular from "../../components/popular/Populares";
 import CartCounter from "@/components/Cart/CartCounter/CartCounter";
 
 export default function Home() {
   useEffect(() => {
-  //   axios
-  //     .get(`${baseURL}/attractions`)
-  //     .then((response) => response.data)
-  //     .then((data) => {
-  //       if (!data.length) {
-  //         axios
-  //           .get(`${baseURL}/attractions/data`)
-  //           .then((response) => console.log(response));
-  //       }
-  //     });
+
     /*=============== SHOW MENU ===============*/
     const navMenu = document.getElementById("nav-menu"),
       navContainer = document.getElementById("header"),
