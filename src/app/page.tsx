@@ -14,90 +14,29 @@ import join_island from "../../public/images/join-island.jpg";
 import Popular from "../../components/popular/Populares";
 
 export default function Home() {
-
-  useEffect(() => {
-
-    /*=============== SHOW MENU ===============*/
-    const navMenu = document.getElementById("nav-menu"),
-      navContainer = document.getElementById("header"),
-      navToggle = document.getElementById("nav-toggle"),
-      navClose = document.getElementById("nav-close");
-    /*===== MENU SHOW =====*/
-    /* Validate if constant exists */
-    if (navToggle) {
-      navToggle.addEventListener("click", () => {
-        navMenu?.classList.add(styles.show_menu);
-        navContainer?.classList.add(styles.expanded);
-        if (navToggle && window.innerWidth < 1023)
-          navToggle.style.display = "none";
-      });
-    }
-
-    /*===== MENU HIDDEN =====*/
-    /* Validate if constant exists */
-    if (navClose) {
-      navClose.addEventListener("click", () => {
-        navMenu?.classList.remove(styles.show_menu);
-        navContainer?.classList.remove(styles.expanded);
-        if (navToggle && window.innerWidth < 1023)
-          navToggle.style.display = "flex";
-      });
-    }
-
-    /*=============== REMOVE MENU MOBILE ===============*/
-    const navLink = document.querySelectorAll(`.${styles.nav__link}`);
-    const linkAction = () => {
-      const navMenu = document.getElementById("nav-menu");
-      // When we click on each nav__link, we remove the show-menu class
-      navMenu?.classList.remove(styles.show_menu);
-      navContainer?.classList.remove(styles.expanded);
-      if (navToggle && window.innerWidth < 1023)
-        navToggle.style.display = "flex";
-    };
-    navLink.forEach((n) => n.addEventListener("click", linkAction));
-
-    /*=============== SHOW SCROLL UP ===============*/
-    const scrollUp = () => {
-      const scrollUp = document.getElementById("scroll-up");
-      if (!scrollUp) return;
-      // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
-      window.scrollY >= 350
-        ? scrollUp.classList.add(styles.show_scroll)
-        : scrollUp.classList.remove(styles.show_scroll);
-    };
-    window.addEventListener("scroll", scrollUp);
-    window.addEventListener("resize", () => {
-      window.innerWidth > 1023
-        ? navToggle && (navToggle.style.display = "none")
-        : navToggle && (navToggle.style.display = "flex");
-    });
-
-    /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-    const sections = document.querySelectorAll("section[id]");
-
-    const scrollActive = () => {
-      const scrollY = window.pageYOffset;
-      sections.forEach((current: HTMLElement) => {
-        const sectionHeight = current.offsetHeight,
-          sectionTop = current.offsetTop - 58,
-          sectionId = current.getAttribute("id"),
-          sectionsClass = document.querySelector(
-            "#nav-menu a[href='#" + sectionId + "']"
-          );
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          sectionsClass?.classList.add(styles.active_link);
-        } else {
-          sectionsClass?.classList.remove(styles.active_link);
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const elemento = event.target as HTMLElement;
+    if (
+      elemento &&
+      !(
+        elemento.id.includes("Attraction") ||
+        elemento.parentElement?.id.includes("Attraction")
+      )
+    ) {
+      const menues = document.querySelectorAll(".quantity_selector");
+      menues.forEach((menu) => {
+        if (!menu.classList.contains("hidden")) {
+          menu.classList.remove("flex");
+          menu.classList.add("hidden");
         }
       });
-    };
-    window.addEventListener("scroll", scrollActive);
-  }, []);
+    }
+  };
 
   return (
     <>
       {/*==================== MAIN ====================*/}
-      <main className="main">
+      <main className="main" onClick={handleClick}>
         {/*==================== HOME ====================*/}
         <section className={`${styles.home} ${styles.section}`} id="home">
           <Image src={img_home} alt="home image" className={styles.home__bg} />
