@@ -6,8 +6,11 @@ import CartCounter from "@/components/Cart/CartCounter/CartCounter";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import ProfileInfo from "@/components/ProfileInfo/ProfileInfo";
+import { usePathname } from "next/navigation";
 
 function NavBar() {
+  const pathname = usePathname();
+  if (pathname === "/AdminDashboard") return;
   useEffect(() => {
     //   axios
     //     .get(`${baseURL}/attractions`)
