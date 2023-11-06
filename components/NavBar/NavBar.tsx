@@ -146,7 +146,7 @@ function NavBar() {
                 Admin
               </Link>
             </li>
-            <li>
+            <li className="relative mx-auto">
               <Link href="/cart">
                 <CartCounter />
               </Link>

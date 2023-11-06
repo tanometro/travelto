@@ -46,7 +46,7 @@ export default function Page() {
           </button>
         </div>
         {Object.keys(cart).map((id) => (
-          <CartCard attraction={cart[id]} />
+          <CartCard key={"Card" + id} attraction={cart[id]} />
         ))}
       </div>
       <Total />
