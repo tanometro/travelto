@@ -16,7 +16,7 @@ export default function Explore() {
     city: "",
     country: "",
     priceRange:""
-    
+  })
   const [citiesPerCountry, setCitiesPerCountry] = useState<string[]>([])
   const [flag, setFlag] = useState<boolean>(false)
   const [allAttraction, setAllAttraction] = useState<AttractionInterface[]>([]) //todas las attraction
