@@ -26,6 +26,7 @@ function NavBar() {
     const navMenu = document.getElementById("nav-menu"),
       navContainer = document.getElementById("header"),
       navToggle = document.getElementById("nav-toggle"),
+      carrito = document.getElementById("carrito"),
       navClose = document.getElementById("nav-close");
     /*===== MENU SHOW =====*/
     /* Validate if constant exists */
@@ -52,13 +53,13 @@ function NavBar() {
     /*=============== REMOVE MENU MOBILE ===============*/
     const navLink = document.querySelectorAll(`.${styles.nav__link}`);
     const linkAction = () => {
-      const navMenu = document.getElementById("nav-menu");
       // When we click on each nav__link, we remove the show-menu class
       navMenu?.classList.remove(styles.show_menu);
       navContainer?.classList.remove(styles.expanded);
       if (navToggle && window.innerWidth < 1023)
         navToggle.style.display = "flex";
     };
+    carrito?.addEventListener("click", linkAction);
     navLink.forEach((n) => n.addEventListener("click", linkAction));
 
     /*=============== SHOW SCROLL UP ===============*/
@@ -150,7 +151,7 @@ function NavBar() {
               </Link>
             </li>
             <li className="relative mx-auto">
-              <Link href="/cart">
+              <Link href="/cart" id="carrito">
                 <CartCounter />
               </Link>
             </li>
