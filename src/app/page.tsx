@@ -5,18 +5,13 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import "remixicon/fonts/remixicon.css";
-import Link from "next/link";
 import { useEffect } from "react";
 //Importando componentes
 import Explore from "@/components/Explore/Explore";
 // Impotrtando imagenes
-
 import img_home from "../../public/images/home-bg.jpg";
-
 import join_island from "../../public/images/join-island.jpg";
 import Popular from "../../components/popular/Populares";
-import CartCounter from "@/components/Cart/CartCounter/CartCounter";
-import NavBar from "@/components/NavBar/NavBar";
 
 export default function Home() {
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
