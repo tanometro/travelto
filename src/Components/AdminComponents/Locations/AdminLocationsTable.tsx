@@ -104,7 +104,7 @@ export default function AdminLocationsTable() {
                 {row.getVisibleCells().map((cell) => (
                   <td
                     key={cell.id}
-                    className="border-slate-300 border-solid border text-white"
+                    className="border-slate-300 border-solid border text-xl text-white"
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
