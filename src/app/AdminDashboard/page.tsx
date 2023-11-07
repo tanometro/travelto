@@ -60,6 +60,7 @@ export default function AdminDashboard() {
           onChange={handleSelectChange}
           className="hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 w-1/6 h-4/5 border-white border-solid text-center"
         >
+          <option value="defaultValue">Elija que Administrar</option>
           <option value="users">Lista de Usuarios</option>
           <option value="attractions">Lista de Attracciones</option>
           <option value="locations">Lista de Ciudades</option>
