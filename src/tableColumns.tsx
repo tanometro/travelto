@@ -56,5 +56,24 @@ export const attractionsColumns = [
   {
     accessorKey: 'quantity',
     header: "Stock",
+  },
+  {
+    accessorKey: "isActive",
+    header: "Activo"
   }
 ];
+
+export const usersColumns = [
+{
+successorKey: "name",
+header: "Nombre"
+},
+{
+successorKey: "email",
+header: "Email"
+},
+{
+  successorKey: "isActive",
+  header: "Activo"
+}
+]

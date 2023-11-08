@@ -3,6 +3,14 @@ import getAllUsers from "@/src/requests/getAllUsers";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { UserInterface } from "@/src/interfaces";
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  getPaginationRowModel,
+  getSortedRowModel,
+  getFilteredRowModel
+} from "@tanstack/react-table";
 
 
 export default function AdminUsersTable() {
@@ -36,15 +44,6 @@ export default function AdminUsersTable() {
 
   return (
     <main className="w-full h-full m-4">
-      {/* <div className="mb-2">
-        <input
-          className=" text-lg p-1 rounded-xl"
-          value={searchUser}
-          placeholder="Nombre o DNI"
-          onChange={handleChange}
-        />
-        <button className=" ml-2 hover:border-lime-400 font-second-font font-semibold text-lg rounded-xl text-zinc-50 bg-slate-700 p-1 border-solid">Buscar</button>
-      </div> */}
       <div className="flex justify-center col-span-2 row-span-1">
         <table className="border min-w-full rounded-lg w-full h-full bg-slate-700">
           <thead>
