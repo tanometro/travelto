@@ -18,6 +18,7 @@
     "cloudinary": "^1.41.0",
     "dom": "^0.0.3",
     "flowbite": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
     "local-storage": "^2.0.0",
     "localStorage": "^1.0.4",
     "next": "^13.5.6",
@@ -28,7 +29,8 @@
     "react-router": "^6.17.0",
     "react-tooltip": "^5.22.0",
     "redux": "^4.2.1",
-    "remixicon": "^3.5.0"
+    "remixicon": "^3.5.0",
+    "resend": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.8.7",

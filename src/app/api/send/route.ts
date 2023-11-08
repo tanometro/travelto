@@ -10,7 +10,7 @@ export async function POST(request): Promise<NextResponse> {
     if (!newUser.email) return NextResponse.json({ error: "no se encontraron datos" });
     try {
         const data = await resend.emails.send({
-            from: 'Acme <onboarding@resend.dev>',
+            from: 'Travel To <send.tecno.art>',
             to: [newUser.email],
             subject: 'Bienvenido a travelto',
             react: EmailBienvenida({ firstName: newUser.name }),

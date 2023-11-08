@@ -22,7 +22,7 @@ export const LoginForm = () => {
       const responseNextAuth = await signIn("credentials", {
         email,
         password,
-        redirect: true,
+        redirect: false,
       });
 
       if (responseNextAuth?.error) {
@@ -30,7 +30,6 @@ export const LoginForm = () => {
         setErrors(responseNextAuth.error);
         return;
       }
-      router.push("/login");
       router.push("/login");
     }
   };
@@ -65,8 +64,8 @@ export const LoginForm = () => {
             className="flex w-full justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
             onClick={() =>
               signIn("google", {
-                redirect: true,
-                callbackUrl: "/",
+                redirect: false,
+                callbackUrl: "/login",
               })
             }
           >

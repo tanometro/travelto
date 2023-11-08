@@ -60,7 +60,7 @@ export interface PropCards {
 
 export interface UserPostInterface {
     name: string,
-    last: string,
+    lastName: string,
     dni: string,
     image: string,
     email: string,
