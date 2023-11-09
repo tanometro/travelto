@@ -9,9 +9,6 @@ export default function SignOrLog(): React.ReactNode {
       <Link href={"/login/register"}>
         <Button text="Registrarse" />
       </Link>
-      <Link href={"/login/registerGoogle"}>
-        <Button text="Registrarse con google" />
-      </Link>
     </div>
   );
 }

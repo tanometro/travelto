@@ -85,7 +85,6 @@ export interface ButtonProps {
 
 export interface UserInterface {
     name: string,
-    lastName: string,
     dni: string,
     image: string,
     email: string,

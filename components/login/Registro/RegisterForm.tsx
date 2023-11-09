@@ -12,16 +12,11 @@ export default function RegisterForm() {
   const [errors, setErrors] = useState<string>("");
   const [imageUser, setImageUser] = useState<string>("https://res.cloudinary.com/dsrdos5pb/image/upload/v1698623834/qa4ex6esskztxkfkmrqd.jpg");
   const [name, setName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
+  //const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [checkPassword, setCheckPassword] = useState<string>("");
   const [dni, setDni] = useState<string>("");
-
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
-
 
   const handlerSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,14 +26,17 @@ export default function RegisterForm() {
     setErrors(stateErrors);
     if (stateErrors.length != 0) return;
     try {
-      await createUser({
+      const newresponse = await createUser({
         name,
-        lastName,
         dni,
         image: imageUser,
         email,
         password,
       })
+      console.log("create response");
+
+      console.log(newresponse);
+
     } catch (error) {
       setErrors(error.message);
       return;
@@ -70,13 +68,6 @@ export default function RegisterForm() {
             value={name}
             handler={(event) => setName(event.target.value)}
             autoComplete="name"
-          />
-          <FormInput
-            type="text"
-            name="LastName"
-            value={lastName}
-            handler={(event) => setLastName(event.target.value)}
-            autoComplete="lastName"
           />
           <FormInput
             type="email"

@@ -17,6 +17,8 @@ const handler = NextAuth({
                 params: {
                     prompt: "consent",
                     response_type: "code",
+                    //paso parametros
+                    custom_param1: "value1",
                 },
             }
         }),
@@ -28,7 +30,6 @@ const handler = NextAuth({
                 email: { label: "email", type: "email", placeholder: "abc123@example.com" },
                 password: { label: "Password", type: "password" }
             },
-
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
                 const user = await userLogin(credentials);
@@ -39,80 +40,51 @@ const handler = NextAuth({
                 return user;
 
             },
+
         }),
 
     ],
     callbacks: {
-        async signIn({ user, account, profile, credentials }) {
+        async signIn({ user, account }) {
             //inicio de secion
             const { id, name, image, email } = user;
-            console.log("sigin");
-            console.log(user);
-
 
             //verifico los datos devueltos por google
             if (!user.name || !user.email) {
                 return false;
             }
             if (account?.type === "oauth") {
-                const newUser = await userLogin({ email, password: id });
-                if (newUser.error) {
-                    //mando al registro
-                    return false;
-                }
-                if (newUser.rol) {
-                    return true;
-                }
 
+                const res = await userLogin({ email, googlePass: id });
+                if (res.error) return false;
+                return true;
             }
-
-
-            /* const fullName = user.name?.split('', 2);
-            const firstName = fullName[0];
-            const lastName = fullName[1];
-
-            console.log("user");
-
-            console.log(user);
-
-
-            if (newUser.error) {
-                try {
-                    let newUser = await createUser({
-                        name: firstName,
-                        lastName: lastName,
-                        dni: "39062218",
-                        image: "https://res.cloudinary.com/dsrdos5pb/image/upload/v1698623834/qa4ex6esskztxkfkmrqd.jpg",
-                        email: "rblazquez111@gmail.com",
-                        password: id,
-                        
-                    })
-                    console.log(newUser);
-
-                } catch (error) {
-
-                }
-            }
- */
             return true;
-
         },
+
         async jwt({ token, user }) {
             // Persist the OAuth access_token to the token right after signin
             return { ...token, ...user }
         },
-        async session({ session, token }) {
+        async session({ session, token, user }) {
             // Send properties to the client, like an access_token from a provider.
             console.log("aqui esta session");
-            console.log(token);
+            //console.log(token);
+            console.log(user);
 
-            if (token.email) {
-                session.user = token;
-                return session;
+
+            //aca agrego datos
+            if (token.email && token.sub) {
+                try {
+                    const newUser = await userLogin({ email: token.email, googlePass: token.id });
+                    session.user = { ...token, roleID: newUser.roleID, token: newUser.token };
+                    console.log(session.user);
+                    return session;
+                } catch (error) {
+                    throw new Error("no autorizado")
+                }
             }
-            throw new Error("no autorizado")
-
-
+            return session;
         }
     },
     pages: {
