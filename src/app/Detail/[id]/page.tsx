@@ -7,6 +7,7 @@ import { baseURL } from "@/constant";
 import Link from "next/link";
 import { AttractionInterface } from "@/src/interfaces";
 import AddToCart from "@/components/Cart/AddToCart/AddToCart";
+import BackButton from "@/components/BackButton/BackButton";
 
 export default function DetailID({ params }) {
   const { id } = params;
@@ -69,9 +70,7 @@ export default function DetailID({ params }) {
         <div className="flex gap-5 w-[90%] mx-auto justify-center my-2">
           <AddToCart attraction={attraction} />
           <h1 className="text-center text-2xl">{attraction.name}</h1>
-          <Link href="/" className="bg-white color:black w-6 text-center">
-            X{" "}
-          </Link>
+          <BackButton />
         </div>
       </div>
       <div className="flex flex-col md:flex-row p-5 gap-5 justify-start">
