@@ -5,9 +5,9 @@ import Image from "next/image";
 import CartCard from "@/components/Cart/CartCard/CartCard";
 import { CartContext } from "@/src/app/context/cart";
 import Total from "@/components/Total/Total";
-import { useRouter } from "next/navigation";
 import Fondo from "@/public/images/fondo_cart.jpg";
 import { AttractionsCartInterface } from "@/src/interfaces";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const { cart } = useContext(CartContext);
@@ -17,6 +17,10 @@ export default function Page() {
   const handleBack = () => {
     router.back();
   };
+
+  useEffect(() => {
+    if (Object.keys(cart).length === 0) router.push("/");
+  }, [cart]);
   return (
     <div className="md:container m-0 sm:mx-auto flex flex-col sm:flex-row justify-center items-center sm:items-start gap-5 pt-10 sm:p-10">
       <Image
@@ -46,7 +50,7 @@ export default function Page() {
           </button>
         </div>
         {Object.keys(cart).map((id) => (
-          <CartCard attraction={cart[id]} />
+          <CartCard key={"Card" + id} attraction={cart[id]} />
         ))}
       </div>
       <Total />

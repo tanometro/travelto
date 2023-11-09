@@ -14,9 +14,7 @@ export function CartProvider({ children }) {
   });
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
+    localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   return (

@@ -1,6 +1,14 @@
 import QuantitySelector from "@/components/QuantitySelector/QuantitySelector";
 import { CartContext } from "@/src/app/context/cart";
 import React, { FC, MouseEventHandler, ReactNode, useEffect, useState, useContext } from "react";
+import React, {
+  FC,
+  MouseEventHandler,
+  ReactNode,
+  useEffect,
+  useState,
+  useContext,
+} from "react";
 
 export default function AddToCart({ attraction }): ReactNode {
   const { cart, setCart } = useContext(CartContext);
@@ -8,12 +16,25 @@ export default function AddToCart({ attraction }): ReactNode {
   const [selected, setSelected] = useState(cart.hasOwnProperty(attraction.id));
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setShowMenu(!showMenu);
+    const menues = document.querySelectorAll(".quantity_selector");
+
+    menues.forEach((menu) => {
+      if (!menu.classList.contains("hidden")) {
+        menu.classList.remove("flex");
+        menu.classList.add("hidden");
+      }
+      if (menu.id === `Attraction${attraction.id}`) {
+        menu.classList.remove("hidden");
+        menu.classList.add("flex");
+      }
+    });
   };
+  /* console.log(attraction); */
   return (
     <div className="relative">
       <div onClick={handleClick}>
         <svg
+          id={`Attraction${attraction.id}`}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
@@ -25,14 +46,14 @@ export default function AddToCart({ attraction }): ReactNode {
           ></path>
         </svg>
       </div>
-      {showMenu && (
-        <div className=" absolute z-[1000] flex gap-1 backdrop-blur-md items-center justify-center w-[6rem] h-[3rem] bg-slate-200 rounded-md bg-opacity-50 left-[-2.2rem] top-[30px]">
-          <QuantitySelector
-            attraction={attraction}
-            setSelection={setSelected}
-          />
-        </div>
-      )}
+
+      <div
+        id={`Attraction${attraction.id}`}
+        className={`quantity_selector absolute z-[1000] gap-1 backdrop-blur-md items-center justify-center w-[6rem] h-[3rem] bg-slate-200 rounded-md bg-opacity-50 left-[-2.2rem] top-[30px] hidden
+        `}
+      >
+        <QuantitySelector attraction={attraction} setSelection={setSelected} />
+      </div>
     </div>
   );
 }

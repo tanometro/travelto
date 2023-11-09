@@ -15,7 +15,7 @@ export default function DetailID({ params }) {
     Location: { city: "", country: "" },
     latitude: "",
     longitude: "",
-    price: "",
+    price: 0,
     ranking: 0,
     hours: "",
     duration: "",

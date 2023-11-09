@@ -71,7 +71,7 @@
     position: absolute;
     z-index: 102;
     background-color: hlsa(0, 0%, 0%, 0.3);
-    top: -30rem;
+    top: -35rem;
     left: 0;
     width: 100%;
     padding-block: 4rem;
@@ -118,7 +118,7 @@
 }
 
 .header.expanded {
-  height: 25rem;
+  height: 33rem;
   z-index: 100;
 }
 
