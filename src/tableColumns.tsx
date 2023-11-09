@@ -1,4 +1,8 @@
 
+const handleCheckboxChange = (row) => {
+  // Lógica para manejar cambios en el checkbox
+  // Por ejemplo, puedes actualizar el estado de la fila aquí
+};
 
 
 export const locationsColumns = [
@@ -57,10 +61,6 @@ export const attractionsColumns = [
     accessorKey: 'quantity',
     header: "Stock",
   },
-  {
-    accessorKey: "isActive",
-    header: "Activo"
-  }
 ];
 
 export const usersColumns = [
