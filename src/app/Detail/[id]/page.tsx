@@ -6,6 +6,7 @@ import "remixicon/fonts/remixicon.css";
 import { baseURL } from "@/constant";
 import Link from "next/link";
 import { AttractionInterface } from "@/src/interfaces";
+import AddToCart from "@/components/Cart/AddToCart/AddToCart";
 
 export default function DetailID({ params }) {
   const { id } = params;
@@ -23,11 +24,29 @@ export default function DetailID({ params }) {
     description: "",
     isActive: true,
   });
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const elemento = event.target as HTMLElement;
+    if (
+      elemento &&
+      !(
+        elemento.id.includes("Attraction") ||
+        elemento.parentElement?.id.includes("Attraction")
+      )
+    ) {
+      const menues = document.querySelectorAll(".quantity_selector");
+      menues.forEach((menu) => {
+        if (!menu.classList.contains("hidden")) {
+          menu.classList.remove("flex");
+          menu.classList.add("hidden");
+        }
+      });
+    }
+  };
   const getDatos = async () => {
     try {
       let res = await axios.get(`${baseURL}/attractions/${id}`);
       let datos = res.data;
-      console.log(datos)
+      console.log(datos);
       if (!datos.name) {
         window.alert("No existe esta detalle de atraccion");
       } else {
@@ -42,42 +61,40 @@ export default function DetailID({ params }) {
   }, [id]);
 
   return (
-    <div className="relative ml-20 mr-20 mt-10 pl-20">
-      <h1 className="text-center text-2xl">{attraction.name}</h1>
-      <div className="flex justify-between mi-20 pl-20 mr-20">
-        
-        <div className="flex gap-5 ml-10 mr-6">
-          <i className="ri-shopping-cart-line "></i>
+    <div
+      className="relative pt-20 mx-auto min-w-[20rem] w-[90%]"
+      onClick={handleClick}
+    >
+      <div className="flex">
+        <div className="flex gap-5 w-[90%] mx-auto justify-center my-2">
+          <AddToCart attraction={attraction} />
+          <h1 className="text-center text-2xl">{attraction.name}</h1>
           <Link href="/" className="bg-white color:black w-6 text-center">
             X{" "}
           </Link>
         </div>
       </div>
-      <div className="flex flex-col-2">
-      <div className="w-1/2" >
-        <Image
-          className="ml-10 pl-10"
-          src={attraction.image}
-          alt={attraction.name}
-          width={450}
-          height={500}
-      
+      <div className="flex flex-col md:flex-row p-5 gap-5 justify-start">
+        <div className="">
+          <Image
+            className="w-[100%]"
+            src={attraction.image}
+            alt={attraction.name}
+            width={450}
+            height={500}
           />
-      </div>
-      <div className="w-1/2 text-justify ">
-        <h2>
-            {attraction.description}
-        </h2>
-      </div>
+        </div>
+        <div className="w-[100%] my-10 md:my-0">
+          <h2>{attraction.description}</h2>
+        </div>
       </div>
 
-      <div className="flex justify-between w-85 mr-20 ml-20 pl-20 pr-20">
+      <div className="flex justify-between flex-col items-center gap-5 md:flex-row md:w-[30rem] mb-10 mx-auto">
         <span>
-        <i className="ri-map-pin-line" />
-          {" "}
-          {attraction.Location.country} - {attraction.Location.city}
+          <i className="ri-map-pin-line" /> {attraction.Location.country} -{" "}
+          {attraction.Location.city}
         </span>
-        <span> Precio: {attraction.price} $ </span>
+        <span> Precio: $ {attraction.price} </span>
         <span> Ranking: {attraction.ranking}</span>
       </div>
     </div>
