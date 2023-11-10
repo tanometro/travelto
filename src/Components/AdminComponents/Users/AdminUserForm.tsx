@@ -6,7 +6,6 @@ import createUser from "@/src/requests/postUser";
 export default function AdminAttractionForm() {
   const [formData, setFormData] = useState<UserFormInterface>({
     name: "",
-    lastname: "",
     dni: "",
     image: "",
     email: "",
@@ -30,7 +29,7 @@ export default function AdminAttractionForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const user = {
-      name: [formData.name, formData.lastname],
+      name: formData.name,
       dni: formData.dni,
       image: formData.image,
       email: formData.email,
@@ -43,7 +42,6 @@ export default function AdminAttractionForm() {
       .then(() => {
         setFormData({
             name: "",
-            lastname: "",
             dni: "",
             image: "",
             email: "",
@@ -64,7 +62,7 @@ export default function AdminAttractionForm() {
             >
               <div className="flex flex-row m-4 justify-around">
                 <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                  <label className="font-bold mb-2 text-center">Nombre:</label>
+                  <label className="font-bold mb-2 text-center">Nombre y Apellido:</label>
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
@@ -72,16 +70,6 @@ export default function AdminAttractionForm() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                  />
-                </div>
-                <div className="w-full md:w-1/3 px-3">
-                  <label>Apellido:</label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
-                    name="lastname"
-                    value={formData.lastname}
-                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="w-full md:w-1/3 px-3">

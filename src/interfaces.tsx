@@ -75,6 +75,7 @@ export interface PropCards {
 }
 
 export interface UserInterface {
+    id: number,
     name: string,
     dni: string,
     image: string,
@@ -94,7 +95,6 @@ export interface UserPostInterface {
 
 export interface UserFormInterface {
     name: string,
-    lastname: string,
     dni: string,
     image: string,
     email: string,
