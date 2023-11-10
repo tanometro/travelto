@@ -1,8 +1,7 @@
-"use client"
-import getAllUsers from "@/src/requests/getAllUsers";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+"use client";
 import { UserInterface } from "@/src/interfaces";
+import getAllUsers from "@/src/requests/getAllUsers";
+import { usersColumns } from "@/src/tableColumns";
 import {
   flexRender,
   getCoreRowModel,
@@ -11,89 +10,139 @@ import {
   getSortedRowModel,
   getFilteredRowModel
 } from "@tanstack/react-table";
+import { useEffect, useState } from "react";
 
+export default function AdminUserTable() {
+  const [users, setUsers] = useState<UserInterface[]>([]);
+  const [sorting, setSorting] = useState([]);
+  const [filtering, setFiltering] = useState("");
 
-export default function AdminUsersTable() {
-
-  const [users, setUsers] = useState<UserInterface[]>([])
+  const table = useReactTable({
+    data: users,
+    columns: usersColumns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      sorting,
+      globalFilter: filtering,
+    },
+    onSortingChange: setSorting,
+    onGlobalFilterChange: setFiltering,
+  });
 
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await getAllUsers();
         setUsers(response.data);
-        console.log(users)
       } catch (error) {
-        console.error("Error en Fetch Data")
+        console.error("Error en Fetch Data");
       }
     }
     fetchData();
-  }, [])
-
-  function getUserRole(roleID) {
-    if (roleID === 1) {
-      return "Admin";
-    } else if (roleID === 2) {
-      return "Support";
-    } else {
-      return "User";
-    }
-  }
-
-  const router = useRouter();
+  }, []);
 
   return (
-    <main className="w-full h-full m-4">
-      <div className="flex justify-center col-span-2 row-span-1">
-        <table className="border min-w-full rounded-lg w-full h-full bg-slate-700">
+    <div className=" w-full h-full ">
+      <div className="rounded-lg w-full h-1/6 bg-slate-700 mb-2 justify-between">
+        <span className="m-2 text-2xl text-white">Total de Usuarios: </span>
+        <span className="m-2 mr-4 text-2xl text-lime-600">{users.length}</span>
+        <div>
+        <span className="m-2 text-lg text-white">Filtrar por cualquier Propiedad</span>
+        <input 
+        className="rounded-lg text-black"
+        type="text"
+        value= {filtering}
+        onChange={(e) => setFiltering(e.target.value)}
+        />
+        </div>
+      </div>
+      <div className="h-4/6">
+        <table className="min-w-full rounded-lg w-full h-full bg-slate-700">
           <thead>
-            <tr>
-              <th className="border-b p-2 border-r-2 border">Nombre y Apellido</th>
-              <th className="border-b p-2 border-r-2 border">DNI</th>
-              <th className="border-b p-2 border-r-2 border">Email</th>
-              <th className="border-b p-2 border-r-2 border">Password</th>
-              <th className="border-b p-2 border-r-2 border">imagen</th>
-              <th className="border-b p-2 border-r-2 border">Rol</th>
-              <th className="border-b p-2 border-r-2 border">Activo</th>
-              <th className="border-b p-2 border-r-2 border">Editar</th>
-            </tr>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr
+                key={headerGroup.id}
+                className="border-slate-300 bg-black text-2xl text-white border-solid border"
+              >
+                {headerGroup.headers.map((header) => (
+                  <th
+                    key={header.id}
+                    className="border-slate-300 border-solid border"
+                    onClick={header.column.getToggleSortingHandler()}
+                  >
+                    {header.isPlaceholder ? null : (
+                      <div>
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+
+                        {
+                          header.column.getIsSorted() 
+                          ? { asc: "⬆️", desc: "⬇️" }[header.column.getIsSorted() as 'asc' | 'desc'] 
+                          : null
+                        }
+                      </div>
+                    )}
+                  </th>
+                ))}
+                <th className="border-slate-300 border-solid border">Editar</th>
+              </tr>
+            ))}
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td className="border-b p-2 border-r-2">
-                  {user.name[0] + " " + user.name[1]}
-                </td>
-                <td className="border-b p-2 border-r-2">{user.dni}</td>
-                <td className="border-b p-2 border-r-2">{user.email}</td>
-                <td className="border-b p-2 border-r-2">
-                  <input
-                    type="password"
-                    value={user.password}
-                    disabled
-                    style={{ border: 'none', background: 'none' }}
-                  />
-                </td>
-                <td className="border-b p-2 border-r-2">{user.image}</td>
-                {getUserRole(user.roleID)}
-                <td className="border-b p-2 border-r-2">
-                  {user.isActive ? "SI" : "NO"}
-                </td>
-                <td className="border-b p-2 text-center">
-                  <button
-                    className="border-red-600 border-solid border-2 bg-green-200 w-32 h-8 rounded"
-                    onClick={() =>
-                      router.push("/AdminDashboard/")
-                    }
+            {table.getRowModel().rows.map((row, index) => (
+              <tr
+                key={row.id}
+                className={index % 2 === 0 ? "bg-slate-700" : "bg-slate-500"}
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <td
+                    key={cell.id}
+                    className="border-slate-300 border-solid border text-xl text-white"
                   >
-                    Editar
-                  </button>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+                <td className="border-slate-300 border-solid border text-xl text-white">
+                <button className="text-xl text-white self-center">✏️</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    </main>
+      <div className="h-1/6 w-full flex justify-evenly bg-black mt-2 rounded-lg">
+        <button className="text-2xl" onClick={() => table.setPageIndex(0)}>
+          Primera
+        </button>
+        <button className="text-4xl" onClick={() => table.previousPage()}>
+          ⬅️
+        </button>
+        <span className="text-2xl">
+          {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
+        </span>
+        <button 
+        className="text-4xl" 
+        onClick={() => {
+          if (table.getPageCount() > 1 && table.getState().pagination.pageIndex < table.getPageCount() - 1) {
+            table.nextPage();
+          }
+        }}
+        disabled={table.getPageCount() <= 1 || table.getState().pagination.pageIndex >= table.getPageCount() - 1}
+            >
+          ➡️
+        </button>
+        <button
+          className="text-2xl"
+          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+        >
+          Ultima
+        </button>
+      </div>
+    </div>
   );
 }

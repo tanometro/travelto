@@ -1,6 +1,3 @@
-
-
-
 export const locationsColumns = [
   {
     accessorKey:"id",
@@ -58,22 +55,22 @@ export const attractionsColumns = [
     header: "Stock",
   },
   {
-    accessorKey: "isActive",
-    header: "Activo"
-  }
+  accessorKey: "isActive",
+  header: "Activa",
+  },
 ];
 
 export const usersColumns = [
 {
-successorKey: "name",
+accessorKey: "name",
 header: "Nombre"
 },
 {
-successorKey: "email",
+accessorKey: "email",
 header: "Email"
 },
 {
-  successorKey: "isActive",
+  accessorKey: "isActive",
   header: "Activo"
 }
 ]

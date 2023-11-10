@@ -12,7 +12,7 @@ import {
 } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 
-export default function AdminLocationsTable() {
+export default function AdminAttractionsTable() {
   const [attractions, setAttractions] = useState<AttractionsCartInterface[]>([]);
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
@@ -89,6 +89,7 @@ export default function AdminLocationsTable() {
                     )}
                   </th>
                 ))}
+                <th className="border-slate-300 border-solid border">Editar</th>
               </tr>
             ))}
           </thead>
@@ -106,6 +107,9 @@ export default function AdminLocationsTable() {
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
+                <td className="border-slate-300 border-solid border text-xl text-white">
+                <button className="text-2xl text-white self-center">✏️</button>
+                </td>
               </tr>
             ))}
           </tbody>
