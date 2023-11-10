@@ -27,6 +27,7 @@ const handler = NextAuth({
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
                 const user = await userLogin(credentials);
+                console.log("hasta aca llega bien");
 
                 if (user.error) {
                     throw new Error(user.error)
@@ -49,6 +50,8 @@ const handler = NextAuth({
             if (account?.type === "oauth") {
 
                 const res = await userLogin({ email, googlePass: id });
+
+
                 if (res.error) return false;
                 return true;
             }
@@ -65,7 +68,7 @@ const handler = NextAuth({
             if (token.email && token.sub) {
                 try {
                     const newUser = await userLogin({ email: token.email, googlePass: token.id });
-                    session.user = { ...token, roleID: newUser.roleID, token: newUser.token };
+                    session.user = { ...token, role: newUser.roleID, token: newUser.token };
                     console.log(session.user);
                     return session;
                 } catch (error) {
