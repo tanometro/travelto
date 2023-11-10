@@ -91,6 +91,8 @@ export interface UserPostInterface {
     image: string,
     email: string,
     password: string,
+    isActive: boolean,
+    roleID: number
 }
 
 export interface UserFormInterface {

@@ -1,6 +1,6 @@
 import { baseURL } from "@/constant";
 import axios from "axios";
-import { UserPostInterface } from "../interfaces";
+import { UserPostInterface } from "../UserPostInterface";
 
 
 
