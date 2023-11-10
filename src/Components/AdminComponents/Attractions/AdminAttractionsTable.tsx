@@ -8,11 +8,11 @@ import {
   useReactTable,
   getPaginationRowModel,
   getSortedRowModel,
-  getFilteredRowModel
+  getFilteredRowModel,
 } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 
-export default function AdminLocationsTable() {
+export default function AdminAttractionsTable() {
   const [attractions, setAttractions] = useState<AttractionsCartInterface[]>([]);
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
@@ -48,15 +48,19 @@ export default function AdminLocationsTable() {
     <div className=" w-full h-full ">
       <div className="rounded-lg w-full h-1/6 bg-slate-700 mb-2 justify-between">
         <span className="m-2 text-2xl text-white">Total de Atracciones: </span>
-        <span className="m-2 mr-4 text-2xl text-lime-600">{attractions.length}</span>
+        <span className="m-2 mr-4 text-2xl text-lime-600">
+          {attractions.length}
+        </span>
         <div>
-        <span className="m-2 text-lg text-white">Filtrar por cualquier Propiedad</span>
-        <input 
-        className="rounded-lg text-black"
-        type="text"
-        value= {filtering}
-        onChange={(e) => setFiltering(e.target.value)}
-        />
+          <span className="m-2 text-lg text-white">
+            Filtrar por cualquier Propiedad
+          </span>
+          <input
+            className="rounded-lg text-black"
+            type="text"
+            value={filtering}
+            onChange={(e) => setFiltering(e.target.value)}
+          />
         </div>
       </div>
       <div className="h-4/6">
@@ -80,15 +84,16 @@ export default function AdminLocationsTable() {
                           header.getContext()
                         )}
 
-                        {
-                          header.column.getIsSorted() 
-                          ? { asc: "⬆️", desc: "⬇️" }[header.column.getIsSorted() as 'asc' | 'desc'] 
-                          : null
-                        }
+                        {header.column.getIsSorted()
+                          ? { asc: "⬆️", desc: "⬇️" }[
+                              header.column.getIsSorted() as "asc" | "desc"
+                            ]
+                          : null}
                       </div>
                     )}
                   </th>
                 ))}
+                <th className="border-slate-300 border-solid border">Editar</th>
               </tr>
             ))}
           </thead>
@@ -106,6 +111,9 @@ export default function AdminLocationsTable() {
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
+                <td className="border-slate-300 border-solid border text-xl text-white">
+                <button className="text-2xl text-white self-center">✏️</button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -121,15 +129,21 @@ export default function AdminLocationsTable() {
         <span className="text-2xl">
           {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
         </span>
-        <button 
-        className="text-4xl" 
-        onClick={() => {
-          if (table.getPageCount() > 1 && table.getState().pagination.pageIndex < table.getPageCount() - 1) {
-            table.nextPage();
+        <button
+          className="text-4xl"
+          onClick={() => {
+            if (
+              table.getPageCount() > 1 &&
+              table.getState().pagination.pageIndex < table.getPageCount() - 1
+            ) {
+              table.nextPage();
+            }
+          }}
+          disabled={
+            table.getPageCount() <= 1 ||
+            table.getState().pagination.pageIndex >= table.getPageCount() - 1
           }
-        }}
-        disabled={table.getPageCount() <= 1 || table.getState().pagination.pageIndex >= table.getPageCount() - 1}
-            >
+        >
           ➡️
         </button>
         <button
