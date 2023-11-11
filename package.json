@@ -20,6 +20,7 @@
     "dom": "^0.0.3",
     "flowbite": "^2.0.0",
     "flowbite-react": "^0.6.4",
+    "jsonwebtoken": "^9.0.2",
     "local-storage": "^2.0.0",
     "localStorage": "^1.0.4",
     "next": "^13.5.6",

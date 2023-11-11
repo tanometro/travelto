@@ -2,6 +2,7 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import userLogin from "@/src/requests/postLoginUser";
+import { log } from "console";
 
 const handler = NextAuth({
     providers: [
@@ -26,13 +27,21 @@ const handler = NextAuth({
             //authorize(credentials, req) {
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
-                const user = await userLogin(credentials);
-                console.log("hasta aca llega bien");
+                try {
+                    const user = await userLogin(credentials);
+                    return user;
 
-                if (user.error) {
+                } catch (error) {
+                    console.log('error');
+                    console.log(error);
+
+
+                    throw new Error(error.message)
+                }
+
+                /* if (user.error) {
                     throw new Error(user.error)
-                };
-                return user;
+                }; */
 
             },
         }),
@@ -40,7 +49,7 @@ const handler = NextAuth({
     ],
     callbacks: {
         async signIn({ user, account }) {
-            //inicio de secion
+            //inicio
             const { id, name, image, email } = user;
 
             //verifico los datos devueltos por google
@@ -48,12 +57,16 @@ const handler = NextAuth({
                 return false;
             }
             if (account?.type === "oauth") {
+                try {
+                    await userLogin({ email, googlePass: id });
+                    return true;
 
-                const res = await userLogin({ email, googlePass: id });
+                } catch (error) {
+                    console.log("error");
 
-
-                if (res.error) return false;
-                return true;
+                    console.log(error);
+                    return false;
+                }
             }
             return true;
         },
