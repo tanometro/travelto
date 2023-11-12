@@ -31,11 +31,8 @@ const handler = NextAuth({
                     return user;
 
                 } catch (error) {
-                    console.log('error');
-                    console.log(error);
 
-
-                    throw new Error(error.message)
+                    throw new Error("Error en la solicitud de autenticación")
                 }
 
                 /* if (user.error) {

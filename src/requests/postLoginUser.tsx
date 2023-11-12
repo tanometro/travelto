@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 const secretKey = 'Dracarys'
 
 import axios from "axios";
+import { log } from "console";
 
 const userLogin = async (credentials) => {
     const { email, password, googlePass } = credentials;
