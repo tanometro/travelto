@@ -2,7 +2,6 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import userLogin from "@/src/requests/postLoginUser";
-import { log } from "console";
 
 const handler = NextAuth({
     providers: [
@@ -50,7 +49,7 @@ const handler = NextAuth({
     callbacks: {
         async signIn({ user, account }) {
             //inicio
-            const { id, name, image, email } = user;
+            const { id, email } = user;
 
             //verifico los datos devueltos por google
             if (!user.name || !user.email) {
@@ -62,9 +61,6 @@ const handler = NextAuth({
                     return true;
 
                 } catch (error) {
-                    console.log("error");
-
-                    console.log(error);
                     return false;
                 }
             }
@@ -82,7 +78,6 @@ const handler = NextAuth({
                 try {
                     const newUser = await userLogin({ email: token.email, googlePass: token.id });
                     session.user = { ...token, role: newUser.roleID, token: newUser.token };
-                    console.log(session.user);
                     return session;
                 } catch (error) {
                     throw new Error("no autorizado")

@@ -2,22 +2,6 @@ import { baseURL } from "@/constant";
 import jwt from "jsonwebtoken";
 const secretKey = 'Dracarys'
 
-
-/* const userLogin = async (Credential) => {
-    const response = await fetch(`${baseURL}/login`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            //Authorization: storedToken,
-        },
-        body: JSON.stringify(Credential),
-    });
-    console.log(response);
-
-    return await response.json();
-}; */
-
-
 import axios from "axios";
 
 const userLogin = async (credentials) => {
@@ -44,7 +28,7 @@ const userLogin = async (credentials) => {
         return response.data;
     } catch (error) {
         // Manejar errores de solicitud
-        throw error;
+        throw new Error(error);
     }
 }
 
