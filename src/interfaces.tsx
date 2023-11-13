@@ -76,7 +76,7 @@ data: AttractionInterface [];
 
 export interface UserInterface {
     id: number,
-    name: string [],
+    name: string,
     dni: string,
     image: string,
     email: string,
@@ -86,7 +86,7 @@ export interface UserInterface {
 }
 
 export interface UserPostInterface {
-    name: string [],
+    name: string,
     dni: string,
     image: string,
     email: string,
@@ -97,7 +97,6 @@ export interface UserPostInterface {
 
 export interface UserFormInterface {
     name: string,
-    lastname: string,
     dni: string,
     image: string,
     email: string,

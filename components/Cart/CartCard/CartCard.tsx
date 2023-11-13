@@ -21,8 +21,8 @@ export default function CartCard({ attraction }): ReactNode {
   const googleMapsLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
   
   return (
-    <div className="flex flex-col w-[20rem] sm:flex-row gap-10 p-5 justify-between lg:w-full md:w-[40rem] bg-slate-500 bg-opacity-70 rounded-md max-w-[50rem]">
-      <div className="w-[180px] h-[100px]  lg:w-[300px] lg:h-[200px] md:w-[220px] md:h-[140px] rounded-md overflow-hidden">
+    <div className="flex flex-col w-[20rem] md:flex-row gap-10 p-5 center lg:w-full md:w-[35rem] bg-slate-500 bg-opacity-90 rounded-md max-w-[50rem]">
+      <div className="w-full h-full lg:w-[300px] lg:h-[200px] md:w-[260px] md:h-[240px] rounded-md overflow-hidden">
         <Image
           src={image}
           alt={`Image${id}`}
@@ -32,7 +32,7 @@ export default function CartCard({ attraction }): ReactNode {
         />
       </div>
       <div className="flex flex-col md:flex-row flex-1 gap-5">
-        <ul className="w-[300px]">
+        <ul className="w-[200px] lg:w-[300px]">
           <li>
             <h1 className="text-xl">{name}</h1>
           </li>

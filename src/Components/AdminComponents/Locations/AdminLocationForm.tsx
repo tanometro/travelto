@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { LocationFormInterface } from "@/src/interfaces";
 import createLocation from "@/src/requests/postLocation";
 
-export default function AdminLocationForm() {
+const AdminLocationForm = (props) => {
 
   const [formData, setFormData] = useState<LocationFormInterface>({
     country: "",
@@ -36,7 +36,7 @@ export default function AdminLocationForm() {
       <div>
         <form
           onSubmit={handleSubmit}
-          className=" bg-slate-700 shadow-md rounded-xl grid grid-cols-2"
+          className=" bg-slate-700 shadow-md rounded-xl grid grid-cols-2 justify-items-center"
         >
           <div className=" flex flex-row w-full justify-evenly">
             <div className=" w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -60,16 +60,18 @@ export default function AdminLocationForm() {
               />
             </div>
           </div>
-          <div>
+          <div className="justify-center">
             <button
-              className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 w-1/6 p-4 border-solid"
+              className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 p-4 border-solid"
               type="submit"
             >
-              Crear Ciudad
+              Enviar Datos
             </button>
           </div>
         </form>
+      
       </div>
     </main>
   );
 }
+export default AdminLocationForm

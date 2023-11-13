@@ -203,10 +203,10 @@ export default function AdminAttractionForm() {
           </div>
           <div>
             <button
-              className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 w-1/6 p-4 border-solid"
+              className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 p-4 border-solid"
               type="submit"
             >
-              Crear Atracción
+              Enviar Datos
             </button>
           </div>
         </form>
