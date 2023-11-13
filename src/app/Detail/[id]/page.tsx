@@ -1,11 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Image from "next/image";
 import "remixicon/fonts/remixicon.css";
-import { baseURL } from "@/constant";
 import Link from "next/link";
 import { AttractionInterface } from "@/src/interfaces";
+import  getAttractionByid  from "@/src/requests/getAttractionById"
 
 export default function DetailID({ params }) {
   const { id } = params;
@@ -15,7 +14,7 @@ export default function DetailID({ params }) {
     Location: { city: "", country: "" },
     latitude: "",
     longitude: "",
-    price: "",
+    price: 0,
     ranking: 0,
     hours: "",
     duration: "",
@@ -25,7 +24,7 @@ export default function DetailID({ params }) {
   });
   const getDatos = async () => {
     try {
-      let res = await axios.get(`${baseURL}/attractions/${id}`);
+      let res = await getAttractionByid(id);
       let datos = res.data;
       console.log(datos)
       if (!datos.name) {

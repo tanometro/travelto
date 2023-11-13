@@ -19,6 +19,7 @@ export default function CartCard({ attraction }): ReactNode {
     quantity,
   } = attraction;
   const googleMapsLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+  
   return (
     <div className="flex flex-col w-[20rem] sm:flex-row gap-10 p-5 justify-between lg:w-full md:w-[40rem] bg-slate-500 bg-opacity-70 rounded-md max-w-[50rem]">
       <div className="w-[180px] h-[100px]  lg:w-[300px] lg:h-[200px] md:w-[220px] md:h-[140px] rounded-md overflow-hidden">

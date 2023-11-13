@@ -22,7 +22,7 @@ type Props = {
         i++
     }
     
-    return  pageAmount !== 1 && (
+    return  (pageAmount > 1) && (
     
         <div className={styles.container}>
             <button 
