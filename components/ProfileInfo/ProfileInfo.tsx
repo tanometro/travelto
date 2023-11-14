@@ -10,7 +10,7 @@ function ProfileInfo() {
       <div className="absolute left-[-1.5rem] top-0">
         <div className="font-capitalize">{session?.user?.name}</div>
         <Image
-          src={session?.user?.image!}
+          src={session?.user?.picture!}
           alt="UserImage"
           width={50}
           height={50}

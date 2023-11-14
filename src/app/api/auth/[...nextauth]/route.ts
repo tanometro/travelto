@@ -35,10 +35,6 @@ const handler = NextAuth({
                     throw new Error("Error en la solicitud de autenticación")
                 }
 
-                /* if (user.error) {
-                    throw new Error(user.error)
-                }; */
-
             },
         }),
 
@@ -74,7 +70,8 @@ const handler = NextAuth({
             if (token.email && token.sub) {
                 try {
                     const newUser = await userLogin({ email: token.email, googlePass: token.id });
-                    session.user = { ...token, role: newUser.roleID, token: newUser.token };
+                    token.picture = newUser.picture;
+                    session.user = { ...token, name: newUser.name, email: newUser.email, picture: newUser.picture, role: newUser.roleID, token: newUser.token };
                     return session;
                 } catch (error) {
                     throw new Error("no autorizado")
