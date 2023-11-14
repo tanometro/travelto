@@ -34,10 +34,6 @@ export default function RegisterForm() {
         password,
       })
 
-      if (!response.data.email) {
-        setErrors(response.data);
-      }
-
     } catch (error) {
       setErrors(error.message);
       return;
@@ -54,6 +50,15 @@ export default function RegisterForm() {
       setErrors(responseNextAuth.error);
       return;
     }
+    await fetch("/api/email", {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        dni,
+        email,
+      }),
+    });
+
     router.push("/login");
   }
 

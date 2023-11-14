@@ -4,6 +4,7 @@ import { UserPostInterface } from "../interfaces";
 
 
 
+
 const createUser = async (newUser: UserPostInterface) => {
     return await axios.post(`${baseURL}/users/create`, newUser);
 };

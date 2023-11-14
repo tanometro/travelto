@@ -10,6 +10,11 @@ export default function RegisterImage({ imageUser, handler }: Props): React.Reac
     const [file, setFile] = useState<File | null>(null);
     const [inputValue, setInputValue] = useState("");
 
+    const handlerClose = () => {
+        setInputValue("");
+        setFile(null);
+    };
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         handler(event);
         setInputValue(event.target?.value);
@@ -18,6 +23,9 @@ export default function RegisterImage({ imageUser, handler }: Props): React.Reac
     const handlerFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files?.[0] || null;
         setFile(selectedFile);
+        if (selectedFile) {
+            setInputValue(URL.createObjectURL(selectedFile));
+        }
     };
 
     const handlerSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -26,14 +34,14 @@ export default function RegisterImage({ imageUser, handler }: Props): React.Reac
         if (file) {
             const formData = new FormData();
             formData.append("file", file);
-    
+
             const response = await fetch("/api/upload", {
                 method: "POST",
                 body: formData,
             });
-    
+
             const data = await response.json();
-    
+
             handleInputChange({ target: { value: data.url } } as React.ChangeEvent<HTMLInputElement>);
         } else {
             console.error("No se seleccionó ningún archivo.");
@@ -42,6 +50,9 @@ export default function RegisterImage({ imageUser, handler }: Props): React.Reac
 
     return (
         <div className="flex relative h-80 w-80 aligne-center justify-center">
+            <div className="flex pl-2 justify-end" onClick={handlerClose}>
+                <button className="flex absolute rounded-full justify-center items-center text-white bg-red-500 w-10 h-10 "> X </button>
+            </div>
             <Image src={inputValue === "" ? imageUser : inputValue} alt="Foto usuario"
                 fill
                 className="absolute overflow-hidden object-cover rounded-full" />
