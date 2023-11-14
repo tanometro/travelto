@@ -61,6 +61,10 @@ export const attractionsColumns = [
 ];
 
 export const usersColumns = [
+  {
+    accessorKey: "id",
+    header: "ID"
+  },
 {
 accessorKey: "name",
 header: "Nombre"
@@ -72,5 +76,9 @@ header: "Email"
 {
   accessorKey: "isActive",
   header: "Activo"
+},
+{
+  accessorKey: "roleID",
+  header: "Rol"
 }
 ]

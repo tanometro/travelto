@@ -1,6 +1,6 @@
 "use client";
 import AdminUsersTable from "@/src/Components/AdminComponents/Users/AdminUsersTable";
-import AdminUserForm from "@/src/Components/AdminComponents/Users/AdminUserForm";
+import NewUserForm from "@/src/Components/AdminComponents/Users/NewUserForm";
 import AdminAttractionsTable from "@/src/Components/AdminComponents/Attractions/AdminAttractionsTable";
 import AdminAttractionForm from "@/src/Components/AdminComponents/Attractions/AdminAttractonForm";
 import AdminLocationsTable from "@/src/Components/AdminComponents/Locations/AdminLocationsTable";
@@ -102,7 +102,7 @@ export default function AdminDashboard() {
         className="bg-white p-4 rounded-lg shadow-lg justify-items-center text-center"
       >
         <div className="mb-2 font-bold text-black text-xl boder border-b-2 border-lime-600">Crea un Usuario</div>
-        <AdminUserForm/>
+        <NewUserForm/>
         <button
           onClick={aCUserModal}
           className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none"
