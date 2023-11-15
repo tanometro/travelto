@@ -10,6 +10,8 @@ const userLogin = async (Credential) => {
         },
         body: JSON.stringify(Credential),
     });
+    console.log(response);
+
     return await response.json();
 };
 
