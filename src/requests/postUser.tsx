@@ -1,4 +1,5 @@
 import { baseURL } from "@/constant";
+
 import { UserPostInterface } from "../UserPostInterface";
 
 const createUser = async (user: UserPostInterface) => {
