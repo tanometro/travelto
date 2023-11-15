@@ -19,10 +19,26 @@ export default function AdminUserTable() {
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
   const [userModal, setUserModal] = useState(false)
+  const [selectedUserData, setSelectedUserData] = useState({
+    id: 0,
+    name: "",
+    email: "",
+    isActive: true,
+    roleID: 0,
+  });
+
   
-  const aCUserModal = (id, name, email, isActive) => {
+  const aCUserModal = (id, name, email, isActive, roleID) => {
+    setSelectedUserData({
+      id,
+      name,
+      email,
+      isActive,
+      roleID,
+    });
     setUserModal(!userModal);
   };
+
 
   const table = useReactTable({
     data: users,
@@ -59,8 +75,8 @@ export default function AdminUserTable() {
         overlayClassName="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center"
         className="bg-white p-4 rounded-lg shadow-lg justify-items-center text-center"
       >
-        <div className="mb-2 font-bold text-black text-xl boder border-b-2 border-lime-600">Crea un Usuario</div>
-        <EditUserForm/>
+        <div className="mb-2 font-bold text-black text-xl boder border-b-2 border-lime-600">Edita un Usuario</div>
+        <EditUserForm {...selectedUserData} />
         <button
           onClick={aCUserModal}
           className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none"
@@ -132,7 +148,7 @@ export default function AdminUserTable() {
                 <td className="border-slate-300 border-solid border text-xl text-white">
                 <button 
                 className="text-xl text-white self-center"
-                onClick={() => aCUserModal (row.id, row.original.name, row.original.email, row.original.isActive, row.original.roleID)}
+                onClick={() => aCUserModal (Number(row.id)+1, row.original.name, row.original.email, row.original.isActive, row.original.roleID)}
                 >✏️</button>
                 </td>
               </tr>

@@ -4,7 +4,7 @@ import NewUserForm from "@/src/Components/AdminComponents/Users/NewUserForm";
 import AdminAttractionsTable from "@/src/Components/AdminComponents/Attractions/AdminAttractionsTable";
 import AdminAttractionForm from "@/src/Components/AdminComponents/Attractions/AdminAttractonForm";
 import AdminLocationsTable from "@/src/Components/AdminComponents/Locations/AdminLocationsTable";
-import AdminLocationForm from "@/src/Components/AdminComponents/Locations/AdminLocationForm";
+import AdminLocationForm from "@/src/Components/AdminComponents/Locations/NewLocationForm";
 import style from "./page.module.css";
 import { useState } from "react";
 import Link from "next/link";

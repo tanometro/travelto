@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { UserEditInterface } from "@/src/interfaces";
 import patchUser from "@/src/requests/patchUser";
 
-export default function EditUserForm(id, name, email, isActive, roleID) {
+export default function EditUserForm({id, name, email, isActive, roleID}) {
   const [formData, setFormData] = useState<UserEditInterface>({
     id: id,
     name: name,

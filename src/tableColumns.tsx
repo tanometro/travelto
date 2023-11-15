@@ -1,84 +1,84 @@
 export const locationsColumns = [
   {
-    accessorKey:"id",
+    accessorKey: "id",
     header: "ID",
   },
   {
-    accessorKey: 'city',
+    accessorKey: "city",
     header: "Ciudad",
   },
   {
-    accessorKey: 'country',
+    accessorKey: "country",
     header: "Pais",
-  }
+  },
 ];
 
 export const attractionsColumns = [
   {
-    accessorKey:"id",
+    accessorKey: "id",
     header: "ID",
   },
   {
-    accessorKey: 'name',
+    accessorKey: "name",
     header: "Nombre",
   },
   {
-    accessorKey: 'Location.city',
+    accessorKey: "Location.city",
     header: "Ciudad",
   },
   {
-    accessorKey: 'Location.country',
+    accessorKey: "Location.country",
     header: "Pais",
   },
   {
-    accessorKey: 'latitude',
+    accessorKey: "latitude",
     header: "Latitud",
   },
   {
-    accessorKey: 'longitude',
+    accessorKey: "longitude",
     header: "Longitud",
   },
   {
-    accessorKey: 'hours',
+    accessorKey: "hours",
     header: "Horario",
   },
   {
-    accessorKey: 'duration',
+    accessorKey: "duration",
     header: "Duración",
   },
   {
-    accessorKey: 'price',
+    accessorKey: "price",
     header: "Precio",
   },
   {
-    accessorKey: 'quantity',
+    accessorKey: "quantity",
     header: "Stock",
   },
   {
-  accessorKey: "isActive",
-  header: "Activa",
+    accessorKey: "isActive",
+    header: "Activa",
   },
 ];
 
 export const usersColumns = [
   {
     accessorKey: "id",
-    header: "ID"
+    header: "ID",
   },
-{
-accessorKey: "name",
-header: "Nombre"
-},
-{
-accessorKey: "email",
-header: "Email"
-},
-{
-  accessorKey: "isActive",
-  header: "Activo"
-},
-{
-  accessorKey: "roleID",
-  header: "Rol"
-}
-]
+  {
+    accessorKey: "name",
+    header: "Nombre",
+  },
+  {
+    accessorKey: "email",
+    header: "Email",
+  },
+  {
+    accessorKey: "isActive",
+    header: "Activo",
+  },
+  {
+    accessorKey: "roleID",
+    header: "Rol",
+  },
+];

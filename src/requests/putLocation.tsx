@@ -1,17 +1,17 @@
 import { baseURL } from "@/constant";
-import { UserEditInterface } from "../interfaces";
+import { LocationInterface } from "../interfaces";
 
-const patchUser= async (user:UserEditInterface) => {
+const patchLocation= async (location:LocationInterface) => {
     try {
        
-          const response = await fetch(`${baseURL}/users/update/${user.id}`, 
+          const response = await fetch(`${baseURL}/locations/update/${location.id}`, 
           {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
               //Authorization: storedToken,
             },
-            body: JSON.stringify(user),
+            body: JSON.stringify(location),
           });
     
           if (!response.ok) {
@@ -20,14 +20,14 @@ const patchUser= async (user:UserEditInterface) => {
             if (response.status === 401) {
               throw new Error("No autorizado. Por favor, vuelve a iniciar sesión.");
             } else {
-              throw new Error(`Error al editar el Usuario: ${errorMessage}`);
+              throw new Error(`Error al editar la Ciudad: ${errorMessage}`);
             }
           }
-          window.alert("Usuario Editado Exitosamente");
+          window.alert("Ciudad Editada Exitosamente");
       } catch (error) { 
         if (error as Error) {
           window.alert((error as Error).message);
         } 
       }
 };
-export default patchUser
+export default patchLocation
