@@ -276,8 +276,9 @@ export default function Explore() {
           name="priceRange"
           onChange={handleChange}
           className="bg-black bg-opacity-70 border border-gray-300 text-white text-sm text-center rounded-lg focus:ring-gray-500 focus:border-gray-500 block  p-2.5 dark:bg-black-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
+          defaultValue={"selectPlease"}
         >
-          <option selected>Rango de precios</option>
+          <option value="selectPlease">Rango de precios</option>
           <option value="R1">De 0-1000</option>
           <option value="R2">De 1000-2000</option>
           <option value="R3">Más de 2000</option>

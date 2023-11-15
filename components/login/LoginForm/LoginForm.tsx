@@ -1,33 +1,33 @@
 "use client";
 import { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
-import FormInput from "./FormInput/FormInput";
+import FormInput from "../FormInput/FormInput";
 import validate from "./validate";
 import { useRouter } from "next/navigation";
 
+
 export const LoginForm = () => {
   const router = useRouter();
-  const { data: session, status } = useSession();
-  const [errors, setErrors] = useState<string[]>([]);
+  const [errors, setErrors] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handlerSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const stateErrors: string[] = validate(email, password);
-    setErrors([...stateErrors]);
+    const stateErrors: string = validate(email, password);
+    setErrors(stateErrors);
     if (stateErrors.length === 0) {
       // aca llamo a la api
 
       const responseNextAuth = await signIn("credentials", {
         email,
         password,
-        redirect: true,
+        redirect: false,
       });
 
       if (responseNextAuth?.error) {
         // aca responde la app
-        setErrors(responseNextAuth.error.split(","));
+        setErrors(responseNextAuth.error);
         return;
       }
       router.push("/login");
@@ -64,8 +64,8 @@ export const LoginForm = () => {
             className="flex w-full justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
             onClick={() =>
               signIn("google", {
-                redirect: true,
-                callbackUrl: "/",
+                redirect: false,
+                callbackUrl: "/login",
               })
             }
           >
@@ -74,10 +74,8 @@ export const LoginForm = () => {
         </div>
         {errors && errors.length > 0 && (
           <div className="form-group relative mb-10 w-[80%] justify-self-center justify-center">
-            {errors?.map((error, index) => (
-              <p className="text-white bg-red-700" key={index}>
-                * {error}
-              </p>
+            {errors?.split("*").map((error, index) => (
+              <p className="text-white bg-red-700" key={index}>* {error}</p>
             ))}
           </div>
         )}

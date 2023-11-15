@@ -155,6 +155,11 @@ function NavBar() {
                 <CartCounter />
               </Link>
             </li>
+            <li className={styles.nav__item}>
+              <Link href="/Account" className={styles.nav__link}>
+                Perfil
+              </Link>
+            </li>
           </ul>
           {/*Close button*/}
           <div className={styles.nav__close} id="nav-close">

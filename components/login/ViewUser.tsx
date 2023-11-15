@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 
 import { UserData } from "./UserData";
-import { LoginForm } from "./LoginForm";
+import { LoginForm } from "./LoginForm/LoginForm";
 import { useRouter } from "next/navigation";
 import SignOrLog from "../SignOrLog/SignOrLog";
 

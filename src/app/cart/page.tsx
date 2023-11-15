@@ -6,17 +6,12 @@ import CartCard from "@/components/Cart/CartCard/CartCard";
 import { CartContext } from "@/src/app/context/cart";
 import Total from "@/components/Total/Total";
 import Fondo from "@/public/images/fondo_cart.jpg";
-import { AttractionsCartInterface } from "@/src/interfaces";
 import { useRouter } from "next/navigation";
+import BackButton from "@/components/BackButton/BackButton";
 
 export default function Page() {
-  const { cart } = useContext(CartContext);
   const router = useRouter();
-  const [resultado, setResultado] = useState<AttractionsCartInterface[]>([]);
-
-  const handleBack = () => {
-    router.back();
-  };
+  const { cart } = useContext(CartContext);
 
   useEffect(() => {
     if (Object.keys(cart).length === 0) router.push("/");
@@ -32,22 +27,7 @@ export default function Page() {
       <div className="z-[101] flex flex-col gap-5 mx-auto lg:max-w-[75%]">
         <div className="flex justify-between">
           <h1 className="text-2xl">Mi Carrito 🛒</h1>
-          <button
-            onClick={handleBack}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-full"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-            >
-              <path
-                d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"
-                fill="rgba(247,245,245,1)"
-              ></path>
-            </svg>
-          </button>
+          <BackButton />
         </div>
         {Object.keys(cart).map((id) => (
           <CartCard key={"Card" + id} attraction={cart[id]} />
