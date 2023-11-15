@@ -4,7 +4,7 @@ import { PostAttractionFormInterface } from "../interfaces";
 const patchLocation= async (attraction:PostAttractionFormInterface) => {
     try {
        
-          const response = await fetch(`${baseURL}/locations/update/${attraction.id}`, 
+          const response = await fetch(`${baseURL}/attractions/update/${attraction.id}`, 
           {
             method: 'PUT',
             headers: {

@@ -1,5 +1,5 @@
 "use client";
-import { AttractionsCartInterface } from "@/src/interfaces";
+import { AttractionsCartInterface, PostAttractionFormInterface } from "@/src/interfaces";
 import getAllAttractions from "@/src/requests/getAllAttractions";
 import EditAttractionForm from "./EditAttractionForm";
 import { attractionsColumns } from "@/src/tableColumns";
@@ -21,9 +21,10 @@ export default function AdminAttractionsTable() {
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
   const [attractionModal, setAttractionModal] = useState(false);
-  const [selectedAttractionData, setSelectedAttractionData] = useState({
+  const [selectedAttractionData, setSelectedAttractionData] = useState<PostAttractionFormInterface>({
     id: 0,
     name: "",
+    location: 0,
     latitude: "",
     longitude: "",
     price: "",
@@ -32,12 +33,13 @@ export default function AdminAttractionsTable() {
     duration: "",
     image: "",
     description: "",
-    isActive: "",
+    isActive: false,
   });
 
   const aCAttractionModal = (
     id,
     name,
+    location,
     latitude,
     longitude,
     price,
@@ -51,6 +53,7 @@ export default function AdminAttractionsTable() {
     setSelectedAttractionData({
       id,
       name,
+      location,
       latitude,
       longitude,
       price,
@@ -61,6 +64,8 @@ export default function AdminAttractionsTable() {
       description,
       isActive,
     });
+    console.log(selectedAttractionData)
+    setAttractionModal(!attractionModal)
   };
 
   const table = useReactTable({
@@ -175,7 +180,10 @@ export default function AdminAttractionsTable() {
                   </td>
                 ))}
                 <td className="border-slate-300 border-solid border text-xl text-white">
-                  <button className="text-2xl text-white self-center">
+                  <button 
+                  className="text-2xl text-white self-center"
+                  onClick={()=> aCAttractionModal (Number(row.id)+1, row.original.name, row.original.location, row.original.latitude, row.original.longitude, row.original.price, row.original.ranking, row.original.hours, row.original.duration, row.original.image, row.original.description, row.original.isActive)}
+                  >
                     ✏️
                   </button>
                 </td>

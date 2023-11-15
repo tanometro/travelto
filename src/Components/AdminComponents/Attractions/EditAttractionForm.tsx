@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { PostAttractionFormInterface } from "@/src/interfaces";
 import putAttraction from "@/src/requests/putAttraction";
 
-export default function EditAttractionForm(
+export default function EditAttractionForm({
   id,
   name,
   location,
@@ -16,7 +16,7 @@ export default function EditAttractionForm(
   image,
   description,
   isActive
-) {
+}) {
   const [formData, setFormData] = useState<PostAttractionFormInterface>({
     id: id,
     name: name,
@@ -46,7 +46,7 @@ export default function EditAttractionForm(
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const attractionForm = {
+    const attraction= {
       id: formData.id,
       name: formData.name,
       location: formData.location,
@@ -61,7 +61,7 @@ export default function EditAttractionForm(
       isActive: formData.isActive,
     };
 
-    await putAttraction(attractionForm)
+    await putAttraction(attraction)
       .then(() => {
         window.alert("Attraction Create success");
         setFormData({
