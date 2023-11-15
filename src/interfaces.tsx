@@ -85,12 +85,10 @@ export interface UserInterface {
     roleID: number
 }
 
-export interface UserPostInterface {
+export interface UserEditInterface {
+    id: number,
     name: string,
-    dni: string,
-    image: string,
     email: string,
-    password: string,
     isActive: boolean,
     roleID: number
 }

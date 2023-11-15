@@ -1,12 +1,12 @@
 import { baseURL } from "@/constant";
 import { UserEditInterface } from "../interfaces";
 
-const createUser= async (user:UserEditInterface) => {
+const patchUser= async (user:UserEditInterface) => {
     try {
        
-          const response = await fetch(`${baseURL}/users/create`, 
+          const response = await fetch(`${baseURL}/users/update/${user.id}`, 
           {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
               //Authorization: storedToken,
@@ -20,14 +20,14 @@ const createUser= async (user:UserEditInterface) => {
             if (response.status === 401) {
               throw new Error("No autorizado. Por favor, vuelve a iniciar sesión.");
             } else {
-              throw new Error(`Error al crear el Usuario: ${errorMessage}`);
+              throw new Error(`Error al editar el Usuario: ${errorMessage}`);
             }
           }
-          window.alert("Usuario Creado Exitosamente");
+          window.alert("Usuario Editado Exitosamente");
       } catch (error) { 
         if (error as Error) {
           window.alert((error as Error).message);
         } 
       }
 };
-export default createUser
+export default patchUser
