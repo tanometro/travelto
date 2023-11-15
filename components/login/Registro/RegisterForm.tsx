@@ -50,14 +50,15 @@ export default function RegisterForm() {
       setErrors(responseNextAuth.error);
       return;
     }
-    await fetch("/api/email", {
+    //para enviar mails desde el front
+    /* await fetch("/api/email", {
       method: "POST",
       body: JSON.stringify({
         name,
         dni,
         email,
       }),
-    });
+    }); */
 
     router.push("/login");
   }
