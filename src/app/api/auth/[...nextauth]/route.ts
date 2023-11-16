@@ -31,7 +31,6 @@ const handler = NextAuth({
                     return user;
 
                 } catch (error) {
-
                     throw new Error("Error en la solicitud de autenticación")
                 }
 
@@ -40,7 +39,7 @@ const handler = NextAuth({
 
     ],
     callbacks: {
-        async signIn({ user, account }) {
+        /* async signIn({ user, account }) {
             //inicio
             const { id, email } = user;
 
@@ -58,25 +57,27 @@ const handler = NextAuth({
                 }
             }
             return true;
-        },
+        }, */
         async jwt({ token, user }) {
             // Persist the OAuth access_token to the token right after signin
             return { ...token, ...user }
         },
         async session({ session, token }) {
             // Send properties to the client, like an access_token from a provider.
-
             //aca agrego datos
             if (token.email && token.sub) {
                 try {
                     const newUser = await userLogin({ email: token.email, googlePass: token.id });
                     token.picture = newUser.picture;
                     session.user = { ...token, name: newUser.name, email: newUser.email, picture: newUser.picture, role: newUser.roleID, token: newUser.token };
+
                     return session;
                 } catch (error) {
-                    throw new Error("no autorizado")
+                    throw new Error(error);
                 }
             }
+            session.user = { ...token };
+
             return session;
         }
     },
