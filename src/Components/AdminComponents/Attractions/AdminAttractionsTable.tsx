@@ -108,7 +108,7 @@ export default function AdminAttractionsTable() {
         </div>
         <EditAttractionForm {...selectedAttractionData} />
         <button
-          onClick={() => {aCAttractionModal}}
+          onClick={aCAttractionModal}
           className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none"
         >
           Cerrar
@@ -182,7 +182,7 @@ export default function AdminAttractionsTable() {
                 <td className="border-slate-300 border-solid border text-xl text-white">
                   <button 
                   className="text-2xl text-white self-center"
-                  onClick={()=> aCAttractionModal (Number(row.id)+1, row.original.name, row.original.location, row.original.latitude, row.original.longitude, row.original.price, row.original.ranking, row.original.hours, row.original.duration, row.original.image, row.original.description, row.original.isActive)}
+                  onClick={()=> aCAttractionModal (row.original.id, row.original.name, row.original.location, row.original.latitude, row.original.longitude, row.original.price, row.original.ranking, row.original.hours, row.original.duration, row.original.image, row.original.description, row.original.isActive)}
                   >
                     ✏️
                   </button>

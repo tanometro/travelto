@@ -8,7 +8,7 @@ function ProfileInfo() {
   return (
     <div className="relative">
       <div className="absolute left-[-1.5rem] top-0">
-        <div className="font-capitalize">{session?.user?.name}</div>
+        <Link href="/Account">
         <Image
           src={session?.user?.image!}
           alt="UserImage"
@@ -16,6 +16,7 @@ function ProfileInfo() {
           height={50}
           className="rounded-full"
         />
+        </Link>
         <Link
           href=""
           onClick={() => signOut({ callbackUrl: "/" })}

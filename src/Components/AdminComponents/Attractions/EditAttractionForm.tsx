@@ -54,7 +54,9 @@ export default function EditAttractionForm({
         [name]: checked,
       }));
     } else {
-      setFormData((formData) => ({ ...formData, [name]: value }));
+      const parsedValue = name === "location" ? Number(value) : value;
+
+    setFormData((formData) => ({ ...formData, [name]: parsedValue }));
     }
   };
 
@@ -77,7 +79,6 @@ export default function EditAttractionForm({
     console.log(attraction)
     await putAttraction(attraction)
       .then(() => {
-        window.alert("Attraction Create success");
         setFormData({
           id: 0,
           name: "",
