@@ -1,86 +1,158 @@
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+"use client";
+import { AttractionsCartInterface } from "@/src/interfaces";
 import getAllAttractions from "@/src/requests/getAllAttractions";
-import { AttractionInterface } from "@/src/interfaces";
+import { attractionsColumns } from "@/src/tableColumns";
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  getPaginationRowModel,
+  getSortedRowModel,
+  getFilteredRowModel,
+} from "@tanstack/react-table";
+import { useEffect, useState } from "react";
 
 export default function AdminAttractionsTable() {
+  const [attractions, setAttractions] = useState<AttractionsCartInterface[]>([]);
+  const [sorting, setSorting] = useState([]);
+  const [filtering, setFiltering] = useState("");
 
-  const [attractions, setAttractions] = useState <AttractionInterface[]> ([])
-    
+  const table = useReactTable({
+    data: attractions,
+    columns: attractionsColumns,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      sorting,
+      globalFilter: filtering,
+    },
+    onSortingChange: setSorting,
+    onGlobalFilterChange: setFiltering,
+  });
+
   useEffect(() => {
-    async function fetchData () {
-     try {
-      const response = await getAllAttractions();
-      setAttractions(response.data);
-     } catch (error) {
-      console.error ("Error en Fetch Data")
-     } 
+    async function fetchData() {
+      try {
+        const response = await getAllAttractions();
+        setAttractions(response.data);
+      } catch (error) {
+        console.error("Error en Fetch Data");
+      }
     }
-    fetchData()}, [])
-
-  const router = useRouter();
+    fetchData();
+  }, []);
 
   return (
-    <main className="h-full w-full m-4">
-      <div className="mb-2">
-        <input 
-        className=" text-lg p-1 rounded-xl"
-        placeholder="Nombre o Ciudad"
-        />
-        <button className=" ml-2 hover:border-lime-400 font-second-font font-semibold text-lg rounded-xl text-zinc-50 bg-slate-700 p-1 border-solid" >Buscar</button>
+    <div className=" w-full h-full ">
+      <div className="rounded-lg w-full h-1/6 bg-slate-700 mb-2 justify-between">
+        <span className="m-2 text-2xl text-white">Total de Atracciones: </span>
+        <span className="m-2 mr-4 text-2xl text-lime-600">
+          {attractions.length}
+        </span>
+        <div>
+          <span className="m-2 text-lg text-white">
+            Filtrar por cualquier Propiedad
+          </span>
+          <input
+            className="rounded-lg text-black"
+            type="text"
+            value={filtering}
+            onChange={(e) => setFiltering(e.target.value)}
+          />
+        </div>
       </div>
-      <div className="flex justify-center col-span-2 row-span-1">
-        <table className="border min-w-full rounded-lg w-full h-full bg-slate-700">
+      <div className="h-4/6">
+        <table className="min-w-full rounded-lg w-full h-full bg-slate-700">
           <thead>
-            <tr className="bg-gray-100">
-              <th className=" border border-b p-2 border-r-2">Name</th>
-              <th className=" border border-b p-2 border-r-2">City</th>
-              <th className=" border border-b p-2 border-r-2">Country</th>
-              <th className=" border border-b p-2 border-r-2">Coordinates</th>
-              <th className=" border border-b p-2 border-r-2">Price</th>
-              <th className=" border border-b p-2 border-r-2">Duration</th>
-              <th className=" border border-b p-2 border-r-2">Active</th>
-              <th className=" border border-b p-2 border-r-2">Edit</th>
-            </tr>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr
+                key={headerGroup.id}
+                className="border-slate-300 bg-black text-2xl text-white border-solid border"
+              >
+                {headerGroup.headers.map((header) => (
+                  <th
+                    key={header.id}
+                    className="border-slate-300 border-solid border"
+                    onClick={header.column.getToggleSortingHandler()}
+                  >
+                    {header.isPlaceholder ? null : (
+                      <div>
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+
+                        {header.column.getIsSorted()
+                          ? { asc: "⬆️", desc: "⬇️" }[
+                              header.column.getIsSorted() as "asc" | "desc"
+                            ]
+                          : null}
+                      </div>
+                    )}
+                  </th>
+                ))}
+                <th className="border-slate-300 border-solid border">Editar</th>
+              </tr>
+            ))}
           </thead>
           <tbody>
-            {attractions.map((attraction) => (
-              <tr key={attraction.id}>
-                <td className=" border border-b p-2 border-r-2">{attraction.name}</td>
-                <td className=" border border-b p-2 border-r-2">
-                  {attraction.Location.city}
-                </td>
-                <td className="border border-b p-2 border-r-2">
-                  {attraction.Location.country}
-                </td>
-                <td className=" border border-b p-2 border-r-2">
-                  {attraction.latitude + "°"} -{" "}
-                  {attraction.longitude + "°"}
-                </td>
-                <td className=" border border-b p-2 border-r-2">{attraction.price}</td>
-                <td className=" border border-b p-2 border-r-2">
-                  {attraction.duration}
-                </td>
-                <td className=" border border-b p-2 border-r-2">
-                  {attraction.isActive? "SI" : "NO"}
-                </td>
-                <td className=" border border-b p-2 border-r-2 text-center">
-                  <button
-                    className=" border-red-600 border-solid border-2 bg-green-200 w-32 h-8 rounded"
-                    onClick={() =>
-                      router.push(
-                        `/AdminDashboard/AdminAttractions/EditAttraction/${attraction.id}`
-                      )
-                    }
+            {table.getRowModel().rows.map((row, index) => (
+              <tr
+                key={row.id}
+                className={index % 2 === 0 ? "bg-slate-700" : "bg-slate-500"}
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <td
+                    key={cell.id}
+                    className="border-slate-300 border-solid border text-xl text-white"
                   >
-                    Edit
-                  </button>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+                <td className="border-slate-300 border-solid border text-xl text-white">
+                <button className="text-2xl text-white self-center">✏️</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    </main>
+      <div className="h-1/6 w-full flex justify-evenly bg-black mt-2 rounded-lg">
+        <button className="text-2xl" onClick={() => table.setPageIndex(0)}>
+          Primera
+        </button>
+        <button className="text-4xl" onClick={() => table.previousPage()}>
+          ⬅️
+        </button>
+        <span className="text-2xl">
+          {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
+        </span>
+        <button
+          className="text-4xl"
+          onClick={() => {
+            if (
+              table.getPageCount() > 1 &&
+              table.getState().pagination.pageIndex < table.getPageCount() - 1
+            ) {
+              table.nextPage();
+            }
+          }}
+          disabled={
+            table.getPageCount() <= 1 ||
+            table.getState().pagination.pageIndex >= table.getPageCount() - 1
+          }
+        >
+          ➡️
+        </button>
+        <button
+          className="text-2xl"
+          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+        >
+          Ultima
+        </button>
+      </div>
+    </div>
   );
 }
