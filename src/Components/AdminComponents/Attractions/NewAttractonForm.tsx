@@ -1,7 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import { AdminAttractionFormInterface } from "@/src/interfaces";
+import React, { useState, useEffect } from "react";
+import { AdminAttractionFormInterface, LocationInterface } from "@/src/interfaces";
 import createAttraction from "@/src/requests/postAttraction";
+import axios from "axios";
+import { baseURL } from "@/constant";
 
 export default function AdminAttractionForm() {
   const [formData, setFormData] = useState<AdminAttractionFormInterface>({
@@ -17,6 +19,17 @@ export default function AdminAttractionForm() {
     description: "",
     isActive: false,
   });
+  const [locations, setLocations] = useState<LocationInterface[]>([])
+
+    useEffect(() => {
+      axios.get(`${baseURL}/locations`)
+        .then((response) => {
+          setLocations(response.data);
+        })
+        .catch((error) => {
+          console.error('Error fetching locations:', error);
+        });
+    }, []);
 
   const handleInputChange = (e: React.FormEvent) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
@@ -45,7 +58,7 @@ export default function AdminAttractionForm() {
       description: formData.description,
       isActive: formData.isActive,
     };
-
+    
     await createAttraction(attractionForm)
       .then(() => {
         window.alert("Attraction Create success");
@@ -110,14 +123,20 @@ export default function AdminAttractionForm() {
           <div className="flex flex-row w-full justify-evenly">
             <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
               <label className="font-bold mb-2 text-center">Location:</label>
-              <input
+              <select
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
                 name="location"
                 value={formData.location}
                 onChange={handleInputChange}
                 required
-              />
+              ><option value="defaultValue">Seleccione una Ciudad</option>
+                {locations.map((location) => (
+                  <option key={location.id} value={location.id}>
+                    {`${location.city}, ${location.country}`}
+                  </option>
+                ))}
+                <option value="not-found" className=" font-bold">Si la ciudad no esta en la lista debe crearla</option>
+              </select>
             </div>
             <div className="w-full md:w-1/3 px-3">
               <label className="font-bold mb-2 text-center">Ranking:</label>

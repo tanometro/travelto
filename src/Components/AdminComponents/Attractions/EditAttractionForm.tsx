@@ -39,6 +39,7 @@ export default function EditAttractionForm({
     axios.get(`${baseURL}/locations`)
       .then((response) => {
         setLocations(response.data);
+        console.log(locations)
       })
       .catch((error) => {
         console.error('Error fetching locations:', error);
