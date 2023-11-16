@@ -1,7 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import { PostAttractionFormInterface } from "@/src/interfaces";
+import React, { useEffect, useState } from "react";
+import { LocationInterface, PostAttractionFormInterface } from "@/src/interfaces";
 import putAttraction from "@/src/requests/putAttraction";
+import { baseURL } from "@/constant";
+import axios from "axios";
 
 export default function EditAttractionForm({
   id,
@@ -31,6 +33,17 @@ export default function EditAttractionForm({
     description: description,
     isActive: isActive,
   });
+  const [locations, setLocations] = useState<LocationInterface[]>([])
+
+  useEffect(() => {
+    axios.get(`${baseURL}/locations`)
+      .then((response) => {
+        setLocations(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching locations:', error);
+      });
+  }, []);
 
   const handleInputChange = (e: React.FormEvent) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
@@ -46,7 +59,7 @@ export default function EditAttractionForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const attraction= {
+    const attraction = {
       id: formData.id,
       name: formData.name,
       location: formData.location,
@@ -60,7 +73,7 @@ export default function EditAttractionForm({
       description: formData.description,
       isActive: formData.isActive,
     };
-
+    console.log(attraction)
     await putAttraction(attraction)
       .then(() => {
         window.alert("Attraction Create success");
@@ -126,14 +139,19 @@ export default function EditAttractionForm({
           <div className="flex flex-row w-full justify-evenly">
             <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
               <label className="font-bold mb-2 text-center">Location:</label>
-              <input
+              <select
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
                 name="location"
                 value={formData.location}
                 onChange={handleInputChange}
                 required
-              />
+              >
+                {locations.map((location) => (
+                  <option key={location.id} value={location.id}>
+                    {`${location.city}, ${location.country}`}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="w-full md:w-1/3 px-3">
               <label className="font-bold mb-2 text-center">Ranking:</label>

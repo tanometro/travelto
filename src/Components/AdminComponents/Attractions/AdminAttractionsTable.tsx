@@ -1,5 +1,5 @@
 "use client";
-import { AttractionsCartInterface, PostAttractionFormInterface } from "@/src/interfaces";
+import { PostAttractionFormInterface } from "@/src/interfaces";
 import getAllAttractions from "@/src/requests/getAllAttractions";
 import EditAttractionForm from "./EditAttractionForm";
 import { attractionsColumns } from "@/src/tableColumns";
@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import Modal from "react-modal";
 
 export default function AdminAttractionsTable() {
-  const [attractions, setAttractions] = useState<AttractionsCartInterface[]>(
+  const [attractions, setAttractions] = useState<PostAttractionFormInterface[]>(
     []
   );
   const [sorting, setSorting] = useState([]);
@@ -108,7 +108,7 @@ export default function AdminAttractionsTable() {
         </div>
         <EditAttractionForm {...selectedAttractionData} />
         <button
-          onClick={aCAttractionModal}
+          onClick={() => {aCAttractionModal}}
           className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none"
         >
           Cerrar

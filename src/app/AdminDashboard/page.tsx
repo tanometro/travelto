@@ -86,7 +86,7 @@ export default function AdminDashboard() {
         overlayClassName="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center"
         className="bg-white p-4 rounded-lg shadow-lg justify-items-center text-center"
       >
-        <div className="mb-2 font-bold text-black text-xl boder border-b-2 border-lime-600">Crea o Edita la Atracción</div>
+        <div className="mb-2 font-bold text-black text-xl boder border-b-2 border-lime-600">Crea la Atracción</div>
         <AdminAttractionForm/>
         <button
           onClick={aCAttractionModal}

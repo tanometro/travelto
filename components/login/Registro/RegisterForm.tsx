@@ -32,6 +32,8 @@ export default function RegisterForm() {
         image: imageUser,
         email,
         password,
+        isActive: true,
+        roleID: 3
       })
 
       if (!response.data.email) {
