@@ -2,8 +2,6 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import userLogin from "@/src/requests/postLoginUser";
-import { error } from "console";
-import { Session } from "inspector";
 
 const handler = NextAuth({
     providers: [
@@ -71,8 +69,8 @@ const handler = NextAuth({
                 try {
                     const newUser = await userLogin({ email: token.email, googlePass: token.id });
                     token.picture = newUser.picture;
+                    token.role = newUser.roleID;
                     session.user = { ...token, name: newUser.name, email: newUser.email, picture: newUser.picture, role: newUser.roleID, token: newUser.token };
-
                     return session;
                 } catch (error) {
                     throw new Error("Usuario no autorizado");

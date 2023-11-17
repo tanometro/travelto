@@ -27,7 +27,7 @@ export default function AdminUserTable() {
     roleID: 0,
   });
 
-  
+
   const aCUserModal = (id, name, email, isActive, roleID) => {
     setSelectedUserData({
       id,
@@ -88,13 +88,13 @@ export default function AdminUserTable() {
         <span className="m-2 text-2xl text-white">Total de Usuarios: </span>
         <span className="m-2 mr-4 text-2xl text-lime-600">{users.length}</span>
         <div>
-        <span className="m-2 text-lg text-white">Filtrar por cualquier Propiedad</span>
-        <input 
-        className="rounded-lg text-black"
-        type="text"
-        value= {filtering}
-        onChange={(e) => setFiltering(e.target.value)}
-        />
+          <span className="m-2 text-lg text-white">Filtrar por cualquier Propiedad</span>
+          <input
+            className="rounded-lg text-black"
+            type="text"
+            value={filtering}
+            onChange={(e) => setFiltering(e.target.value)}
+          />
         </div>
       </div>
       <div className="h-4/6">
@@ -119,9 +119,9 @@ export default function AdminUserTable() {
                         )}
 
                         {
-                          header.column.getIsSorted() 
-                          ? { asc: "⬆️", desc: "⬇️" }[header.column.getIsSorted() as 'asc' | 'desc'] 
-                          : null
+                          header.column.getIsSorted()
+                            ? { asc: "⬆️", desc: "⬇️" }[header.column.getIsSorted() as 'asc' | 'desc']
+                            : null
                         }
                       </div>
                     )}
@@ -146,10 +146,10 @@ export default function AdminUserTable() {
                   </td>
                 ))}
                 <td className="border-slate-300 border-solid border text-xl text-white">
-                <button 
-                className="text-xl text-white self-center"
-                onClick={() => aCUserModal (Number(row.id)+1, row.original.name, row.original.email, row.original.isActive, row.original.roleID)}
-                >✏️</button>
+                  <button
+                    className="text-xl text-white self-center"
+                    onClick={() => aCUserModal(Number(row.id) + 1, row.original.name, row.original.email, row.original.isActive, row.original.roleID)}
+                  >✏️</button>
                 </td>
               </tr>
             ))}
@@ -166,15 +166,15 @@ export default function AdminUserTable() {
         <span className="text-2xl">
           {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
         </span>
-        <button 
-        className="text-4xl" 
-        onClick={() => {
-          if (table.getPageCount() > 1 && table.getState().pagination.pageIndex < table.getPageCount() - 1) {
-            table.nextPage();
-          }
-        }}
-        disabled={table.getPageCount() <= 1 || table.getState().pagination.pageIndex >= table.getPageCount() - 1}
-            >
+        <button
+          className="text-4xl"
+          onClick={() => {
+            if (table.getPageCount() > 1 && table.getState().pagination.pageIndex < table.getPageCount() - 1) {
+              table.nextPage();
+            }
+          }}
+          disabled={table.getPageCount() <= 1 || table.getState().pagination.pageIndex >= table.getPageCount() - 1}
+        >
           ➡️
         </button>
         <button

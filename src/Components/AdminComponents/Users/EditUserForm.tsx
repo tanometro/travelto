@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import { UserEditInterface } from "@/src/interfaces";
 import patchUser from "@/src/requests/patchUser";
+import { useSession } from "next-auth/react";
 
-export default function EditUserForm({id, name, email, isActive, roleID}) {
+export default function EditUserForm({ id, name, email, isActive, roleID }) {
+  const { data: session } = useSession();
   const [formData, setFormData] = useState<UserEditInterface>({
     id: id,
     name: name,
@@ -34,7 +36,7 @@ export default function EditUserForm({id, name, email, isActive, roleID}) {
       roleID: formData.roleID
     }
     console.log(user)
-    await patchUser(user)
+    await patchUser(user, session?.user.token)
       .then(() => {
         setFormData({
           id: 0,

@@ -134,21 +134,21 @@ function NavBar() {
                 About
               </a>
             </li>
-            {status !== "loading" && (
-              <li className={styles.nav__item}>
-                {!session ? (
-                  <Link href="/login" className={styles.nav__link}>
-                    Login
-                  </Link>
-                ) : (
-                  <ProfileInfo />
-                )}
-              </li>
-            )}
+
             <li className={styles.nav__item}>
-              <Link href="/AdminDashboard" className={styles.nav__link}>
+              {status !== "authenticated" ? (
+                <Link href="/login" className={styles.nav__link}>
+                  Login
+                </Link>
+              ) : (
+                <ProfileInfo />
+              )}
+            </li>
+
+            <li className={styles.nav__item}>
+              {(session?.user.role == 1) && <Link href="/AdminDashboard" className={styles.nav__link}>
                 Admin
-              </Link>
+              </Link>}
             </li>
             <li className="relative mx-auto">
               <Link href="/cart" id="carrito">
