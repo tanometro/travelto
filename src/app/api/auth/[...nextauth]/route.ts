@@ -2,6 +2,8 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import userLogin from "@/src/requests/postLoginUser";
+import { error } from "console";
+import { Session } from "inspector";
 
 const handler = NextAuth({
     providers: [
@@ -39,7 +41,7 @@ const handler = NextAuth({
 
     ],
     callbacks: {
-        /* async signIn({ user, account }) {
+        async signIn({ user, account }) {
             //inicio
             const { id, email } = user;
 
@@ -57,7 +59,7 @@ const handler = NextAuth({
                 }
             }
             return true;
-        }, */
+        },
         async jwt({ token, user }) {
             // Persist the OAuth access_token to the token right after signin
             return { ...token, ...user }
@@ -73,16 +75,23 @@ const handler = NextAuth({
 
                     return session;
                 } catch (error) {
-                    throw new Error(error);
+                    throw new Error("Usuario no autorizado");
                 }
             }
-            session.user = { ...token };
+            session.user = <{ name: string; email: string; picture: string; token: string; role: number; }>token;
 
             return session;
-        }
+        },
+
     },
     pages: {
         signIn: "/login",
+        error: "/login"
+    },
+    secret: process.env.NEXTAUTH_SECRET,
+    session: {
+        strategy: "jwt",
+
     }
 });
 

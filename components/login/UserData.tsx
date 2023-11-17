@@ -5,7 +5,6 @@ import { signOut, useSession } from "next-auth/react";
 
 export const UserData = () => {
   const { data: session, status } = useSession();
-  console.log(session);
 
   if (!session) {
     return (
