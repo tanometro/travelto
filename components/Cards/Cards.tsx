@@ -1,6 +1,5 @@
 "use client";
 import Card from "../card/Card";
-import style from "./Cards.module.css";
 import React, { useState } from "react";
 import Paginacion from "../paginacion/Paginacion";
 import { PropCards } from "@/src/interfaces";
@@ -12,11 +11,11 @@ export default function Cards(props: PropCards) {
   const [pageSize, setPageSize] = useState(4);
   const pageAmount = Math.ceil(props.data.length / pageSize); // cantidad de pag s/cant de cards
 
-  return !props.data ? (
-    <h1 className={style.h1}>Cargando las atracciones...</h1>
+  return props.data.length === 0 ? (
+    <h1 className="text-center text-2xl mt-20 pt-20 mb-20 pb-10">No existen atracciones para esa busqueda</h1>
   ) : (
     <div className="mb-16 xl:mb-0">
-      <div className={style.container}>
+      <div className="flex justify-center items-center flex-wrap w-[90vw] my-4 mx-auto">
         {props?.data
           .slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize)
           .map(
@@ -55,7 +54,7 @@ export default function Cards(props: PropCards) {
             }
           )}
       </div>
-      <div className={style.page}>
+      <div className="text-center">
         <Paginacion page={page} setPage={setPage} pageAmount={pageAmount} />
       </div>
     </div>

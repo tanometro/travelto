@@ -32,13 +32,7 @@ export default function RegisterForm() {
         image: imageUser,
         email,
         password,
-        isActive: true,
-        roleID: 3
       })
-
-      if (!response.data.email) {
-        setErrors(response.data);
-      }
 
     } catch (error) {
       setErrors(error.message);
@@ -56,6 +50,16 @@ export default function RegisterForm() {
       setErrors(responseNextAuth.error);
       return;
     }
+    //para enviar mails desde el front
+    /* await fetch("/api/email", {
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        dni,
+        email,
+      }),
+    }); */
+
     router.push("/login");
   }
 

@@ -5,7 +5,6 @@ import { signOut, useSession } from "next-auth/react";
 
 export const UserData = () => {
   const { data: session, status } = useSession();
-  console.log(session);
 
   if (!session) {
     return (
@@ -20,7 +19,7 @@ export const UserData = () => {
       <div>
         <h1>Bienvenido {session.user?.name}</h1>
         <Image
-          src={session.user?.image as string}
+          src={session.user?.picture as string}
           alt="My photo"
           width={200}
           height={200}

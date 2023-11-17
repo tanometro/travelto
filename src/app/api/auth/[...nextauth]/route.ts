@@ -2,6 +2,8 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import userLogin from "@/src/requests/postLoginUser";
+import { error } from "console";
+import { Session } from "inspector";
 
 const handler = NextAuth({
     providers: [
@@ -26,13 +28,13 @@ const handler = NextAuth({
             //authorize(credentials, req) {
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
-                const user = await userLogin(credentials);
-                console.log("hasta aca llega bien");
+                try {
+                    const user = await userLogin(credentials);
+                    return user;
 
-                if (user.error) {
-                    throw new Error(user.error)
-                };
-                return user;
+                } catch (error) {
+                    throw new Error("Error en la solicitud de autenticación")
+                }
 
             },
         }),
@@ -40,20 +42,21 @@ const handler = NextAuth({
     ],
     callbacks: {
         async signIn({ user, account }) {
-            //inicio de secion
-            const { id, name, image, email } = user;
+            //inicio
+            const { id, email } = user;
 
             //verifico los datos devueltos por google
             if (!user.name || !user.email) {
                 return false;
             }
             if (account?.type === "oauth") {
+                try {
+                    await userLogin({ email, googlePass: id });
+                    return true;
 
-                const res = await userLogin({ email, googlePass: id });
-
-
-                if (res.error) return false;
-                return true;
+                } catch (error) {
+                    return false;
+                }
             }
             return true;
         },
@@ -63,23 +66,32 @@ const handler = NextAuth({
         },
         async session({ session, token }) {
             // Send properties to the client, like an access_token from a provider.
-
             //aca agrego datos
             if (token.email && token.sub) {
                 try {
                     const newUser = await userLogin({ email: token.email, googlePass: token.id });
-                    session.user = { ...token, role: newUser.roleID, token: newUser.token };
-                    console.log(session.user);
+                    token.picture = newUser.picture;
+                    session.user = { ...token, name: newUser.name, email: newUser.email, picture: newUser.picture, role: newUser.roleID, token: newUser.token };
+
                     return session;
                 } catch (error) {
-                    throw new Error("no autorizado")
+                    throw new Error("Usuario no autorizado");
                 }
             }
+            session.user = <{ name: string; email: string; picture: string; token: string; role: number; }>token;
+
             return session;
-        }
+        },
+
     },
     pages: {
         signIn: "/login",
+        error: "/login"
+    },
+    secret: process.env.NEXTAUTH_SECRET,
+    session: {
+        strategy: "jwt",
+
     }
 });
 
