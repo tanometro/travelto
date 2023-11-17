@@ -2,6 +2,8 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import userLogin from "@/src/requests/postLoginUser";
+import { error } from "console";
+import { Session } from "inspector";
 
 const handler = NextAuth({
     providers: [
@@ -31,7 +33,6 @@ const handler = NextAuth({
                     return user;
 
                 } catch (error) {
-
                     throw new Error("Error en la solicitud de autenticación")
                 }
 
@@ -65,23 +66,32 @@ const handler = NextAuth({
         },
         async session({ session, token }) {
             // Send properties to the client, like an access_token from a provider.
-
             //aca agrego datos
             if (token.email && token.sub) {
                 try {
                     const newUser = await userLogin({ email: token.email, googlePass: token.id });
                     token.picture = newUser.picture;
                     session.user = { ...token, name: newUser.name, email: newUser.email, picture: newUser.picture, role: newUser.roleID, token: newUser.token };
+
                     return session;
                 } catch (error) {
-                    throw new Error("no autorizado")
+                    throw new Error("Usuario no autorizado");
                 }
             }
+            session.user = <{ name: string; email: string; picture: string; token: string; role: number; }>token;
+
             return session;
-        }
+        },
+
     },
     pages: {
         signIn: "/login",
+        error: "/login"
+    },
+    secret: process.env.NEXTAUTH_SECRET,
+    session: {
+        strategy: "jwt",
+
     }
 });
 

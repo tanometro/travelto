@@ -2,7 +2,7 @@
 import AdminUsersTable from "@/src/Components/AdminComponents/Users/AdminUsersTable";
 import NewUserForm from "@/src/Components/AdminComponents/Users/NewUserForm";
 import AdminAttractionsTable from "@/src/Components/AdminComponents/Attractions/AdminAttractionsTable";
-import AdminAttractionForm from "@/src/Components/AdminComponents/Attractions/AdminAttractonForm";
+import AdminAttractionForm from "@/src/Components/AdminComponents/Attractions/NewAttractonForm";
 import AdminLocationsTable from "@/src/Components/AdminComponents/Locations/AdminLocationsTable";
 import AdminLocationForm from "@/src/Components/AdminComponents/Locations/NewLocationForm";
 import style from "./page.module.css";
@@ -86,7 +86,7 @@ export default function AdminDashboard() {
         overlayClassName="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center"
         className="bg-white p-4 rounded-lg shadow-lg justify-items-center text-center"
       >
-        <div className="mb-2 font-bold text-black text-xl boder border-b-2 border-lime-600">Crea o Edita la Atracción</div>
+        <div className="mb-2 font-bold text-black text-xl boder border-b-2 border-lime-600">Crea la Atracción</div>
         <AdminAttractionForm/>
         <button
           onClick={aCAttractionModal}
@@ -95,7 +95,7 @@ export default function AdminDashboard() {
           Cerrar
         </button>
       </Modal>
-      <Modal
+      {/*Modal
         isOpen={userModal}
         onRequestClose={aCUserModal}
         overlayClassName="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center"
@@ -109,7 +109,7 @@ export default function AdminDashboard() {
         >
           Cerrar
         </button>
-      </Modal>
+      </Modal>*/}
       <div className=" rounded-lg w-full h-full bg-black border bg-title-color border-solid col-start-1 col-end-3 col-span-2 mb-2 ml-2 justify-evenly items-center flex">
         <select
           onChange={handleSelectChange}
@@ -120,12 +120,12 @@ export default function AdminDashboard() {
           <option value="attractions">Lista de Attracciones</option>
           <option value="locations">Lista de Ciudades</option>
         </select>
-        <button
+        {/*<button
           onClick={aCUserModal}
           className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 h-4/5 w-1/6 border-solid"
         >
           Nuevo Usuario
-        </button>
+        </button>*/}
         <button
           onClick={aCAttractionModal}
           className=" hover:border-lime-400 font-second-font font-semibold text-xl rounded-xl text-zinc-50 bg-slate-700 m-2 h-4/5 w-1/6 border-solid"

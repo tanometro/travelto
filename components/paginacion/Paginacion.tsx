@@ -22,9 +22,9 @@ type Props = {
         i++
     }
     
-    return  pageAmount !== 1 && (
+    return (pageAmount > 1) && (
     
-        <div className={styles.container}>
+        <div className="flex justify-center -mb-28 mt-4 gap-2.5">
             <button 
                 disabled={page === 1 || page < 1}
                 onClick={previusPage}
@@ -48,6 +48,6 @@ type Props = {
             </button>
         </div>
     )
-    
+               
 }
 export default Paginacion

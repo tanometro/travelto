@@ -14,13 +14,17 @@ export default function EditUserForm({id, name, email, isActive, roleID}) {
 
   const handleInputChange = (e: React.FormEvent) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
+  
     if (type === "checkbox") {
       setFormData((formData) => ({
         ...formData,
         [name]: checked,
       }));
     } else {
-      setFormData((formData) => ({ ...formData, [name]: value }));
+      setFormData((formData) => ({
+        ...formData,
+        [name]: name === "roleID" ? parseInt(value, 10) : value,
+      }));
     }
   };
 

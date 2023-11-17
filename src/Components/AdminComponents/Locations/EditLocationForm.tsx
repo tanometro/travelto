@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { LocationInterface } from "@/src/interfaces";
-import patchLocation from "@/src/requests/putLocation";
+import putLocation from "@/src/requests/putLocation";
 
 export default function EditLocationForm({ id, city, country }) {
   const [formData, setFormData] = useState<LocationInterface>({
@@ -23,7 +23,7 @@ export default function EditLocationForm({ id, city, country }) {
       country: formData.country,
     }
     console.log(location);
-    await patchLocation(location)
+    await putLocation(location)
       .then(() => {
         setFormData({
           id: 0,

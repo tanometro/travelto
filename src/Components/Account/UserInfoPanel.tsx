@@ -1,24 +1,22 @@
 "use client"
 
 import { useSession } from "next-auth/react"
-import Image from "next/image";
 
-
+//import DataUser from "./DataUser";
 
 function UserInfoPanel() {
   const { data: session, status } = useSession();
-  return (
-    <section className="h-full w-full flex flex-col justify-around">
-      <h1>{session?.user.name}</h1>
-      <div className="flex flex-wrap w-300 h-600 bg-white">
-        <Image
-          src={session?.user?.picture!}
-          alt="UserImage"
-          width={300}
-          height={300}
-        />
+  if (!session) {
+    return (
+      <article>
+        <h2>Loading...</h2>
+      </article>
+    );
+  }
 
-      </div>
+  return (
+    <section className="flex flex-wrap h-full w-full items-center justify-around">
+      {/* <DataUser /> */}
     </section>
   )
 }

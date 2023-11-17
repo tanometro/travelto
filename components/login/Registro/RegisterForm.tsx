@@ -32,8 +32,6 @@ export default function RegisterForm() {
         image: imageUser,
         email,
         password,
-        isActive: true,
-        roleID: 3,
       })
 
     } catch (error) {

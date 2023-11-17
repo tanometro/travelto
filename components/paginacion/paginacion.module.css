@@ -1,10 +1,4 @@
-.container {
-    display: flex;
-    margin-top: 1em;
-    gap:10px;
-    justify-content: center;
-    margin-bottom: -7em;
-}
+
 .button {
     font-size: 24px;
     background-color: #474747;
@@ -20,7 +14,4 @@
     border: 1px solid black;
     border-radius: 8%;
 }
-.p {
-    font-weight: bold;
-    font-size: 1.2em;
-}
+

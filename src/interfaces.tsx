@@ -13,6 +13,7 @@ export interface AdminAttractionFormInterface {
 }
 
 export interface PostAttractionFormInterface {
+    id: number,
     name: string,
     location: number,
     latitude: string,

@@ -130,12 +130,16 @@ function NavBar() {
               </Link>
             </li>
             <li className={styles.nav__item}>
-              <a href="/#footer" className={styles.nav__link}>
+              <a href="/about" className={styles.nav__link}>
                 About
               </a>
             </li>
-            {status !== "loading" && (
-              <li className={styles.nav__item}>
+            <li className="relative mx-auto">
+              <Link href="/cart" id="carrito">
+                <CartCounter />
+              </Link>
+            </li>
+            <li className={styles.nav__item}>
                 {!session ? (
                   <Link href="/login" className={styles.nav__link}>
                     Login
@@ -144,20 +148,9 @@ function NavBar() {
                   <ProfileInfo />
                 )}
               </li>
-            )}
-            <li className={styles.nav__item}>
+              <li className={styles.nav__item}>
               <Link href="/AdminDashboard" className={styles.nav__link}>
                 Admin
-              </Link>
-            </li>
-            <li className="relative mx-auto">
-              <Link href="/cart" id="carrito">
-                <CartCounter />
-              </Link>
-            </li>
-            <li className={styles.nav__item}>
-              <Link href="/Account" className={styles.nav__link}>
-                Perfil
               </Link>
             </li>
           </ul>

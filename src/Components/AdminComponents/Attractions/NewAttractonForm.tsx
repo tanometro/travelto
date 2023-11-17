@@ -1,7 +1,16 @@
 "use client";
-import React, { useState } from "react";
-import { AdminAttractionFormInterface } from "@/src/interfaces";
+import React, { useState, useEffect } from "react";
+import {
+  AdminAttractionFormInterface,
+  LocationInterface,
+} from "@/src/interfaces";
 import createAttraction from "@/src/requests/postAttraction";
+import axios from "axios";
+import { baseURL } from "@/constant";
+import {
+  Image,
+  Transformation
+} from "cloudinary-react";
 
 export default function AdminAttractionForm() {
   const [formData, setFormData] = useState<AdminAttractionFormInterface>({
@@ -17,14 +26,55 @@ export default function AdminAttractionForm() {
     description: "",
     isActive: false,
   });
+  const [locations, setLocations] = useState<LocationInterface[]>([]);
+  const [imageURL, setImageURL] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`${baseURL}/locations`)
+      .then((response) => {
+        setLocations(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching locations:", error);
+      });
+  }, []);
+
+  const uploadImage = async (imageFile: File) => {
+    const formData = new FormData();
+    formData.append("file", imageFile);
+    formData.append("upload_preset", "travelToAdmin");
+  
+    try {
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/ddhtxn2am/image/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setFormData((formData) => ({
+        ...formData,
+        image: response.data.secure_url,
+      }));
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
 
   const handleInputChange = (e: React.FormEvent) => {
-    const { name, value, type, checked } = e.target as HTMLInputElement;
+    const { name, value, type, checked, files } = e.target as HTMLInputElement;
+
     if (type === "checkbox") {
       setFormData((formData) => ({
         ...formData,
         [name]: checked,
       }));
+    } else if (type === "file" && files) {
+      const imageFile = files[0];
+      uploadImage(imageFile);
     } else {
       setFormData((formData) => ({ ...formData, [name]: value }));
     }
@@ -48,7 +98,6 @@ export default function AdminAttractionForm() {
 
     await createAttraction(attractionForm)
       .then(() => {
-        window.alert("Attraction Create success");
         setFormData({
           name: "",
           location: 0,
@@ -110,14 +159,23 @@ export default function AdminAttractionForm() {
           <div className="flex flex-row w-full justify-evenly">
             <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
               <label className="font-bold mb-2 text-center">Location:</label>
-              <input
+              <select
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
                 name="location"
                 value={formData.location}
                 onChange={handleInputChange}
                 required
-              />
+              >
+                <option value="defaultValue">Seleccione una Ciudad</option>
+                {locations.map((location) => (
+                  <option key={location.id} value={location.id}>
+                    {`${location.city}, ${location.country}`}
+                  </option>
+                ))}
+                <option value="not-found" className=" font-bold">
+                  Si la ciudad no esta en la lista debe crearla
+                </option>
+              </select>
             </div>
             <div className="w-full md:w-1/3 px-3">
               <label className="font-bold mb-2 text-center">Ranking:</label>
@@ -181,14 +239,18 @@ export default function AdminAttractionForm() {
           </div>
           <div className="flex flex-row w-full justify-evenly">
             <div className="w-full md:w-1/2 px-3 mb-3 md:mb-0">
-              <label>Image URL:</label>
-              <textarea
-                className="shadow appearance-none border rounded resize-none w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+              <label>Image:</label>
+              <input
+                type="file"
                 name="image"
-                value={formData.image}
                 onChange={handleInputChange}
-                required
+                accept="image/*"
               />
+              {imageURL && (
+                <Image publicId={imageURL} width="100" height="100">
+                  <Transformation crop="fill" />
+                </Image>
+              )}
             </div>
             <div className="w-full md:w-1/2 px-3 mb-3 md:mb-0">
               <label>Description:</label>

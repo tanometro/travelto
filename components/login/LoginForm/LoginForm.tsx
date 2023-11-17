@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 
 export const LoginForm = () => {
   const router = useRouter();
+  const { data: session, status } = useSession();
   const [errors, setErrors] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -27,10 +28,15 @@ export const LoginForm = () => {
 
       if (responseNextAuth?.error) {
         // aca responde la app
+        console.log("aca entra");
+
         setErrors(responseNextAuth.error);
         return;
       }
-      router.push("/login");
+      if (status === "unauthenticated") {
+        setErrors("Error no se encuentra registrado");
+      }
+      router.push("/");
     }
   };
   return (
