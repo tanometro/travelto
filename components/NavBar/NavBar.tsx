@@ -130,7 +130,7 @@ function NavBar() {
               </Link>
             </li>
             <li className={styles.nav__item}>
-              <a href="/#footer" className={styles.nav__link}>
+              <a href="/about" className={styles.nav__link}>
                 About
               </a>
             </li>
