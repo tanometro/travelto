@@ -10,8 +10,8 @@ export default function AdminAttractionForm() {
     image: "",
     email: "",
     password: "",
-    isActive: false,
-    roleID: 3
+    isActive: true,
+    roleID: 0
   });
 
   const handleInputChange = (e: React.FormEvent) => {
@@ -47,7 +47,7 @@ export default function AdminAttractionForm() {
             email: "",
             password: "",
             isActive: false,
-            roleID: 3
+            roleID: 0
         });
       })
       .catch((error) => window.alert(error.message));

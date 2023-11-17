@@ -40,12 +40,12 @@ export interface AttractionsCartInterface {
     duration: string;
     image: string;
     quantity: number;
-  }
+}
 
 export interface AttractionInterface {
     id: number,
     name: string,
-    Location: {city: string, country: string},
+    Location: { city: string, country: string },
     latitude: string,
     longitude: string,
     price: number,
@@ -69,9 +69,9 @@ export interface LocationFormInterface {
 }
 
 export interface PropCards {
-data: AttractionInterface [];
-  flag: boolean;
-  setFlag: (newState: boolean) => void;
+    data: AttractionInterface[];
+    flag: boolean;
+    setFlag: (newState: boolean) => void;
 }
 
 export interface UserInterface {
@@ -85,12 +85,10 @@ export interface UserInterface {
     roleID: number
 }
 
-export interface UserPostInterface {
+export interface UserEditInterface {
+    id: number,
     name: string,
-    dni: string,
-    image: string,
     email: string,
-    password: string,
     isActive: boolean,
     roleID: number
 }
@@ -107,4 +105,4 @@ export interface UserFormInterface {
 export interface ButtonProps {
     text: string,
     size: string,
-  };
+};

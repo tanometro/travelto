@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/login/RegisterForm";
+import RegisterForm from "@/components/login/Registro/RegisterForm";
 import Image from "next/image";
 import Logo from "@/public/images/logo.png";
 
