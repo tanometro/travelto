@@ -4,7 +4,7 @@ import { UserEditInterface } from "../interfaces";
 const patchUser= async (user:UserEditInterface) => {
     try {
        
-          const response = await fetch(`${baseURL}/users/update/${user.id}`, 
+          const response = await fetch(`${baseURL}/users/update/${user.id}`,
           {
             method: 'PATCH',
             headers: {
