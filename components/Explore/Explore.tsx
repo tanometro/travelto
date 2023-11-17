@@ -8,6 +8,8 @@ import { AttractionInterface } from "@/src/interfaces";
 import getAllAttractions from "@/src/requests/getAllAttractions";
 
 export default function Explore() {
+  
+  
   let [state, setState] = useState({
     order: "",
     city: "",
@@ -48,7 +50,7 @@ export default function Explore() {
     }
     //Ordenar Por city ...aprobado
     if (state.city !== "") {
-      if (state.city !== "All") {
+      if (state.city !== "All" && citiesPerCountry.includes(state.city)) {
         orderAndFilter = allAttraction;
         orderAndFilter = orderAndFilter.filter((v) =>
           v.Location.city.includes(state.city)
@@ -249,8 +251,10 @@ export default function Explore() {
               className={styles.btn + " w-[15em] h-[2em] text-center"}
               onChange={onQueryChanged}
             />
-
-            <i className="ri-search-2-line" />
+            <span className="bg-gray-600 backdrop-blur-xl pt-[6px] pb-[7px] opacity-80 color-white pr-1 pl-1">
+              <i className="ri-search-2-line" />
+            </span>
+            
           </div>
         </div>
       </div>
